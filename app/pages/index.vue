@@ -528,7 +528,7 @@ const projects = computed(() => [
     image: '/images/kokpit.png',
     tech: ['Vue 3', 'Pinia', 'Tailwind CSS', 'Node.js', 'Express', 'MongoDB'],
     demoUrl: '#',
-    codeUrl: '#',
+    codeUrl: '#', 
     accentColor: '#f43f5e',
     glowColor: 'rgba(244, 63, 94, 0.25)'
   },
