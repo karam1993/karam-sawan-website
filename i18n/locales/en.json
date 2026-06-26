@@ -1,0 +1,84 @@
+{
+  "nav": {
+    "brand": "Karam Sawan",
+    "about": "About Me",
+    "skills": "Skills",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Welcome, I am",
+    "name": "Karam Sawan",
+    "title": "Full-Stack Web Developer",
+    "desc": "I design and build modern, high-performance web applications. Blending technical engineering with clean aesthetics to deliver outstanding and scalable digital experiences.",
+    "cvBtn": "Download CV",
+    "projectsBtn": "Explore Projects",
+    "contactBtn": "Contact Me",
+    "aiPlaceholder": "Tell me about Karam Sawan...",
+    "aiResponse": "Hello! I am Karam's AI assistant. [br][br]Karam Sawan is a passionate [span class='text-primary font-weight-bold']Full-Stack Engineer[/span] who specializes in building highly performant web applications using [span class='text-secondary font-weight-bold']Nuxt[/span], [span class='text-success font-weight-bold']Vue[/span], [span class='text-info font-weight-bold']Node.js[/span], and modern cloud technologies. [br][br]He transforms complex ideas into beautiful, responsive digital experiences!"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Where Passion Meets Clean Code & Modern Design",
+    "text1": "I am a highly skilled Full-Stack Web Developer passionate about building interactive, scalable web ecosystems. I build dynamic user interfaces using Vue.js and Nuxt.js, paired with powerful database backends to construct seamless architectures.",
+    "text2": "I focus on optimized performance, mobile responsiveness, intuitive UX/UI workflows, and writing maintainable code that aligns with industry best practices."
+  },
+  "skills": {
+    "title": "My Technical Toolkit",
+    "subtitle": "The technologies and tools I leverage to engineer robust digital solutions",
+    "frontend": "Frontend Development",
+    "backend": "Backend & Databases",
+    "tools": "DevOps & Development Tools"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "A curated showcase of recent applications and platforms I have crafted",
+    "demo": "Live Demo",
+    "code": "Source Code",
+    "dawahTitle": "Digital Dawah Platform",
+    "dawahDesc": "An interactive all-in-one platform for publishing and browsing educational lectures, articles, and media.",
+    "ecommerceTitle": "Smart E-Commerce Platform",
+    "ecommerceDesc": "A modern e-commerce application featuring lightning-fast page transitions, responsive cart, and checkout system.",
+    "taskTitle": "Task Management System",
+    "taskDesc": "A sophisticated project management system supporting drag-and-drop tasks, kanban boards, and progress analytics."
+  },
+  "experience": {
+    "title": "My Professional Journey",
+    "subtitle": "A timeline of my growth, projects, and work experience",
+    "item1": {
+      "year": "2024 - Present",
+      "title": "Senior Full-Stack Freelancer",
+      "desc": "Designing and building bespoke web applications for global clients. Focusing on high performance, UX design, and scaling web infrastructures."
+    },
+    "item2": {
+      "year": "2022 - 2024",
+      "title": "Frontend Developer",
+      "desc": "Collaborated in an agile team environment to build enterprise dashboards, utilizing Vue, Nuxt, and Vuetify, with RESTful API integration."
+    },
+    "item3": {
+      "year": "2019 - 2022",
+      "title": "Software Engineering Studies",
+      "desc": "Formal academic studies combined with heavy self-directed practice building database-driven applications and custom API integrations."
+    }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Have a project in mind or want to collaborate? Let's discuss your ideas!",
+    "nameLabel": "Full Name",
+    "emailLabel": "Email Address",
+    "messageLabel": "Your Message",
+    "sendBtn": "Send Message",
+    "successMsg": "Message sent successfully! I will get back to you shortly.",
+    "errorMsg": "An error occurred. Please try again later."
+  },
+  "footer": {
+    "rights": "All rights reserved © Karam Sawan 2026"
+  },
+  "stats": {
+    "experience": "Years Experience",
+    "projects": "Completed Projects",
+    "satisfaction": "Client Satisfaction",
+    "technologies": "Technologies Used"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "nav": {
+    "brand": "Karam Sawan",
+    "about": "Hakkımda",
+    "skills": "Yetenekler",
+    "projects": "Projeler",
+    "experience": "Deneyim",
+    "contact": "İletişim"
+  },
+  "hero": {
+    "greeting": "Merhaba, ben",
+    "name": "Karam Sawan",
+    "title": "Full-Stack Web Geliştirici",
+    "desc": "Modern, hızlı ve ölçeklenebilir web uygulamaları tasarlıyorum ve geliştiriyorum. Teknik mühendisliği temiz estetikle birleştirerek harika dijital deneyimler sunuyorum.",
+    "cvBtn": "Özgeçmişi İndir",
+    "contactBtn": "Bana Ulaşın",
+    "projectsBtn": "Projeleri İncele",
+    "aiPlaceholder": "Karam Sawan hakkında bilgi ver...",
+    "aiResponse": "Merhaba! Ben Karam'ın yapay zeka asistanıyım. [br][br]Karam Sawan; [span class='text-secondary font-weight-bold']Nuxt[/span], [span class='text-success font-weight-bold'>Vue[/span] ve [span class='text-info font-weight-bold']Node.js[/span] kullanarak yüksek performanslı web uygulamaları geliştiren uzman bir [span class='text-primary font-weight-bold']Full-Stack Yazılımcıdır[/span]. [br][br]Karmaşık fikirleri şık ve duyarlı dijital deneyimlere dönüştürür!"
+  },
+  "about": {
+    "title": "Hakkımda",
+    "subtitle": "Tutkunun, Temiz Kodun ve Modern Tasarımın Buluştuğu Yer",
+    "text1": "Kullanıcı dostu ve ölçeklenebilir web ekosistemleri oluşturma konusunda tutkulu bir Full-Stack Web Geliştiriciyim. Vue.js ve Nuxt.js kullanarak dinamik kullanıcı arayüzleri geliştiriyor, güçlü veritabanı altyapılarıyla sorunsuz mimariler kuruyorum.",
+    "text2": "Performans optimizasyonu, mobil uyumluluk, sezgisel kullanıcı deneyimi (UX/UI) iş akışları ve endüstri standartlarına uygun sürdürülebilir kod yazmaya odaklanıyorum."
+  },
+  "skills": {
+    "title": "Teknik Yeteneklerim",
+    "subtitle": "Güçlü dijital çözümler üretmek için kullandığım teknolojiler ve araçlar",
+    "frontend": "Arayüz Geliştirme (Frontend)",
+    "backend": "Sunucu Tarafı ve Veritabanları (Backend)",
+    "tools": "DevOps ve Geliştirme Araçları"
+  },
+  "projects": {
+    "title": "Öne Çıkan Projeler",
+    "subtitle": "Son zamanlarda geliştirdiğim bazı uygulama ve platformlar",
+    "demo": "Canlı Önizleme",
+    "code": "Kaynak Kodu",
+    "dawahTitle": "Dijital Davet Platformu",
+    "dawahDesc": "Eğitici dersler, makaleler ve medya yayınlamak ve göz atmak için etkileşimli hepsi bir arada platform.",
+    "ecommerceTitle": "Akıllı E-Ticaret Platformu",
+    "ecommerceDesc": "Hızlı sayfa geçişleri, duyarlı sepet ve ödeme sistemi sunan modern bir e-ticaret uygulaması.",
+    "taskTitle": "Görev Yönetim Sistemi",
+    "taskDesc": "Sürükle-bırak görevler, kanban panoları ve ilerleme analitiğini destekleyen gelişmiş proje yönetim sistemi."
+  },
+  "experience": {
+    "title": "Kariyer Yolculuğum",
+    "subtitle": "Gelişimim, projelerim ve iş deneyimlerimin zaman çizelgesi",
+    "item1": {
+      "year": "2024 - Günümüz",
+      "title": "Kıdemli Full-Stack Serbest Çalışan (Freelancer)",
+      "desc": "Küresel müşteriler için özel web uygulamaları tasarlamak ve geliştirmek. Yüksek performans, UX tasarımı ve web altyapılarını ölçeklendirmeye odaklanma."
+    },
+    "item2": {
+      "year": "2022 - 2024",
+      "title": "Frontend Geliştirici",
+      "desc": "Vue, Nuxt ve Vuetify kullanarak kurumsal panolar oluşturmak için çevik bir ekip ortamında işbirliği yapıldı."
+    },
+    "item3": {
+      "year": "2019 - 2022",
+      "title": "Yazılım Mühendisliği ve Bağımsız Öğrenme",
+      "desc": "Veritabanı odaklı uygulamalar ve özel API entegrasyonları oluşturan yoğun kendi kendine çalışma ile birleştirilmiş resmi akademik çalışmalar."
+    }
+  },
+  "contact": {
+    "title": "Bana Ulaşın",
+    "subtitle": "Aklınızda bir proje mi var yoksa işbirliği mi yapmak istiyorsunuz? Fikirlerinizi konuşalım!",
+    "nameLabel": "Adınız Soyadınız",
+    "emailLabel": "E-posta Adresiniz",
+    "messageLabel": "Mesajınız",
+    "sendBtn": "Mesaj Gönder",
+    "successMsg": "Mesajınız başarıyla gönderildi! En kısa sürede sizinle iletişime geçeceğim.",
+    "errorMsg": "Bir hata oluştu. Lütfen daha sonra tekrar deneyin."
+  },
+  "footer": {
+    "rights": "Tüm hakları saklıdır © Karam Sawan 2026"
+  },
+  "stats": {
+    "experience": "Yıllık Deneyim",
+    "projects": "Tamamlanan Proje",
+    "satisfaction": "Müşteri Memnuniyeti",
+    "technologies": "Kullanılan Teknoloji"
+  }
+}
