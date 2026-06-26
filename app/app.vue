@@ -197,7 +197,13 @@ body {
   margin: 0;
   padding: 0;
   background-color: #0B0F19;
-  overflow-x: hidden;
+}
+
+/* Override Vuetify default layout overflow rules to allow position: sticky */
+.v-application,
+.v-application__wrap,
+.v-layout {
+  overflow: visible !important;
 }
 
 /* Global Application background container */
