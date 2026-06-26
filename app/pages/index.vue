@@ -13,118 +13,7 @@ const activeQuestionIndex = ref(-1)
 const terminalContentRef = ref(null)
 const terminalInputFieldRef = ref(null)
 
-// Mouse tracking for background gradient glow
-const heroRef = ref(null)
-const mouseX = ref(-1000)
-const mouseY = ref(-1000)
 
-const handleMouseMove = (e) => {
-  if (!heroRef.value) return
-  const rect = heroRef.value.getBoundingClientRect()
-  mouseX.value = e.clientX - rect.left
-  mouseY.value = e.clientY - rect.top
-}
-
-const handleMouseLeave = () => {
-  mouseX.value = -1000
-  mouseY.value = -1000
-}
-
-const mouseGlowStyle = computed(() => {
-  return {
-    left: `${mouseX.value}px`,
-    top: `${mouseY.value}px`
-  }
-})
-
-// Interactive Particle Gravity Field (Canvas based)
-const canvasRef = ref(null)
-let animationFrameId = null
-const particles = []
-
-class Particle {
-  constructor(originX, originY) {
-    this.originX = originX
-    this.originY = originY
-    this.x = originX + (Math.random() * 20 - 10)
-    this.y = originY + (Math.random() * 20 - 10)
-    this.vx = 0
-    this.vy = 0
-    this.size = Math.random() * 1.5 + 1.2
-    this.color = Math.random() > 0.2 ? 'rgba(122, 255, 251, 0.7)' : 'rgba(99, 102, 241, 0.7)'
-    this.ease = 0.05 + Math.random() * 0.04
-    this.friction = 0.85 + Math.random() * 0.05
-  }
-
-  update(mx, my, isMouseActive) {
-    let dx = mx - this.x
-    let dy = my - this.y
-    let dist = Math.sqrt(dx * dx + dy * dy)
-    let force = 0
-    const inPullZone = isMouseActive && dist < 220
-
-    if (inPullZone) {
-      force = (220 - dist) / 220
-      let accel = force * 2.5
-      this.vx += (dx / dist) * accel
-      this.vy += (dy / dist) * accel
-    } else {
-      // Constant organic vibration (Brownian motion style) when idle
-      this.vx += (Math.random() * 0.76 - 0.38)
-      this.vy += (Math.random() * 0.76 - 0.38)
-    }
-
-    this.vx += (this.originX - this.x) * this.ease
-    this.vy += (this.originY - this.y) * this.ease
-
-    this.vx *= this.friction
-    this.vy *= this.friction
-    this.x += this.vx
-    this.y += this.vy
-  }
-
-  draw(ctx) {
-    ctx.beginPath()
-    const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy)
-    if (speed > 0.4) {
-      ctx.moveTo(this.x, this.y)
-      ctx.lineTo(this.x - this.vx * 1.5, this.y - this.vy * 1.5)
-      ctx.strokeStyle = this.color
-      ctx.lineWidth = this.size
-      ctx.lineCap = 'round'
-      ctx.stroke()
-    } else {
-      ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2)
-      ctx.fillStyle = this.color
-      ctx.fill()
-    }
-  }
-}
-
-const initParticles = (width, height) => {
-  particles.length = 0
-  const spacing = 39
-  const cols = Math.floor(width / spacing)
-  const rows = Math.floor(height / spacing)
-  const xSpacing = width / (cols + 1)
-  const ySpacing = height / (rows + 1)
-
-  for (let r = 1; r <= rows; r++) {
-    for (let c = 1; c <= cols; c++) {
-      const originX = c * xSpacing
-      const originY = r * ySpacing
-      particles.push(new Particle(originX, originY))
-    }
-  }
-}
-
-const handleResize = () => {
-  const canvas = canvasRef.value
-  if (!canvas || !heroRef.value) return
-  canvas.width = heroRef.value.clientWidth
-  canvas.height = heroRef.value.clientHeight
-  initParticles(canvas.width, canvas.height)
-}
 
 // Localized suggestions array
 const suggestions = computed(() => {
@@ -468,211 +357,229 @@ onMounted(() => {
   setTimeout(() => {
     selectSuggestion(0)
   }, 1200)
-
-  // Start Canvas Particles Loop
-  const canvas = canvasRef.value
-  if (canvas) {
-    const ctx = canvas.getContext('2d')
-    handleResize()
-    window.addEventListener('resize', handleResize)
-
-    const loop = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      const isMouseActive = mouseX.value !== -1000 && mouseY.value !== -1000
-
-      particles.forEach(p => {
-        p.update(mouseX.value, mouseY.value, isMouseActive)
-        p.draw(ctx)
-      })
-
-      animationFrameId = requestAnimationFrame(loop)
-    }
-    loop()
-  }
 })
 
 onBeforeUnmount(() => {
   stopTyping()
-  window.removeEventListener('resize', handleResize)
-  if (animationFrameId) {
-    cancelAnimationFrame(animationFrameId)
-  }
 })
 </script>
 
 <template>
-  <div class="hero-section" ref="heroRef" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
-    <!-- Interactive Background Particles Canvas -->
-    <canvas ref="canvasRef" class="hero-bg-canvas"></canvas>
-
-    <!-- Ambient Background Glows -->
-    <div class="ambient-glow primary-glow"></div>
-    <div class="ambient-glow secondary-glow"></div>
-    <div class="mouse-glow" :style="mouseGlowStyle"></div>
-    
-    <v-container class="position-relative fill-height d-flex align-center hero-container">
-      <v-row class="align-center py-10 py-md-16">
-        <!-- Left Column: Intro Text & CTA -->
-        <v-col cols="12" md="6" class="intro-col">
-          <!-- Welcome Badge -->
-          <div class="welcome-badge d-inline-flex align-center mb-6">
-            <v-icon icon="mdi-robot-outline" color="primary" class="mr-2 ml-2 welcome-badge-icon" size="18"></v-icon>
-            <span class="text-caption font-weight-black tracking-wider">
-              {{ locale === 'ar' ? 'مطور ويب مدعوم بالذكاء الاصطناعي ⚡' : locale === 'tr' ? 'YAPAY ZEKA DESTEKLİ GELİŞTİRİCİ ⚡' : 'AI-POWERED WEB DEVELOPER ⚡' }}
-            </span>
-          </div>
-          
-          <!-- Heading -->
-          <h1 class="hero-title font-weight-black mb-4">
-            <span class="text-white block-text">{{ $t('hero.greeting') }}</span>
-            <span class="gradient-text block-text">{{ $t('hero.name') }}</span>
-          </h1>
-          
-          <!-- Subtitle / Role -->
-          <div class="role-container mb-6">
-            <span class="role-text text-h5 text-sm-h4 font-weight-bold text-primary">
-              {{ $t('hero.title') }}
-            </span>
-          </div>
-          
-          <!-- Description -->
-          <p class="hero-desc text-body-1 mb-8 max-w-xl">
-            {{ $t('hero.desc') }}
-          </p>
-          
-          <!-- Actions Buttons -->
-          <div class="d-flex flex-wrap gap-4 btn-actions-group">
-            <v-btn
-              href="#projects"
-              color="primary"
-              variant="flat"
-              size="large"
-              class="cta-btn primary-cta px-6 px-sm-8 py-3 text-capitalize font-weight-bold"
-              elevation="6"
-            >
-              {{ $t('hero.projectsBtn') }}
-              <v-icon :icon="locale === 'ar' ? 'mdi-arrow-left' : 'mdi-arrow-right'" class="ml-2 mr-2" size="18"></v-icon>
-            </v-btn>
-            
-            <v-btn
-              href="#contact"
-              variant="outlined"
-              size="large"
-              class="cta-btn secondary-cta px-6 px-sm-8 py-3 text-capitalize font-weight-bold"
-            >
-              {{ $t('hero.contactBtn') }}
-            </v-btn>
-            
-            <!-- Download CV (secondary link button) -->
-            <v-btn
-              variant="text"
-              color="grey-lighten-1"
-              size="large"
-              class="cta-btn text-cta px-4 py-3 text-capitalize font-weight-bold"
-              prepend-icon="mdi-download"
-            >
-              {{ $t('hero.cvBtn') }}
-            </v-btn>
-          </div>
-        </v-col>
-        
-        <!-- Right Column: Interactive AI Terminal & SVG Robot -->
-        <v-col cols="12" md="6" class="position-relative d-flex justify-center align-center cyber-col">
-          <div class="cyber-workspace">
-            <!-- Concentric Rotating Cyber Rings (Background) -->
-            <div class="cyber-portal">
-              <div class="cyber-ring ring-outer"></div>
-              <div class="cyber-ring ring-middle"></div>
-              <div class="cyber-ring ring-inner"></div>
+  <div class="app-layout">
+    <!-- Hero (About) Section -->
+    <div id="about" class="hero-section">
+      <v-container class="position-relative fill-height d-flex align-center hero-container">
+        <v-row class="align-center py-10 py-md-16">
+          <!-- Left Column: Intro Text & CTA -->
+          <v-col cols="12" md="6" class="intro-col">
+            <!-- Welcome Badge -->
+            <div class="welcome-badge d-inline-flex align-center mb-6">
+              <v-icon icon="mdi-robot-outline" color="primary" class="mr-2 ml-2 welcome-badge-icon" size="18"></v-icon>
+              <span class="text-caption font-weight-black tracking-wider">
+                {{ locale === 'ar' ? 'مطور ويب مدعوم بالذكاء الاصطناعي ⚡' : locale === 'tr' ? 'YAPAY ZEKA DESTEKLİ GELİŞTİRİCİ ⚡' : 'AI-POWERED WEB DEVELOPER ⚡' }}
+              </span>
             </div>
             
-            <!-- Floating Robot Container -->
-            <div class="robot-img-container">
-              <img src="/images/robot-ani2.svg" alt="AI Robot Assistant" class="robot-svg" />
+            <!-- Heading -->
+            <h1 class="hero-title font-weight-black mb-4">
+              <span class="text-white block-text">{{ $t('hero.greeting') }}</span>
+              <span class="gradient-text block-text">{{ $t('hero.name') }}</span>
+            </h1>
+            
+            <!-- Subtitle / Role -->
+            <div class="role-container mb-6">
+              <span class="role-text text-h5 text-sm-h4 font-weight-bold text-primary">
+                {{ $t('hero.title') }}
+              </span>
             </div>
             
-            <!-- Interactive AI Hologram Terminal -->
-            <div class="hologram-terminal-card" :class="{ 'typing-active': isTyping }">
-              <div class="terminal-header d-flex align-center justify-space-between px-4 py-2">
-                <div class="terminal-dots d-flex align-center">
-                  <span class="dot red"></span>
-                  <span class="dot yellow"></span>
-                  <span class="dot green"></span>
+            <!-- Description -->
+            <p class="hero-desc text-body-1 mb-8 max-w-xl">
+              {{ $t('hero.desc') }}
+            </p>
+            
+            <!-- Actions Buttons -->
+            <div class="d-flex flex-wrap gap-4 btn-actions-group">
+              <v-btn
+                href="#projects"
+                color="primary"
+                variant="flat"
+                size="large"
+                class="cta-btn primary-cta px-6 px-sm-8 py-3 text-capitalize font-weight-bold"
+                elevation="6"
+              >
+                {{ $t('hero.projectsBtn') }}
+                <v-icon :icon="locale === 'ar' ? 'mdi-arrow-left' : 'mdi-arrow-right'" class="ml-2 mr-2" size="18"></v-icon>
+              </v-btn>
+              
+              <v-btn
+                href="#contact"
+                variant="outlined"
+                size="large"
+                class="cta-btn secondary-cta px-6 px-sm-8 py-3 text-capitalize font-weight-bold"
+              >
+                {{ $t('hero.contactBtn') }}
+              </v-btn>
+              
+              <!-- Download CV (secondary link button) -->
+              <v-btn
+                variant="text"
+                color="grey-lighten-1"
+                size="large"
+                class="cta-btn text-cta px-4 py-3 text-capitalize font-weight-bold"
+                prepend-icon="mdi-download"
+              >
+                {{ $t('hero.cvBtn') }}
+              </v-btn>
+            </div>
+          </v-col>
+          
+          <!-- Right Column: Interactive AI Terminal & SVG Robot -->
+          <v-col cols="12" md="6" class="position-relative d-flex justify-center align-center cyber-col">
+            <div class="cyber-workspace">
+              <!-- Concentric Rotating Cyber Rings (Background) -->
+              <div class="cyber-portal">
+                <div class="cyber-ring ring-outer"></div>
+                <div class="cyber-ring ring-middle"></div>
+                <div class="cyber-ring ring-inner"></div>
+              </div>
+              
+              <!-- Floating Robot Container -->
+              <div class="robot-img-container">
+                <img src="/images/robot-ani2.svg" alt="AI Robot Assistant" class="robot-svg" />
+              </div>
+              
+              <!-- Interactive AI Hologram Terminal -->
+              <div class="hologram-terminal-card" :class="{ 'typing-active': isTyping }">
+                <div class="terminal-header d-flex align-center justify-space-between px-4 py-2">
+                  <div class="terminal-dots d-flex align-center">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                  </div>
+                  <div class="terminal-title text-caption font-weight-bold text-uppercase">
+                    AI-Agent-Terminal v1.0.8
+                  </div>
+                  <div class="d-flex align-center">
+                    <v-icon icon="mdi-circle" size="8" :color="isTyping ? 'primary' : 'grey-darken-2'" class="pulse-indicator mr-1 ml-1"></v-icon>
+                  </div>
                 </div>
-                <div class="terminal-title text-caption font-weight-bold text-uppercase">
-                  AI-Agent-Terminal v1.0.8
-                </div>
-                <div class="d-flex align-center">
-                  <v-icon icon="mdi-circle" size="8" :color="isTyping ? 'primary' : 'grey-darken-2'" class="pulse-indicator mr-1 ml-1"></v-icon>
+                
+                <div class="terminal-body p-4 d-flex flex-column justify-space-between">
+                  <!-- Response Display -->
+                  <div class="terminal-content mb-4" ref="terminalContentRef">
+                    <div class="terminal-welcome mb-3 text-caption text-grey">
+                      &gt; SYSTEM ONLINE. ASK KARAM'S AI AGENT...
+                    </div>
+                    
+                    <!-- If user has triggered a response -->
+                    <div v-if="terminalInput" class="terminal-user-query mb-2">
+                      <span class="text-secondary font-weight-bold">&gt; {{ terminalInput }}</span>
+                    </div>
+                    
+                    <div class="terminal-ai-response-wrapper">
+                      <div v-if="terminalResponse" class="terminal-ai-response" v-html="terminalResponse"></div>
+                      <!-- Blinking Cursor -->
+                      <span class="terminal-cursor" v-if="isTyping"></span>
+                    </div>
+                  </div>
+                  
+                  <!-- Quick Suggestion Badges -->
+                  <div class="terminal-suggestions mb-4">
+                    <span class="suggestion-label text-caption text-grey d-block mb-2">
+                      {{ locale === 'ar' ? 'أسئلة سريعة للتجربة:' : locale === 'tr' ? 'Hızlı Sorular:' : 'Quick Prompts:' }}
+                    </span>
+                    <div class="terminal-suggestions-list">
+                      <button
+                        v-for="(sug, index) in suggestions"
+                        :key="index"
+                        class="suggestion-badge"
+                        :class="{ active: activeQuestionIndex === index }"
+                        @click="selectSuggestion(index)"
+                        :disabled="isTyping"
+                      >
+                        {{ sug.label }}
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <!-- Input Box -->
+                  <div class="terminal-input-wrapper">
+                    <span class="terminal-prompt-symbol text-primary font-weight-bold">&gt;</span>
+                    <input
+                      ref="terminalInputFieldRef"
+                      type="text"
+                      class="terminal-input-field"
+                      v-model="customQuery"
+                      :placeholder="$t('hero.aiPlaceholder')"
+                      @keyup.enter="submitCustomQuery"
+                      :disabled="isTyping"
+                    />
+                    <v-btn
+                      icon="mdi-send"
+                      variant="text"
+                      color="primary"
+                      density="comfortable"
+                      @click="submitCustomQuery"
+                      :disabled="isTyping || !customQuery.trim()"
+                    ></v-btn>
+                  </div>
                 </div>
               </div>
               
-              <div class="terminal-body p-4 d-flex flex-column justify-space-between">
-                <!-- Response Display -->
-                <div class="terminal-content mb-4" ref="terminalContentRef">
-                  <div class="terminal-welcome mb-3 text-caption text-grey">
-                    &gt; SYSTEM ONLINE. ASK KARAM'S AI AGENT...
-                  </div>
-                  
-                  <!-- If user has triggered a response -->
-                  <div v-if="terminalInput" class="terminal-user-query mb-2">
-                    <span class="text-secondary font-weight-bold">&gt; {{ terminalInput }}</span>
-                  </div>
-                  
-                  <div class="terminal-ai-response-wrapper">
-                    <div v-if="terminalResponse" class="terminal-ai-response" v-html="terminalResponse"></div>
-                    <!-- Blinking Cursor -->
-                    <span class="terminal-cursor" v-if="isTyping"></span>
-                  </div>
-                </div>
-                
-                <!-- Quick Suggestion Badges -->
-                <div class="terminal-suggestions mb-4">
-                  <span class="suggestion-label text-caption text-grey d-block mb-2">
-                    {{ locale === 'ar' ? 'أسئلة سريعة للتجربة:' : locale === 'tr' ? 'Hızlı Sorular:' : 'Quick Prompts:' }}
-                  </span>
-                  <div class="terminal-suggestions-list">
-                    <button
-                      v-for="(sug, index) in suggestions"
-                      :key="index"
-                      class="suggestion-badge"
-                      :class="{ active: activeQuestionIndex === index }"
-                      @click="selectSuggestion(index)"
-                      :disabled="isTyping"
-                    >
-                      {{ sug.label }}
-                    </button>
-                  </div>
-                </div>
-                
-                <!-- Input Box -->
-                <div class="terminal-input-wrapper">
-                  <span class="terminal-prompt-symbol text-primary font-weight-bold">&gt;</span>
-                  <input
-                    ref="terminalInputFieldRef"
-                    type="text"
-                    class="terminal-input-field"
-                    v-model="customQuery"
-                    :placeholder="$t('hero.aiPlaceholder')"
-                    @keyup.enter="submitCustomQuery"
-                    :disabled="isTyping"
-                  />
-                  <v-btn
-                    icon="mdi-send"
-                    variant="text"
-                    color="primary"
-                    density="comfortable"
-                    @click="submitCustomQuery"
-                    :disabled="isTyping || !customQuery.trim()"
-                  ></v-btn>
-                </div>
-              </div>
             </div>
-            
-          </div>
-        </v-col>
-      </v-row>
-    </v-container>
+          </v-col>
+        </v-row>
+      </v-container>
+    </div>
+
+    <!-- Skills Section (For Scrollspy Test) -->
+    <section id="skills" class="dummy-section">
+      <v-container>
+        <h2 class="section-title">
+          <span class="gradient-text">{{ locale === 'ar' ? 'المهارات' : locale === 'tr' ? 'Yetenekler' : 'Skills' }}</span>
+        </h2>
+        <div class="section-content">
+          <p>{{ locale === 'ar' ? 'هذا القسم مخصص لعرض المهارات البرمجية والخبرات التقنية.' : locale === 'tr' ? 'Bu bölüm teknik becerileri ve programlama yeteneklerini sergilemek içindir.' : 'This section is designed to showcase programming skills and technical expertise.' }}</p>
+        </div>
+      </v-container>
+    </section>
+
+    <!-- Projects Section (For Scrollspy Test) -->
+    <section id="projects" class="dummy-section">
+      <v-container>
+        <h2 class="section-title">
+          <span class="gradient-text">{{ locale === 'ar' ? 'المشاريع' : locale === 'tr' ? 'Projeler' : 'Projects' }}</span>
+        </h2>
+        <div class="section-content">
+          <p>{{ locale === 'ar' ? 'هنا سيتم عرض أبرز المشاريع البرمجية وتطبيقات الويب الحديثة.' : locale === 'tr' ? 'En son web uygulamaları ve yazılım projeleri burada sergilenecektir.' : 'Key software projects and modern web applications will be displayed here.' }}</p>
+        </div>
+      </v-container>
+    </section>
+
+    <!-- Experience Section (For Scrollspy Test) -->
+    <section id="experience" class="dummy-section">
+      <v-container>
+        <h2 class="section-title">
+          <span class="gradient-text">{{ locale === 'ar' ? 'الخبرة المهنية' : locale === 'tr' ? 'Deneyim' : 'Experience' }}</span>
+        </h2>
+        <div class="section-content">
+          <p>{{ locale === 'ar' ? 'تاريخ الخبرة العملية والمناصب التي تم شغلها في تطوير البرمجيات.' : locale === 'tr' ? 'Yazılım geliştirme alanındaki iş geçmişi ve deneyimler.' : 'Work history and professional career path in software development.' }}</p>
+        </div>
+      </v-container>
+    </section>
+
+    <!-- Contact Section (For Scrollspy Test) -->
+    <section id="contact" class="dummy-section">
+      <v-container>
+        <h2 class="section-title">
+          <span class="gradient-text">{{ locale === 'ar' ? 'اتصل بي' : locale === 'tr' ? 'İletişim' : 'Contact' }}</span>
+        </h2>
+        <div class="section-content">
+          <p>{{ locale === 'ar' ? 'تواصل معي مباشرة لمناقشة المشاريع والتعاون البرمجي.' : locale === 'tr' ? 'İşbirlikleri ve yazılım projeleri için benimle doğrudan iletişime geçin.' : 'Get in touch with me directly to discuss projects and collaboration.' }}</p>
+        </div>
+      </v-container>
+    </section>
   </div>
 </template>
 
@@ -684,7 +591,7 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   overflow: hidden;
-  background-color: #0B0F19;
+  background-color: transparent;
   padding: 100px 0 60px 0;
   z-index: 2;
 }
@@ -701,50 +608,6 @@ onBeforeUnmount(() => {
   background-position: center;
   pointer-events: none;
   z-index: 1;
-}
-
-/* Gradient flows */
-.ambient-glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(140px);
-  pointer-events: none;
-  opacity: 0.15;
-  z-index: 1;
-}
-
-.primary-glow {
-  width: 450px;
-  height: 450px;
-  background: #7afffb;
-  top: 10%;
-  left: -150px;
-  animation: pulseGlow 12s ease-in-out infinite alternate;
-}
-
-.secondary-glow {
-  width: 550px;
-  height: 550px;
-  background: #6366F1;
-  bottom: 10%;
-  right: -200px;
-  animation: pulseGlow 16s ease-in-out infinite alternate-reverse;
-}
-
-.mouse-glow {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(122, 255, 251, 0.05) 0%, rgba(99, 102, 241, 0.02) 50%, transparent 70%);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes pulseGlow {
-  0% { transform: scale(1) translate(0, 0); opacity: 0.12; }
-  100% { transform: scale(1.15) translate(40px, 30px); opacity: 0.22; }
 }
 
 .hero-container {
@@ -1210,9 +1073,9 @@ onBeforeUnmount(() => {
 
   .cyber-portal {
     top: -80px;
-    left: 50% !important;
-    right: auto !important;
-    transform: translateX(-50%);
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 auto;
     width: 250px;
     height: 250px;
   }
@@ -1222,12 +1085,12 @@ onBeforeUnmount(() => {
   .ring-inner { width: 160px; height: 160px; }
 
   .robot-img-container {
-    top: -55px;
-    left: 50% !important;
-    right: auto !important;
-    transform: translateX(-50%);
-    width: 190px;
-    height: 190px;
+    top: -95px;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 auto;
+    width: 300px;
+    height: 300px;
   }
 
   .hologram-terminal-card {
@@ -1239,5 +1102,39 @@ onBeforeUnmount(() => {
   }
 
 
+}
+
+/* Dummy Sections for testing Scroll & Scrollspy */
+.dummy-section {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 80px 0;
+  z-index: 2;
+}
+
+.dummy-section:nth-of-type(even) {
+  background-color: rgba(255, 255, 255, 0.015);
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.section-content {
+  text-align: center;
+  color: #94A3B8;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 </style>
