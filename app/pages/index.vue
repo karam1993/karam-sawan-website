@@ -503,7 +503,7 @@ const projects = computed(() => [
     titleKey: 'projects.looplanfyTitle',
     descKey: 'projects.looplanfyDesc',
     category: 'saas',
-    image: '/images/001.jpg',
+    image: '/images/001.png',
     tech: ['Nuxt 3', 'Vue.js', 'Tailwind CSS', 'Laravel', 'Supabase'],
     demoUrl: '#',
     codeUrl: '#',
