@@ -317,6 +317,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #0B0F19;
+  font-family: 'Cairo', sans-serif;
 }
 
 /* Override Vuetify default layout overflow rules to allow position: sticky */

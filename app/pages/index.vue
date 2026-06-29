@@ -32,7 +32,7 @@ const suggestions = computed(() => {
       {
         label: 'تواصل معه؟',
         text: 'كيف يمكنني التواصل مع كرم صوان؟',
-        response: 'يسعد كرم دائماً بالتواصل للتعاون والمشاريع الجديدة!<br><br>يمكنك التواصل معه مباشرة عبر نموذج الاتصال أسفل الصفحة، أو عن طريق البريد الإلكتروني: [span class="text-primary"]contact@karam-sawan.online[/span]. وسيقوم بالرد عليك في أقرب وقت!'
+        response: 'يسعد كرم دائماً بالتواصل للتعاون والمشاريع الجديدة!<br><br>يمكنك التواصل معه مباشرة عبر نموذج الاتصال أسفل الصفحة، أو عن طريق البريد الإلكتروني: [span class="text-primary"]karam.sawan.sy@gmail.com[/span]. وسيقوم بالرد عليك في أقرب وقت!'
       }
     ]
   } else if (locale.value === 'tr') {
@@ -50,7 +50,7 @@ const suggestions = computed(() => {
       {
         label: 'İletişim?',
         text: 'Karam ile nasıl iletişime geçebilirim?',
-        response: 'Karam, yeni projeler ve işbirlikleri için sizinle görüşmekten memnuniyet duyar!<br><br>Sayfa sonundaki iletişim formunu kullanabilir veya doğrudan e-posta gönderebilirsiniz: [span class="text-primary"]contact@karam-sawan.online[/span].'
+        response: 'Karam, yeni projeler ve işbirlikleri için sizinle görüşmekten memnuniyet duyar!<br><br>Sayfa sonundaki iletişim formunu kullanabilir veya doğrudan e-posta gönderebilirsiniz: [span class="text-primary"]karam.sawan.sy@gmail.com[/span].'
       }
     ]
   } else {
@@ -69,7 +69,7 @@ const suggestions = computed(() => {
       {
         label: 'Contact Info?',
         text: 'How can I contact Karam?',
-        response: 'Karam is always open to collaborations and new opportunities!<br><br>You can reach him via the contact form at the bottom of the page or directly by email: [span class="text-primary"]contact@karam-sawan.online[/span]. He will get back to you shortly!'
+        response: 'Karam is always open to collaborations and new opportunities!<br><br>You can reach him via the contact form at the bottom of the page or directly by email: [span class="text-primary"]karam.sawan.sy@gmail.com[/span]. He will get back to you shortly!'
       }
     ]
   }
@@ -279,9 +279,9 @@ const getChatbotResponse = (query, currentLocale) => {
         en: ['contact', 'email', 'reach', 'call', 'message', 'phone', 'linkedin', 'github', 'social']
       },
       response: {
-        ar: 'يمكنك التواصل مع كرم مباشرة لمناقشة مشروع جديد أو فرص عمل:<br><br>• 📧 البريد الإلكتروني: [span class="text-primary"]contact@karam-sawan.online[/span].<br>• 📝 كما يمكنك ملء نموذج المراسلة الموجود في أسفل هذه الصفحة مباشرة وسيرد عليك في أقرب وقت.<br>• 🔗 تواصل معه مهنياً عبر LinkedIn و GitHub المتواجدة روابطهما في الفوتر.',
-        tr: 'Yeni projeler veya iş fırsatları için Karam ile doğrudan iletişime geçebilirsiniz:<br><br>• 📧 E-posta adresi: [span class="text-primary"]contact@karam-sawan.online[/span].<br>• 📝 Sayfanın alt kısmındaki iletişim formunu doldurarak mesajınızı iletebilirsiniz.<br>• 🔗 Sayfa altındaki bağlantılardan LinkedIn ve GitHub profillerini inceleyebilirsiniz.',
-        en: 'You can reach out to Karam directly to discuss new projects, hires, or collaborations:<br><br>• 📧 Email address: [span class="text-primary"]contact@karam-sawan.online[/span].<br>• 📝 You can fill out the contact form at the bottom of this page to send a direct message.<br>• 🔗 Connect with him on LinkedIn and GitHub via the links in the footer.'
+        ar: 'يمكنك التواصل مع كرم مباشرة لمناقشة مشروع جديد أو فرص عمل:<br><br>• 📧 البريد الإلكتروني: [span class="text-primary"]karam.sawan.sy@gmail.com[/span].<br>• 📝 كما يمكنك ملء نموذج المراسلة الموجود في أسفل هذه الصفحة مباشرة وسيرد عليك في أقرب وقت.<br>• 🔗 تواصل معه مهنياً عبر LinkedIn و GitHub المتواجدة روابطهما في الفوتر.',
+        tr: 'Yeni projeler veya iş fırsatları için Karam ile doğrudan iletişime geçebilirsiniz:<br><br>• 📧 E-posta adresi: [span class="text-primary"]karam.sawan.sy@gmail.com[/span].<br>• 📝 Sayfanın alt kısmındaki iletişim formunu doldurarak mesajınızı iletebilirsiniz.<br>• 🔗 Sayfa altındaki bağlantılardan LinkedIn ve GitHub profillerini inceleyebilirsiniz.',
+        en: 'You can reach out to Karam directly to discuss new projects, hires, or collaborations:<br><br>• 📧 Email address: [span class="text-primary"]karam.sawan.sy@gmail.com[/span].<br>• 📝 You can fill out the contact form at the bottom of this page to send a direct message.<br>• 🔗 Connect with him on LinkedIn and GitHub via the links in the footer.'
       }
     },
     {
@@ -514,7 +514,7 @@ const projects = computed(() => [
     titleKey: 'projects.financeTitle',
     descKey: 'projects.financeDesc',
     category: 'saas',
-    image: '/images/looplanfy_finance.png',
+    image: '/images/002.png',
     tech: ['Amazon API', 'Trendyol API', 'Hepsiburada API', 'Laravel', 'MySQL', 'Vue 3'],
     demoUrl: '#',
     codeUrl: '#',
@@ -525,7 +525,7 @@ const projects = computed(() => [
     titleKey: 'projects.kokpitTitle',
     descKey: 'projects.kokpitDesc',
     category: 'saas',
-    image: '/images/kokpit.png',
+    image: '/images/003.png',
     tech: ['Vue 3', 'Pinia', 'Tailwind CSS', 'Node.js', 'Express', 'MongoDB'],
     demoUrl: '#',
     codeUrl: '#', 
@@ -536,7 +536,7 @@ const projects = computed(() => [
     titleKey: 'projects.onikiTitle',
     descKey: 'projects.onikiDesc',
     category: 'saas',
-    image: '/images/oniki.png',
+    image: '/images/004.png',
     tech: ['AI Matchmaking', 'Node.js', 'Vue.js', 'Tailwind CSS', 'Websockets'],
     demoUrl: '#',
     codeUrl: '#',
@@ -548,7 +548,7 @@ const projects = computed(() => [
     titleKey: 'projects.yollandoTitle',
     descKey: 'projects.yollandoDesc',
     category: 'ecommerce',
-    image: '/images/yollando.png',
+    image: '/images/005.png',
     tech: ['B2B Portal', 'B2C Platform', 'Admin Dashboard', 'Laravel', 'MySQL', 'Vue.js'],
     demoUrl: '#',
     codeUrl: '#',
@@ -559,7 +559,7 @@ const projects = computed(() => [
     titleKey: 'projects.bpazarTitle',
     descKey: 'projects.bpazarDesc',
     category: 'ecommerce',
-    image: '/images/bpazar.png',
+    image: '/images/006.png',
     tech: ['Multi-vendor', 'Laravel', 'Vue.js', 'Tailwind CSS', 'MySQL'],
     demoUrl: '#',
     codeUrl: '#',
@@ -570,7 +570,7 @@ const projects = computed(() => [
     titleKey: 'projects.sileversinTitle',
     descKey: 'projects.sileversinDesc',
     category: 'ecommerce',
-    image: '/images/sileversin.png',
+    image: '/images/007.png',
     tech: ['Mobile App', 'Geolocation', 'Node.js', 'Express', 'Vue 3', 'Tailwind'],
     demoUrl: '#',
     codeUrl: '#',
@@ -579,10 +579,10 @@ const projects = computed(() => [
   },
   // Enterprise & Utilities
   {
-    titleKey: 'projects.givingTitle',
-    descKey: 'projects.givingDesc',
+    titleKey: 'projects.rightgiveTitle',
+    descKey: 'projects.rightgiveDesc',
     category: 'enterprise',
-    image: '/images/islam_channel_giving.png',
+    image: '/images/008.png',
     tech: ['Pusher Chat', 'Stripe Payments', 'Laravel', 'Nuxt 3', 'Tailwind CSS'],
     demoUrl: '#',
     codeUrl: '#',
@@ -593,7 +593,7 @@ const projects = computed(() => [
     titleKey: 'projects.radTitle',
     descKey: 'projects.radDesc',
     category: 'enterprise',
-    image: '/images/rad_pro.png',
+    image: '/images/009.png',
     tech: ['Multi-tenant AAA', 'Billing Gateway', 'Laravel', 'Vue.js', 'PostgreSQL'],
     demoUrl: '#',
     codeUrl: '#',
@@ -604,18 +604,29 @@ const projects = computed(() => [
     titleKey: 'projects.perapassageTitle',
     descKey: 'projects.perapassageDesc',
     category: 'enterprise',
-    image: '/images/perapassage.png',
-    tech: ['Visitor Check-In', 'Social Network', 'Vue.js', 'Nuxt 3', 'Firebase'],
+    image: '/images/010.png',
+    tech: ['Visitor Check-In', 'Booking System', 'Vue 3', 'Nuxt 3', 'Firebase'],
     demoUrl: '#',
     codeUrl: '#',
     accentColor: '#14b8a6',
     glowColor: 'rgba(20, 184, 166, 0.25)'
   },
   {
+    titleKey: 'projects.petnerTitle',
+    descKey: 'projects.petnerDesc',
+    category: 'enterprise',
+    image: '/images/011.png',
+    tech: ['Social Network', 'Realtime Chat', 'Vue 3', 'Nuxt 3', 'Firebase'],
+    demoUrl: '#',
+    codeUrl: '#',
+    accentColor: '#fb7185',
+    glowColor: 'rgba(251, 113, 133, 0.25)'
+  },
+  {
     titleKey: 'projects.shamelaTitle',
     descKey: 'projects.shamelaDesc',
     category: 'enterprise',
-    image: '/images/shamela.png',
+    image: '/images/012.png',
     tech: ['Full-text Search', 'Indexing Engine', 'Nuxt 3', 'Vue 3', 'PostgreSQL', 'Tailwind'],
     demoUrl: '#',
     codeUrl: '#',
@@ -644,46 +655,6 @@ const getFallbackLogo = (companyName) => {
 }
 
 const jobs = computed(() => [
-  {
-    company: 'E Technologies',
-    logoImg: '/images/etechnologies.png',
-    role: {
-      en: 'Lead Frontend Developer',
-      ar: 'مطور واجهات أمامية أول (Lead Frontend)',
-      tr: 'Öncü Önyüz Geliştirici (Lead Frontend)'
-    },
-    period: {
-      en: '10/2024 – Present',
-      ar: '10/2024 – الآن',
-      tr: '10/2024 – Günümüz'
-    },
-    location: {
-      en: 'Istanbul, Turkiye',
-      ar: 'إسطنبول، تركيا',
-      tr: 'İstanbul, Türkiye'
-    },
-    tech: ['Vue.js', 'TypeScript', 'Pusher', 'Stripe', 'AI Tools', 'HTML5/CSS3', 'REST APIs'],
-    details: {
-      en: [
-        "Served as the primary frontend lead, architecting and developing the client-side of the platform using Vue.js and TypeScript to ensure a scalable, maintainable, and type-safe codebase.",
-        "Engineered a robust, real-time direct chat system utilizing Pusher (WebSockets), facilitating seamless and instant communication between donors and authorized UK organizations.",
-        "Successfully integrated Stripe as the primary payment gateway, building secure and optimized donation flows to handle regular contributions and complex fundraising campaigns safely.",
-        "Leveraged early-stage AI tools to accelerate component creation, troubleshoot code, and streamline frontend workflows during the initial development phases."
-      ],
-      ar: [
-        "توليت مسؤولية قيادة وتطوير جانب العميل للمنصة باستخدام Vue.js و TypeScript لضمان كود برمجي آمن ومتين وقابل للتطوير.",
-        "قمت ببناء نظام دردشة فوري متين باستخدام Pusher (WebSockets) لتسهيل التواصل اللحظي والمباشر بين المتبرعين والمنظمات البريطانية المعتمدة.",
-        "دمجت بوابة Stripe كخيار دفع رئيسي، مع بناء تدفقات تبرع آمنة ومحسنة للتعامل مع الاشتراكات الدورية وحملات جمع التبرعات المعقدة.",
-        "استخدمت أدوات الذكاء الاصطناعي لتسريع بناء المكونات، وحل المشكلات البرمجية، وتبسيط دورات العمل للواجهات الأمامية."
-      ],
-      tr: [
-        "Vue.js ve TypeScript kullanarak platformun istemci tarafını mimari olarak tasarlayıp geliştirdim; ölçeklenebilir, bakımı kolay ve tip güvenli bir kod tabanı sağladım.",
-        "Pusher (WebSockets) kullanarak bağışçılar ile yetkili Birleşik Krallık kuruluşları arasında sorunsuz ve anlık iletişimi kolaylaştıran güçlü bir sohbet sistemi kurdum.",
-        "Stripe ödeme ağ geçidini entegre ederek düzenli bağışları ve karmaşık bağış toplama kampanyalarını güvenle yöneten optimize edilmiş akışlar oluşturdum.",
-        "Bileşen oluşturmayı hızlandırmak, hataları çözmek ve önyüz iş akışlarını kolaylaştırmak için erken aşama yapay zeka araçlarını kullandım."
-      ]
-    }
-  },
   {
     company: 'Smartizi Teknoloji',
     logoImg: '/images/Smartizi.png',
@@ -721,6 +692,46 @@ const jobs = computed(() => [
         "Looplanfy Finans (Mini-ERP): E-ticaret operasyonlarını merkezileştirmek için pazaryeri API'leri (Amazon, Hepsiburada, Trendyol) ve otomatik lojistik (HepsiJET, Trendyol Express) entegrasyonuna sahip özel bir finans ve envanter yönetim sistemi geliştirdim.",
         "Rad+ ve Rad Pro (ISP Yönetimi): İnternet servis sağlayıcıları için uyarlanmış karmaşık, çok kiracılı bir AAA (Kimlik Doğrulama, Yetkilendirme ve Hesap Yönetimi) sistemi oluşturmada önyüz ekibine liderlik ettim; detaylı raporlama, faturalandırma ve ödeme takibi modülleri sundum.",
         "Dijital Platformlar ve Kütüphaneler: Mobil araç yıkama yönetim sistemi (Sileversin) ve araştırmacılar için ölçeklenebilir dijital kütüphane kaynağı (The Golden Shamela) gibi platformların sistem mimarisini ve kullanıcı deneyimini optimize ettim."
+      ]
+    }
+  },
+  {
+    company: 'E Technologies',
+    logoImg: '/images/etechnologies.png',
+    role: {
+      en: 'Lead Frontend Developer',
+      ar: 'مطور واجهات أمامية أول (Lead Frontend)',
+      tr: 'Öncü Önyüz Geliştirici (Lead Frontend)'
+    },
+    period: {
+      en: '10/2024 – Present',
+      ar: '10/2024 – الآن',
+      tr: '10/2024 – Günümüz'
+    },
+    location: {
+      en: 'Istanbul, Turkiye',
+      ar: 'إسطنبول، تركيا',
+      tr: 'İstanbul, Türkiye'
+    },
+    tech: ['Vue.js', 'TypeScript', 'Pusher', 'Stripe', 'AI Tools', 'HTML5/CSS3', 'REST APIs'],
+    details: {
+      en: [
+        "Served as the primary frontend lead, architecting and developing the client-side of the platform using Vue.js and TypeScript to ensure a scalable, maintainable, and type-safe codebase.",
+        "Engineered a robust, real-time direct chat system utilizing Pusher (WebSockets), facilitating seamless and instant communication between donors and authorized UK organizations.",
+        "Successfully integrated Stripe as the primary payment gateway, building secure and optimized donation flows to handle regular contributions and complex fundraising campaigns safely.",
+        "Leveraged early-stage AI tools to accelerate component creation, troubleshoot code, and streamline frontend workflows during the initial development phases."
+      ],
+      ar: [
+        "توليت مسؤولية قيادة وتطوير جانب العميل للمنصة باستخدام Vue.js و TypeScript لضمان كود برمجي آمن ومتين وقابل للتطوير.",
+        "قمت ببناء نظام دردشة فوري متين باستخدام Pusher (WebSockets) لتسهيل التواصل اللحظي والمباشر بين المتبرعين والمنظمات البريطانية المعتمدة.",
+        "دمجت بوابة Stripe كخيار دفع رئيسي، مع بناء تدفقات تبرع آمنة ومحسنة للتعامل مع الاشتراكات الدورية وحملات جمع التبرعات المعقدة.",
+        "استخدمت أدوات الذكاء الاصطناعي لتسريع بناء المكونات، وحل المشكلات البرمجية، وتبسيط دورات العمل للواجهات الأمامية."
+      ],
+      tr: [
+        "Vue.js ve TypeScript kullanarak platformun istemci tarafını mimari olarak tasarlayıp geliştirdim; ölçeklenebilir, bakımı kolay ve tip güvenli bir kod tabanı sağladım.",
+        "Pusher (WebSockets) kullanarak bağışçılar ile yetkili Birleşik Krallık kuruluşları arasında sorunsuz ve anlık iletişimi kolaylaştıran güçlü bir sohbet sistemi kurdum.",
+        "Stripe ödeme ağ geçidini entegre ederek düzenli bağışları ve karmaşık bağış toplama kampanyalarını güvenle yöneten optimize edilmiş akışlar oluşturdum.",
+        "Bileşen oluşturmayı hızlandırmak, hataları çözmek ve önyüz iş akışlarını kolaylaştırmak için erken aşama yapay zeka araçlarını kullandım."
       ]
     }
   },
@@ -784,19 +795,19 @@ const jobs = computed(() => [
       en: [
         "Enterprise Frontend Development: Acted as a core senior frontend developer within a large-scale engineering team, delivering high-performance UI solutions for diverse and complex applications.",
         "SaaS & B2B Platforms: Developed the client-side architecture for Kokpit (a comprehensive SaaS field management application for security firms) and Oniki (an AI-driven hybrid B2B matchmaking event platform).",
-        "User-Centric Interfaces: Built intuitive and scalable interfaces for applications like PeraPassage (corporate visitor management) and Petner, ensuring cross-device compatibility and optimal user experience.",
+        "User-Centric Interfaces: Built intuitive and scalable interfaces for PeraPassage (corporate visitor management) and Petner (pet owner social network), ensuring cross-device compatibility and optimal user experience.",
         "Team Collaboration & Integration: Collaborated closely with backend engineers, UI/UX designers, and product managers to ensure seamless API integrations and maintain clean, scalable codebases across all projects."
       ],
       ar: [
         "تطوير واجهات الشركات الكبرى: عملت كمطور واجهات أمامية أول أساسي ضمن فريق هندسي كبير، مقدماً حلول واجهات مستخدم عالية الأداء لتطبيقات متنوعة ومعقدة.",
         "منصات SaaS و B2B: قمت بتطوير البنية البرمجية لجانب العميل لكل من تطبيق Kokpit (تطبيق SaaS لإدارة الميدان لشركات الأمن) ومنصة Oniki (منصة تفاعلية مدعومة بالذكاء الاصطناعي لتنظيم فعاليات الـ B2B).",
-        "واجهات متمحورة حول المستخدم: قمت ببناء واجهات مرنة وسهلة الاستخدام لتطبيقات مثل PeraPassage (إدارة الزوار للشركات) وتطبيق Petner، مع ضمان التوافق التام مع الأجهزة وتحسين تجربة التصفح.",
+        "واجهات متمحورة حول المستخدم: قمت ببناء واجهات مرنة وسهلة الاستخدام لتطبيق PeraPassage (إدارة الزوار للشركات) وتطبيق Petner (شبكة التواصل لأصحاب الحيوانات الأليفة)، مع ضمان التوافق التام مع الأجهزة وتحسين تجربة التصفح.",
         "التعاون والتكامل: عملت بتعاون وثيق مع مهندسي الخلفيات، ومصممي الواجهات، ومديري المنتجات لضمان دمج سلس للواجهات البرمجية والحفاظ على كود نظيف وقابل للتطوير."
       ],
       tr: [
         "Kurumsal Önyüz Geliştirme: Büyük ölçekli bir mühendislik ekibinde kıdemli önyüz geliştirici olarak görev aldım; çeşitli ve karmaşık uygulamalar için yüksek performanslı kullanıcı arayüzü çözümleri sundum.",
         "SaaS ve B2B Platformları: Güvenlik firmaları için SaaS tabanlı saha yönetim uygulaması Kokpit ve yapay zeka destekli hibrit B2B eşleştirme platformu Oniki'nin istemci mimarisini geliştirdim.",
-        "Kullanıcı Odaklı Arayüzler: Kurumsal ziyaretçi yönetim sistemi PeraPassage ve Petner gibi uygulamalar için cihazlar arası uyumluluk ve optimum kullanıcı deneyimi sağlayan sezgisel arayüzler oluşturdum.",
+        "Kullanıcı Odaklı Arayüzler: Kurumsal ziyaretçi yönetim platformu PeraPassage ve evcil hayvan sahipleri için sosyal etkileşim ağı Petner için cihazlar arası uyumluluk ve optimum kullanıcı deneyimi sağlayan sezgisel arayüzler oluşturdum.",
         "Ekip İşbirliği ve Entegrasyon: Tüm projelerde sorunsuz API entegrasyonu ve ölçeklenebilir temiz kod tabanları sürdürmek için arka uç mühendisleri, UI/UX tasarımcıları ve ürün yöneticileriyle yakın işbirliği yaptım."
       ]
     }
@@ -875,6 +886,55 @@ onMounted(() => {
 onBeforeUnmount(() => {
   stopTyping()
 })
+
+// Contact Form State
+const form = ref({
+  name: '',
+  email: '',
+  message: ''
+})
+const isSubmitting = ref(false)
+const submitStatus = ref(null)
+
+const submitContactForm = async () => {
+  if (isSubmitting.value) return
+  isSubmitting.value = true
+  submitStatus.value = null
+
+  try {
+    // Simulate real API request with a 1.5s delay
+    await new Promise((resolve) => setTimeout(resolve, 1500))
+    
+    // Clear form
+    form.value.name = ''
+    form.value.email = ''
+    form.value.message = ''
+    
+    submitStatus.value = {
+      type: 'success',
+      message: locale.value === 'ar' 
+        ? 'تم إرسال رسالتك بنجاح! سأتواصل معك قريباً جداً.' 
+        : locale.value === 'tr' 
+          ? 'Mesajınız başarıyla gönderildi! En kısa sürede sizinle iletişime geçeceğim.' 
+          : 'Message sent successfully! I will get back to you shortly.'
+    }
+  } catch (error) {
+    submitStatus.value = {
+      type: 'error',
+      message: locale.value === 'ar' 
+        ? 'حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى لاحقاً.' 
+        : locale.value === 'tr' 
+          ? 'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.' 
+          : 'An error occurred. Please try again later.'
+    }
+  } finally {
+    isSubmitting.value = false
+    // Hide status alert after 5 seconds
+    setTimeout(() => {
+      submitStatus.value = null
+    }, 5000)
+  }
+}
 </script>
 
 
@@ -1326,15 +1386,159 @@ onBeforeUnmount(() => {
       </v-container>
     </section>
 
-    <!-- Contact Section (For Scrollspy Test) -->
-    <section id="contact" class="dummy-section">
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
       <v-container>
-        <h2 class="section-title">
-          <span class="gradient-text">{{ locale === 'ar' ? 'اتصل بي' : locale === 'tr' ? 'İletişim' : 'Contact' }}</span>
-        </h2>
-        <div class="section-content">
-          <p>{{ locale === 'ar' ? 'تواصل معي مباشرة لمناقشة المشاريع والتعاون البرمجي.' : locale === 'tr' ? 'İşbirlikleri ve yazılım projeleri için benimle doğrudan iletişime geçin.' : 'Get in touch with me directly to discuss projects and collaboration.' }}</p>
+        <div class="text-center mb-12">
+          <h2 class="section-title">
+            <span class="gradient-text">{{ $t('contact.title') }}</span>
+          </h2>
+          <p class="section-subtitle">{{ $t('contact.subtitle') }}</p>
         </div>
+
+        <v-row class="justify-center">
+          <!-- Left: Contact Details Cards -->
+          <v-col cols="12" lg="5" class="contact-info-col">
+            <div class="contact-info-card glass-panel d-flex flex-column justify-space-between">
+              <div>
+                <h3 class="info-card-title mb-8">{{ locale === 'ar' ? 'معلومات الاتصال' : locale === 'tr' ? 'İletişim Bilgileri' : 'Contact Information' }}</h3>
+                
+                <!-- Email Item -->
+                <div class="info-item-wrapper d-flex align-center mb-6">
+                  <v-avatar class="info-icon-avatar mr-4 ml-4" size="48">
+                    <v-icon icon="mdi-email-outline" color="#7afffb" size="24"></v-icon>
+                  </v-avatar>
+                  <div class="info-item-text">
+                    <span class="info-label">{{ locale === 'ar' ? 'البريد الإلكتروني' : locale === 'tr' ? 'E-posta' : 'Email Address' }}</span>
+                    <a href="mailto:karam.sawan.sy@gmail.com" class="info-value">karam.sawan.sy@gmail.com</a>
+                  </div>
+                </div>
+
+                <!-- Phone Item -->
+                <div class="info-item-wrapper d-flex align-center mb-6">
+                  <v-avatar class="info-icon-avatar mr-4 ml-4" size="48">
+                    <v-icon icon="mdi-phone-outline" color="#7afffb" size="24"></v-icon>
+                  </v-avatar>
+                  <div class="info-item-text">
+                    <span class="info-label">{{ locale === 'ar' ? 'رقم الهاتف' : locale === 'tr' ? 'Telefon' : 'Phone Number' }}</span>
+                    <a href="tel:+905519658422" class="info-value">+90 (551) 965 84 22</a>
+                  </div>
+                </div>
+
+                <!-- WhatsApp Item -->
+                <div class="info-item-wrapper d-flex align-center mb-6">
+                  <v-avatar class="info-icon-avatar mr-4 ml-4 whatsapp-avatar" size="48">
+                    <v-icon icon="mdi-whatsapp" color="#25D366" size="24"></v-icon>
+                  </v-avatar>
+                  <div class="info-item-text">
+                    <span class="info-label">{{ locale === 'ar' ? 'واتساب' : locale === 'tr' ? 'WhatsApp' : 'WhatsApp Chat' }}</span>
+                    <a href="https://wa.me/905519658422" target="_blank" rel="noopener noreferrer" class="info-value whatsapp-link d-flex align-center">
+                      <span>{{ locale === 'ar' ? 'مراسلة مباشرة' : locale === 'tr' ? 'Doğrudan İletişim' : 'Chat Directly' }}</span>
+                      <v-icon icon="mdi-open-in-new" size="14" class="ml-2 mr-2"></v-icon>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Location Item -->
+                <div class="info-item-wrapper d-flex align-center mb-6">
+                  <v-avatar class="info-icon-avatar mr-4 ml-4" size="48">
+                    <v-icon icon="mdi-map-marker-outline" color="#7afffb" size="24"></v-icon>
+                  </v-avatar>
+                  <div class="info-item-text">
+                    <span class="info-label">{{ locale === 'ar' ? 'الموقع' : locale === 'tr' ? 'Konum' : 'Location' }}</span>
+                    <span class="info-value">{{ locale === 'ar' ? 'إسطنبول، تركيا' : locale === 'tr' ? 'İstanbul, Türkiye' : 'Istanbul, Turkiye' }}</span>
+                  </div>
+                </div>
+
+                <!-- LinkedIn Item -->
+                <div class="info-item-wrapper d-flex align-center">
+                  <v-avatar class="info-icon-avatar mr-4 ml-4 linkedin-avatar" size="48">
+                    <v-icon icon="mdi-linkedin" color="#0077B5" size="24"></v-icon>
+                  </v-avatar>
+                  <div class="info-item-text">
+                    <span class="info-label">LinkedIn</span>
+                    <a href="https://www.linkedin.com/in/karam-sawan-0879651a5/" target="_blank" rel="noopener noreferrer" class="info-value linkedin-link d-flex align-center">
+                      <span>Karam Sawan</span>
+                      <v-icon icon="mdi-open-in-new" size="14" class="ml-2 mr-2"></v-icon>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </v-col>
+
+          <!-- Right: Interactive Form -->
+          <v-col cols="12" lg="7" class="contact-form-col">
+            <div class="contact-form-card glass-panel">
+              <h3 class="form-card-title mb-8">{{ locale === 'ar' ? 'أرسل رسالة مباشرة' : locale === 'tr' ? 'Doğrudan Mesaj Gönderin' : 'Send a Direct Message' }}</h3>
+              
+              <form @submit.prevent="submitContactForm" class="cyber-form">
+                <!-- Name field -->
+                <div class="cyber-input-group mb-6">
+                  <label class="cyber-label">{{ $t('contact.nameLabel') }}</label>
+                  <div class="input-glow-wrapper">
+                    <input 
+                      type="text" 
+                      v-model="form.name" 
+                      required 
+                      class="cyber-input"
+                      :placeholder="locale === 'ar' ? 'أدخل اسمك الكريم' : locale === 'tr' ? 'Adınızı girin' : 'Enter your name'"
+                    />
+                    <div class="input-focus-border"></div>
+                  </div>
+                </div>
+
+                <!-- Email field -->
+                <div class="cyber-input-group mb-6">
+                  <label class="cyber-label">{{ $t('contact.emailLabel') }}</label>
+                  <div class="input-glow-wrapper">
+                    <input 
+                      type="email" 
+                      v-model="form.email" 
+                      required 
+                      class="cyber-input"
+                      :placeholder="locale === 'ar' ? 'أدخل بريدك الإلكتروني' : locale === 'tr' ? 'E-posta adresinizi girin' : 'Enter your email'"
+                    />
+                    <div class="input-focus-border"></div>
+                  </div>
+                </div>
+
+                <!-- Message field -->
+                <div class="cyber-input-group mb-6">
+                  <label class="cyber-label">{{ $t('contact.messageLabel') }}</label>
+                  <div class="input-glow-wrapper">
+                    <textarea 
+                      v-model="form.message" 
+                      required 
+                      rows="5"
+                      class="cyber-input cyber-textarea"
+                      :placeholder="locale === 'ar' ? 'اكتب تفاصيل رسالتك هنا...' : locale === 'tr' ? 'Mesajınızın detaylarını buraya yazın...' : 'Type your message details here...'"
+                    ></textarea>
+                    <div class="input-focus-border"></div>
+                  </div>
+                </div>
+
+                <!-- Alert Messages -->
+                <transition name="fade">
+                  <div v-if="submitStatus" class="form-status-alert mb-6" :class="submitStatus.type">
+                    <v-icon :icon="submitStatus.type === 'success' ? 'mdi-check-circle-outline' : 'mdi-alert-circle-outline'" class="mr-2 ml-2"></v-icon>
+                    <span>{{ submitStatus.message }}</span>
+                  </div>
+                </transition>
+
+                <!-- Submit Button -->
+                <button type="submit" class="cyber-submit-btn" :disabled="isSubmitting">
+                  <div class="btn-glow"></div>
+                  <div class="btn-content d-flex align-center justify-center">
+                    <v-progress-circular v-if="isSubmitting" indeterminate size="20" width="2" class="mr-2 ml-2" color="#7afffb"></v-progress-circular>
+                    <v-icon v-else icon="mdi-send-outline" class="mr-2 ml-2" size="18"></v-icon>
+                    <span>{{ isSubmitting ? (locale === 'ar' ? 'جاري الإرسال...' : locale === 'tr' ? 'Gönderiliyor...' : 'Sending...') : $t('contact.sendBtn') }}</span>
+                  </div>
+                </button>
+              </form>
+            </div>
+          </v-col>
+        </v-row>
       </v-container>
     </section>
   </div>
@@ -1614,7 +1818,6 @@ onBeforeUnmount(() => {
 .dot.green { background-color: #10B981; }
 
 .terminal-title {
-  font-family: 'Outfit', sans-serif;
   color: #64748B;
   font-size: 0.725rem;
   letter-spacing: 1px;
@@ -1637,7 +1840,6 @@ onBeforeUnmount(() => {
 .terminal-content {
   height: 140px;
   overflow-y: auto;
-  font-family: 'Fira Code', 'Courier New', monospace;
   padding-right: 4px;
   scrollbar-width: thin;
   scrollbar-color: rgba(122, 255, 251, 0.2) transparent;
@@ -1695,7 +1897,6 @@ onBeforeUnmount(() => {
 
 .suggestion-label {
   font-size: 0.75rem;
-  font-family: 'Outfit', 'Cairo', sans-serif;
   font-weight: 600;
   letter-spacing: 0.5px;
 }
@@ -1713,7 +1914,6 @@ onBeforeUnmount(() => {
   padding: 6px 14px;
   border-radius: 8px;
   font-size: 0.75rem;
-  font-family: 'Outfit', 'Cairo', sans-serif;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -1757,7 +1957,6 @@ onBeforeUnmount(() => {
   font-size: 1rem;
   margin-right: 6px;
   margin-left: 6px;
-  font-family: monospace;
 }
 
 .terminal-input-field {
@@ -1767,7 +1966,6 @@ onBeforeUnmount(() => {
   outline: none;
   color: #F1F5F9;
   font-size: 0.85rem;
-  font-family: 'Outfit', 'Cairo', sans-serif;
   padding: 8px 0;
   min-width: 0;
 }
@@ -1928,7 +2126,6 @@ onBeforeUnmount(() => {
 }
 
 .company-logo-fallback {
-  font-family: 'Outfit', sans-serif;
   font-size: 0.9rem;
   font-weight: 800;
   color: #7afffb;
@@ -2358,7 +2555,6 @@ onBeforeUnmount(() => {
 }
 
 .skill-name {
-  font-family: 'Outfit', sans-serif;
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 2px;
@@ -2394,7 +2590,6 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Outfit', sans-serif;
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -2488,7 +2683,6 @@ onBeforeUnmount(() => {
 }
 
 .project-card-title {
-  font-family: 'Outfit', sans-serif;
   font-weight: 700;
   font-size: 1.25rem;
   letter-spacing: -0.01em;
@@ -2505,7 +2699,6 @@ onBeforeUnmount(() => {
 }
 
 .project-tech-pill {
-  font-family: 'Outfit', sans-serif;
   font-size: 0.72rem;
   font-weight: 700;
   background: rgba(255, 255, 255, 0.02);
@@ -2535,6 +2728,282 @@ onBeforeUnmount(() => {
 @media (max-width: 959px) {
   .projects-section {
     padding: 60px 0;
+  }
+}
+
+/* ==========================================================================
+   Contact Section Styles (Premium Interactive Glassmorphic Form)
+   ========================================================================== */
+.contact-section {
+  position: relative;
+  padding: 100px 0;
+  background-color: transparent;
+  z-index: 2;
+  border-top: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.section-subtitle {
+  color: #94a3b8;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 12px auto 0 auto;
+}
+
+.glass-panel {
+  background: rgba(13, 20, 35, 0.45);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(122, 255, 251, 0.1);
+  border-radius: 24px;
+  padding: 40px;
+  height: 100%;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.05),
+    0 20px 50px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+  border-color: rgba(122, 255, 251, 0.25);
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.08),
+    0 0 30px rgba(122, 255, 251, 0.05),
+    0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.info-card-title,
+.form-card-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.info-item-wrapper {
+  transition: transform 0.3s ease;
+}
+
+.info-item-wrapper:hover {
+  transform: translateX(5px);
+}
+
+[dir="rtl"] .info-item-wrapper:hover {
+  transform: translateX(-5px);
+}
+
+.info-icon-avatar {
+  background: rgba(122, 255, 251, 0.05) !important;
+  border: 1px solid rgba(122, 255, 251, 0.15);
+  transition: all 0.3s ease;
+}
+
+.info-item-wrapper:hover .info-icon-avatar {
+  background: rgba(122, 255, 251, 0.12) !important;
+  border-color: rgba(122, 255, 251, 0.4);
+  box-shadow: 0 0 15px rgba(122, 255, 251, 0.15);
+}
+
+.whatsapp-avatar {
+  background: rgba(37, 211, 102, 0.05) !important;
+  border-color: rgba(37, 211, 102, 0.15) !important;
+}
+
+.info-item-wrapper:hover .whatsapp-avatar {
+  background: rgba(37, 211, 102, 0.12) !important;
+  border-color: rgba(37, 211, 102, 0.4) !important;
+  box-shadow: 0 0 15px rgba(37, 211, 102, 0.15);
+}
+
+.linkedin-avatar {
+  background: rgba(0, 119, 181, 0.05) !important;
+  border-color: rgba(0, 119, 181, 0.15) !important;
+}
+
+.info-item-wrapper:hover .linkedin-avatar {
+  background: rgba(0, 119, 181, 0.12) !important;
+  border-color: rgba(0, 119, 181, 0.4) !important;
+  box-shadow: 0 0 15px rgba(0, 119, 181, 0.15);
+}
+
+.info-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.info-value {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a.info-value:hover {
+  color: #7afffb;
+}
+
+a.whatsapp-link:hover {
+  color: #25D366;
+}
+
+a.linkedin-link:hover {
+  color: #0077B5;
+}
+
+.cyber-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cyber-label {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.input-glow-wrapper {
+  position: relative;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.cyber-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.cyber-textarea {
+  resize: none;
+}
+
+.input-focus-border {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #7afffb, #6366f1);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translateX(-50%);
+}
+
+.input-glow-wrapper:focus-within {
+  border-color: rgba(122, 255, 251, 0.35);
+  box-shadow: 0 0 15px rgba(122, 255, 251, 0.08);
+  background: rgba(122, 255, 251, 0.01);
+}
+
+.input-glow-wrapper:focus-within .input-focus-border {
+  width: 100%;
+}
+
+.form-status-alert {
+  display: flex;
+  align-items: center;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.form-status-alert.success {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+}
+
+.form-status-alert.error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+.cyber-submit-btn {
+  position: relative;
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(122, 255, 251, 0.4);
+  background: rgba(122, 255, 251, 0.05);
+  color: #7afffb;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.cyber-submit-btn:hover:not(:disabled) {
+  border-color: #7afffb;
+  background: rgba(122, 255, 251, 0.15);
+  color: #ffffff;
+  box-shadow: 
+    0 0 25px rgba(122, 255, 251, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.cyber-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #64748b;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.btn-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(122, 255, 251, 0.25) 0%, transparent 60%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s ease;
+  pointer-events: none;
+}
+
+.cyber-submit-btn:hover .btn-glow {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+@media (max-width: 959px) {
+  .contact-section {
+    padding: 60px 0;
+  }
+  .glass-panel {
+    padding: 30px 20px;
   }
 }
 </style>
