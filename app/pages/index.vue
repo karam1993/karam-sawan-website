@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { looplanfyFinanceFiles } from '../data/projectFiles'
 
 const { locale, t } = useI18n()
 
@@ -505,8 +506,7 @@ const projects = computed(() => [
     category: 'saas',
     image: '/images/001.png',
     tech: ['Nuxt 3', 'Vue.js', 'Tailwind CSS', 'Laravel', 'Supabase'],
-    demoUrl: '#',
-    codeUrl: '#',
+    demoUrl: 'http://looplanfy.com/',
     accentColor: '#3ecf8e',
     glowColor: 'rgba(62, 207, 142, 0.25)'
   },
@@ -517,9 +517,9 @@ const projects = computed(() => [
     image: '/images/002.png',
     tech: ['Amazon API', 'Trendyol API', 'Hepsiburada API', 'Laravel', 'MySQL', 'Vue 3'],
     demoUrl: '#',
-    codeUrl: '#',
     accentColor: '#fb923c',
-    glowColor: 'rgba(251, 146, 60, 0.25)'
+    glowColor: 'rgba(251, 146, 60, 0.25)',
+    files: looplanfyFinanceFiles
   },
   {
     titleKey: 'projects.kokpitTitle',
@@ -527,8 +527,7 @@ const projects = computed(() => [
     category: 'saas',
     image: '/images/003.png',
     tech: ['Vue 3', 'Pinia', 'Tailwind CSS', 'Node.js', 'Express', 'MongoDB'],
-    demoUrl: '#',
-    codeUrl: '#', 
+    demoUrl: 'https://kokpit.tech/en/',
     accentColor: '#f43f5e',
     glowColor: 'rgba(244, 63, 94, 0.25)'
   },
@@ -538,8 +537,7 @@ const projects = computed(() => [
     category: 'saas',
     image: '/images/004.png',
     tech: ['AI Matchmaking', 'Node.js', 'Vue.js', 'Tailwind CSS', 'Websockets'],
-    demoUrl: '#',
-    codeUrl: '#',
+    demoUrl: 'https://oniki.net/tr/',
     accentColor: '#a855f7',
     glowColor: 'rgba(168, 85, 247, 0.25)'
   },
@@ -550,8 +548,7 @@ const projects = computed(() => [
     category: 'ecommerce',
     image: '/images/005.png',
     tech: ['B2B Portal', 'B2C Platform', 'Admin Dashboard', 'Laravel', 'MySQL', 'Vue.js'],
-    demoUrl: '#',
-    codeUrl: '#',
+    demoUrl: 'https://www.yollando.com/en/shopping-in-turkey/',
     accentColor: '#38bdf8',
     glowColor: 'rgba(56, 189, 248, 0.25)'
   },
@@ -562,7 +559,6 @@ const projects = computed(() => [
     image: '/images/006.png',
     tech: ['Multi-vendor', 'Laravel', 'Vue.js', 'Tailwind CSS', 'MySQL'],
     demoUrl: '#',
-    codeUrl: '#',
     accentColor: '#10b981',
     glowColor: 'rgba(16, 185, 129, 0.25)'
   },
@@ -573,7 +569,6 @@ const projects = computed(() => [
     image: '/images/007.png',
     tech: ['Mobile App', 'Geolocation', 'Node.js', 'Express', 'Vue 3', 'Tailwind'],
     demoUrl: '#',
-    codeUrl: '#',
     accentColor: '#06b6d4',
     glowColor: 'rgba(6, 182, 212, 0.25)'
   },
@@ -584,8 +579,7 @@ const projects = computed(() => [
     category: 'enterprise',
     image: '/images/008.png',
     tech: ['Pusher Chat', 'Stripe Payments', 'Laravel', 'Nuxt 3', 'Tailwind CSS'],
-    demoUrl: '#',
-    codeUrl: '#',
+    demoUrl: 'https://www.rightgive.com/',
     accentColor: '#6366f1',
     glowColor: 'rgba(99, 102, 241, 0.25)'
   },
@@ -596,7 +590,6 @@ const projects = computed(() => [
     image: '/images/009.png',
     tech: ['Multi-tenant AAA', 'Billing Gateway', 'Laravel', 'Vue.js', 'PostgreSQL'],
     demoUrl: '#',
-    codeUrl: '#',
     accentColor: '#ec4899',
     glowColor: 'rgba(236, 72, 153, 0.25)'
   },
@@ -606,8 +599,7 @@ const projects = computed(() => [
     category: 'enterprise',
     image: '/images/010.png',
     tech: ['Visitor Check-In', 'Booking System', 'Vue 3', 'Nuxt 3', 'Firebase'],
-    demoUrl: '#',
-    codeUrl: '#',
+    demoUrl: 'https://perapassage.com/en/',
     accentColor: '#14b8a6',
     glowColor: 'rgba(20, 184, 166, 0.25)'
   },
@@ -617,8 +609,7 @@ const projects = computed(() => [
     category: 'enterprise',
     image: '/images/011.png',
     tech: ['Social Network', 'Realtime Chat', 'Vue 3', 'Nuxt 3', 'Firebase'],
-    demoUrl: '#',
-    codeUrl: '#',
+    demoUrl: 'https://petner.com.tr/en/',
     accentColor: '#fb7185',
     glowColor: 'rgba(251, 113, 133, 0.25)'
   },
@@ -628,8 +619,7 @@ const projects = computed(() => [
     category: 'enterprise',
     image: '/images/012.png',
     tech: ['Full-text Search', 'Indexing Engine', 'Nuxt 3', 'Vue 3', 'PostgreSQL', 'Tailwind'],
-    demoUrl: '#',
-    codeUrl: '#',
+    demoUrl: 'https://goldenshamela.com/',
     accentColor: '#eab308',
     glowColor: 'rgba(234, 179, 8, 0.25)'
   }
@@ -933,6 +923,103 @@ const submitContactForm = async () => {
     setTimeout(() => {
       submitStatus.value = null
     }, 5000)
+  }
+}
+
+// Project Details Dialog State
+const detailsDialog = ref({
+  isOpen: false,
+  project: null
+})
+
+const activeProjectFile = ref(null)
+const activeProjectTab = ref(0)
+
+const dialogMaxWidth = computed(() => {
+  if (detailsDialog.value.project && detailsDialog.value.project.files && detailsDialog.value.project.files.length) {
+    return activeProjectTab.value === 1 ? '1100px' : '700px'
+  }
+  return '700px'
+})
+
+const openProjectDetails = (project) => {
+  detailsDialog.value.project = project
+  detailsDialog.value.isOpen = true
+  activeProjectTab.value = 0
+  if (project.files && project.files.length) {
+    activeProjectFile.value = project.files[0]
+  } else {
+    activeProjectFile.value = null
+  }
+}
+
+const selectProjectFile = (file) => {
+  activeProjectFile.value = file
+}
+
+const groupedProjectFiles = computed(() => {
+  if (!detailsDialog.value.project || !detailsDialog.value.project.files) return []
+  const folders = {}
+  detailsDialog.value.project.files.forEach(file => {
+    const parts = file.path.split('/')
+    if (parts.length > 1) {
+      const folderName = parts[0]
+      if (!folders[folderName]) folders[folderName] = []
+      folders[folderName].push(file)
+    } else {
+      if (!folders['root']) folders['root'] = []
+      folders['root'].push(file)
+    }
+  })
+  return Object.keys(folders).map(key => ({
+    name: key,
+    files: folders[key]
+  }))
+})
+
+const getFileIcon = (filename) => {
+  if (filename.endsWith('.vue')) return 'mdi-vuejs'
+  if (filename.endsWith('.js')) return 'mdi-language-javascript'
+  if (filename.endsWith('.ts')) return 'mdi-language-typescript'
+  if (filename.endsWith('.json')) return 'mdi-code-json'
+  if (filename.endsWith('.css') || filename.endsWith('.scss')) return 'mdi-language-css3'
+  return 'mdi-file-document-outline'
+}
+
+const getFileIconColor = (filename) => {
+  if (filename.endsWith('.vue')) return '#42b883'
+  if (filename.endsWith('.js')) return '#f1e05a'
+  if (filename.endsWith('.ts')) return '#3178c6'
+  if (filename.endsWith('.json')) return '#cbcb41'
+  if (filename.endsWith('.css') || filename.endsWith('.scss')) return '#563d7c'
+  return '#94a3b8'
+}
+
+const isCopied = ref(false)
+const copySnippetText = (text) => {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      isCopied.value = true
+      setTimeout(() => {
+        isCopied.value = false
+      }, 2000)
+    })
+  } else {
+    // Fallback if navigator.clipboard is not available in HTTP/older browsers
+    const textArea = document.createElement("textarea")
+    textArea.value = text
+    document.body.appendChild(textArea)
+    textArea.select()
+    try {
+      document.execCommand('copy')
+      isCopied.value = true
+      setTimeout(() => {
+        isCopied.value = false
+      }, 2000)
+    } catch (err) {
+      console.error('Fallback copy failed', err)
+    }
+    document.body.removeChild(textArea)
   }
 }
 </script>
@@ -1248,6 +1335,7 @@ const submitContactForm = async () => {
                 <!-- Action Button Links -->
                 <div class="project-actions d-flex justify-space-between align-center">
                   <v-btn
+                    v-if="project.demoUrl && project.demoUrl !== '#'"
                     :href="project.demoUrl"
                     target="_blank"
                     variant="flat"
@@ -1258,16 +1346,26 @@ const submitContactForm = async () => {
                     <v-icon icon="mdi-open-in-new" size="14" class="mr-1 ml-1"></v-icon>
                     {{ $t('projects.demo') }}
                   </v-btn>
+                  <v-btn
+                    v-else
+                    disabled
+                    variant="flat"
+                    density="comfortable"
+                    class="action-btn-demo px-4 text-none"
+                    style="background: rgba(255, 255, 255, 0.03) !important; border: 1px solid rgba(255, 255, 255, 0.05) !important; color: rgba(255, 255, 255, 0.25) !important; opacity: 0.5; cursor: not-allowed;"
+                  >
+                    <v-icon icon="mdi-link-off" size="14" class="mr-1 ml-1"></v-icon>
+                    {{ $t('projects.demo') }}
+                  </v-btn>
 
                   <v-btn
-                    :href="project.codeUrl"
-                    target="_blank"
+                    @click="openProjectDetails(project)"
                     variant="text"
                     density="comfortable"
                     class="action-btn-code px-4 text-none"
                     style="color: #94a3b8; border: 1px solid rgba(255,255,255,0.05);"
                   >
-                    <v-icon icon="mdi-github" size="14" class="mr-1 ml-1"></v-icon>
+                    <v-icon icon="mdi-information-outline" size="14" class="mr-1 ml-1"></v-icon>
                     {{ $t('projects.code') }}
                   </v-btn>
                 </div>
@@ -1541,6 +1639,175 @@ const submitContactForm = async () => {
         </v-row>
       </v-container>
     </section>
+
+    <!-- Project Details Dialog -->
+    <v-dialog v-model="detailsDialog.isOpen" :max-width="dialogMaxWidth" transition="dialog-bottom-transition">
+      <v-card v-if="detailsDialog.project" class="project-details-dialog-card glass-panel-dialog">
+        <!-- Close Button -->
+        <button class="dialog-close-btn" @click="detailsDialog.isOpen = false" aria-label="Close">
+          <v-icon icon="mdi-close" size="20"></v-icon>
+        </button>
+
+        <div class="dialog-content-body pa-6">
+          <div v-show="activeProjectTab === 0" class="d-flex align-center mb-2 flex-wrap dialog-badge-wrapper">
+            <span class="dialog-category-badge" :style="{ color: detailsDialog.project.accentColor, background: `${detailsDialog.project.accentColor}12`, borderColor: `${detailsDialog.project.accentColor}30` }">
+              {{ detailsDialog.project.category.toUpperCase() }}
+            </span>
+            <span class="dialog-role-badge">
+              {{ locale === 'ar' ? 'مطور كامل الصلاحيات' : locale === 'tr' ? 'Full-Stack Geliştirici' : 'Full-Stack Developer' }}
+            </span>
+          </div>
+
+          <h3 class="dialog-project-title mb-4 d-flex align-center gap-3">
+            <img :src="detailsDialog.project.image" :alt="$t(detailsDialog.project.titleKey)" class="dialog-logo-inline" />
+            <span>{{ $t(detailsDialog.project.titleKey) }}</span>
+          </h3>
+          
+          <!-- Tabs Header (Only if project has code files) -->
+          <v-tabs
+            v-if="detailsDialog.project.files && detailsDialog.project.files.length"
+            v-model="activeProjectTab"
+            density="comfortable"
+            class="mb-6 dialog-tabs"
+            :style="{ '--tab-accent': detailsDialog.project.accentColor }"
+          >
+            <v-tab :value="0" class="text-none font-weight-bold">
+              <v-icon icon="mdi-text-box-search-outline" class="mr-2 ml-2" size="18"></v-icon>
+              {{ locale === 'ar' ? 'وصف المشروع' : locale === 'tr' ? 'Proje Açıklaması' : 'Project Description' }}
+            </v-tab>
+            <v-tab :value="1" class="text-none font-weight-bold">
+              <v-icon icon="mdi-code-braces" class="mr-2 ml-2" size="18"></v-icon>
+              {{ locale === 'ar' ? 'ملفات الكود' : locale === 'tr' ? 'Proje Kodları' : 'Project Codes' }}
+            </v-tab>
+          </v-tabs>
+
+          <!-- Tab Contents -->
+          <v-window v-model="activeProjectTab" :touch="false">
+            <!-- Tab 0: Description & Tech -->
+            <v-window-item :value="0">
+              <p class="dialog-project-desc mb-6">{{ $t(detailsDialog.project.descKey) }}</p>
+
+              <div class="dialog-tech-section mb-6">
+                <h4 class="dialog-section-subtitle mb-3">{{ locale === 'ar' ? 'التقنيات المستخدمة' : locale === 'tr' ? 'Kullanılan Teknolojiler' : 'Technology Stack' }}</h4>
+                <div class="d-flex flex-wrap dialog-tech-tags-wrapper">
+                  <span v-for="tech in detailsDialog.project.tech" :key="tech" class="project-tech-pill" :style="{ borderColor: `${detailsDialog.project.accentColor}25`, color: detailsDialog.project.accentColor }">
+                    {{ tech }}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Intellectual Property Note -->
+              <div class="dialog-nda-note d-flex align-center pa-4 mb-6">
+                <v-icon icon="mdi-lock-outline" color="#fb7185" size="20" class="mr-3 ml-3"></v-icon>
+                <div class="nda-text-wrapper">
+                  <span class="nda-title">{{ locale === 'ar' ? 'حقوق ملكية الكود محفوظة' : locale === 'tr' ? 'Kod Telif Hakkı Saklıdır' : 'Proprietary Code' }}</span>
+                  <p class="nda-desc">{{ locale === 'ar' ? 'الرابط المرفق يوجه إلى الموقع التعريفي العام للمشروع. النظام الأساسي، لوحة التحكم، والكود البرمجي هي أنظمة خاصة مغلقة المصدر لحماية ملكية العميل الفكرية والالتزام باتفاقيات السرية (NDA).' : locale === 'tr' ? 'Sağlanan bağlantı projenin genel tanıtım web sitesine yönlendirmektedir. Çekirdek sistem, yönetim paneli ve kaynak kodları, NDA kapsamında müşteri fikri mülkiyetini korumak amacıyla kapalı kaynaklıdır.' : 'The link provided leads to the project\'s public introductory website. The core system, admin dashboard, and source code are private/closed-source to protect client intellectual property under NDA.' }}</p>
+                </div>
+              </div>
+            </v-window-item>
+
+            <!-- Tab 1: Code Explorer -->
+            <v-window-item :value="1" v-if="detailsDialog.project.files && detailsDialog.project.files.length">
+              <!-- Abstracted Code Snippet Explorer (If files exist) -->
+              <div class="dialog-code-section mb-6">
+                <!-- Code Explorer Container -->
+                <div class="code-explorer-container">
+                  <!-- Sidebar File Tree -->
+                  <div class="explorer-sidebar">
+                    <div class="explorer-sidebar-title px-3 py-2 border-b">
+                      <v-icon icon="mdi-folder-outline" size="14" class="mr-1 ml-1" color="#a855f7"></v-icon>
+                      <span>{{ detailsDialog.project.titleKey ? $t(detailsDialog.project.titleKey) : 'Project' }}</span>
+                    </div>
+                    <div class="explorer-tree py-2">
+                      <div v-for="folder in groupedProjectFiles" :key="folder.name" class="explorer-folder-group">
+                        <!-- Folder Header -->
+                        <div v-if="folder.name !== 'root'" class="explorer-folder-row d-flex align-center px-3 py-1">
+                          <v-icon icon="mdi-chevron-down" size="12" class="mr-1 ml-1 text-grey"></v-icon>
+                          <v-icon icon="mdi-folder" size="14" class="mr-1 ml-1 text-yellow-darken-2"></v-icon>
+                          <span class="folder-name">{{ folder.name }}</span>
+                        </div>
+                        <!-- Files in Folder -->
+                        <div class="explorer-files-list" :class="{ 'pl-4 pr-4': folder.name !== 'root' }">
+                          <div 
+                            v-for="file in folder.files" 
+                            :key="file.path"
+                            class="explorer-file-row d-flex align-center px-3 py-1"
+                            :class="{ active: activeProjectFile && activeProjectFile.path === file.path }"
+                            @click="selectProjectFile(file)"
+                          >
+                            <v-icon :icon="getFileIcon(file.name)" size="14" class="mr-1 ml-1" :color="getFileIconColor(file.name)"></v-icon>
+                            <span class="file-name">{{ file.name }}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Editor Panel -->
+                  <div class="editor-window">
+                    <div class="editor-header d-flex align-center justify-space-between px-4 py-2">
+                      <div class="editor-dots-tab d-flex align-center">
+                        <div class="editor-dots d-flex align-center mr-3 ml-3">
+                          <span class="editor-dot red"></span>
+                          <span class="editor-dot yellow"></span>
+                          <span class="editor-dot green"></span>
+                        </div>
+                        <div v-if="activeProjectFile" class="editor-tab d-flex align-center">
+                          <v-icon :icon="getFileIcon(activeProjectFile.name)" size="12" class="mr-1 ml-1" :color="getFileIconColor(activeProjectFile.name)"></v-icon>
+                          <span class="editor-filename">{{ activeProjectFile.name }}</span>
+                        </div>
+                      </div>
+                      <button v-if="activeProjectFile" class="copy-code-btn" @click="copySnippetText(activeProjectFile.code)" aria-label="Copy Code">
+                        <v-icon :icon="isCopied ? 'mdi-check' : 'mdi-content-copy'" size="14" class="mr-1 ml-1"></v-icon>
+                        <span>{{ isCopied ? (locale === 'ar' ? 'تم النسخ!' : locale === 'tr' ? 'Kopyalandı!' : 'Copied!') : (locale === 'ar' ? 'نسخ' : locale === 'tr' ? 'Kopyala' : 'Copy') }}</span>
+                      </button>
+                    </div>
+                    <div class="editor-body">
+                      <pre class="code-pre" v-if="activeProjectFile"><code>{{ activeProjectFile.code }}</code></pre>
+                      <div v-else class="empty-editor-body d-flex flex-column align-center justify-center text-grey py-16">
+                        <v-icon icon="mdi-file-code-outline" size="48" class="mb-2" color="#64748b"></v-icon>
+                        <span>{{ locale === 'ar' ? 'حدد ملفاً من القائمة الجانبية لاستعراضه' : locale === 'tr' ? 'Görüntülemek için sol menüden bir dosya seçin' : 'Select a file from the sidebar to view' }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="snippet-disclaimer mt-2 d-flex align-start">
+                  <v-icon icon="mdi-shield-alert-outline" size="16" color="#fb7185" class="mr-2 ml-2 mt-0.5"></v-icon>
+                  <span style="font-size: 0.76rem; color: #fb7185; line-height: 1.5;">
+                    {{ locale === 'ar' ? 'ملاحظة: حمايةً للملكية الفكرية والتزاماً باتفاقية السرية (NDA) للعميل، لا يمكنني عرض كامل المشروع. تم استعراض هذا المكون البسيط كعينة فقط لتوضيح جودة كتابة الكود وبنيته.' : locale === 'tr' ? 'Not: Müşteri gizliliği ve NDA anlaşmaları nedeniyle, tüm kaynak kodunu paylaşamamaktayım. Bu basitleştirilmiş bileşen, yalnızca kod kalitesini ve yapısını göstermek amacıyla örnek olarak sunulmuştur.' : 'Note: Due to client confidentiality and NDA agreements, I cannot share the full repository. This simplified component is showcased only as a sample to demonstrate code quality and structure.' }}
+                  </span>
+                </div>
+              </div>
+            </v-window-item>
+          </v-window>
+
+          <div class="dialog-actions d-flex justify-end dialog-actions-wrapper">
+            <v-btn
+              v-if="detailsDialog.project.demoUrl && detailsDialog.project.demoUrl !== '#'"
+              :href="detailsDialog.project.demoUrl"
+              target="_blank"
+              variant="flat"
+              class="action-btn-demo px-6 text-none"
+              :style="{ background: `${detailsDialog.project.accentColor}15`, border: `1px solid ${detailsDialog.project.accentColor}40`, color: detailsDialog.project.accentColor }"
+            >
+              <v-icon icon="mdi-open-in-new" size="14" class="mr-1 ml-1"></v-icon>
+              {{ $t('projects.demo') }}
+            </v-btn>
+            <v-btn
+              v-else
+              disabled
+              variant="flat"
+              class="action-btn-demo px-6 text-none"
+              style="background: rgba(255, 255, 255, 0.03) !important; border: 1px solid rgba(255, 255, 255, 0.05) !important; color: rgba(255, 255, 255, 0.25) !important; opacity: 0.5;"
+            >
+              <v-icon icon="mdi-link-off" size="14" class="mr-1 ml-1"></v-icon>
+              {{ $t('projects.demo') }}
+            </v-btn>
+          </div>
+        </div>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -3005,5 +3272,442 @@ a.linkedin-link:hover {
   .glass-panel {
     padding: 30px 20px;
   }
+}
+
+:deep(.v-overlay__content) {
+  transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.glass-panel-dialog {
+  background: rgba(10, 16, 28, 0.85) !important;
+  backdrop-filter: blur(25px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(190%) !important;
+  border: 1px solid rgba(122, 255, 251, 0.15) !important;
+  border-radius: 24px !important;
+  color: #ffffff !important;
+  position: relative;
+  overflow-y: auto !important;
+  max-height: 90vh !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7) !important;
+}
+
+.glass-panel-dialog::-webkit-scrollbar {
+  width: 6px;
+}
+
+.glass-panel-dialog::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.glass-panel-dialog::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+}
+
+.glass-panel-dialog::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.dialog-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+[dir="rtl"] .dialog-close-btn {
+  right: auto;
+  left: 16px;
+}
+
+.dialog-close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.dialog-logo-inline {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dialog-category-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid;
+  letter-spacing: 0.05em;
+}
+
+.dialog-role-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+}
+
+.dialog-project-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.dialog-project-desc {
+  color: #cbd5e1;
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+.dialog-section-subtitle {
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.05em;
+}
+
+.dialog-nda-note {
+  background: rgba(251, 113, 133, 0.04);
+  border: 1px solid rgba(251, 113, 133, 0.15);
+  border-radius: 16px;
+}
+
+.nda-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nda-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fb7185;
+}
+
+.nda-desc {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.dialog-close-action-btn:hover {
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: #ffffff !important;
+}
+
+.dialog-badge-wrapper {
+  gap: 8px !important;
+}
+
+.dialog-tech-tags-wrapper {
+  gap: 8px !important;
+}
+
+.dialog-actions-wrapper {
+  gap: 16px !important;
+}
+
+.code-editor-mockup {
+  background: rgba(5, 8, 16, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+}
+
+.editor-header {
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.editor-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.editor-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.editor-dot.red {
+  background: #ff5f56;
+}
+
+.editor-dot.yellow {
+  background: #ffbd2e;
+}
+
+.editor-dot.green {
+  background: #27c93f;
+}
+
+.editor-filename {
+  font-size: 0.72rem;
+  color: #64748b;
+  font-family: inherit;
+}
+
+.copy-code-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s ease;
+}
+
+.copy-code-btn:hover {
+  color: #ffffff;
+}
+
+.dialog-snippet-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2px 8px;
+  border-radius: 6px;
+  color: #94a3b8;
+}
+
+.snippet-disclaimer {
+  font-size: 0.74rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.code-explorer-container {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  background: rgba(5, 8, 16, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  height: 480px;
+}
+
+.explorer-sidebar {
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+[dir="rtl"] .explorer-sidebar {
+  border-right: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.explorer-sidebar-title {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.explorer-folder-row {
+  cursor: default;
+  user-select: none;
+}
+
+.folder-name {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #cbd5e1;
+}
+
+.explorer-file-row {
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  user-select: none;
+  margin: 1px 4px;
+}
+
+.explorer-file-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.explorer-file-row.active {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.file-name {
+  font-size: 0.74rem;
+  color: #94a3b8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.explorer-file-row.active .file-name {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.editor-window {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.editor-dots-tab {
+  display: flex;
+  align-items: center;
+}
+
+.editor-tab {
+  background: rgba(5, 8, 16, 0.75);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 8px 16px;
+  border-top: 2px solid #a855f7;
+  font-family: inherit;
+}
+
+[dir="rtl"] .editor-tab {
+  border-right: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.editor-body {
+  flex-grow: 1;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.empty-editor-body {
+  height: 100%;
+}
+
+.code-pre {
+  margin: 0;
+  padding: 16px;
+  overflow: auto;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+  height: 100%;
+  max-height: 440px;
+}
+
+.code-pre::-webkit-scrollbar,
+.explorer-sidebar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.code-pre::-webkit-scrollbar-track,
+.explorer-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.code-pre::-webkit-scrollbar-thumb,
+.explorer-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+}
+
+.code-pre::-webkit-scrollbar-thumb:hover,
+.explorer-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+@media (max-width: 768px) {
+  .code-explorer-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 150px 1fr;
+    height: 450px;
+  }
+  .explorer-sidebar {
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  [dir="rtl"] .explorer-sidebar {
+    border-left: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .dialog-hero-img-wrapper {
+    height: 180px;
+  }
+  .dialog-project-title {
+    font-size: 1.4rem;
+  }
+  .glass-panel-dialog {
+    margin: 12px;
+  }
+}
+
+.dialog-tabs {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  padding: 4px !important;
+  margin-bottom: 24px !important;
+  height: auto !important;
+}
+
+.dialog-tabs :deep(.v-tab__slider) {
+  display: none !important;
+}
+
+.dialog-tabs :deep(.v-tab) {
+  flex: 1;
+  text-transform: none !important;
+  letter-spacing: 0px !important;
+  color: #94a3b8 !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  border-radius: 10px !important;
+  padding: 10px 16px !important;
+  height: 42px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.dialog-tabs :deep(.v-tab:hover) {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.dialog-tabs :deep(.v-tab--selected) {
+  color: var(--tab-accent, #7afffb) !important;
+  background: color-mix(in srgb, var(--tab-accent, #7afffb) 12%, transparent) !important;
+  border: 1px solid color-mix(in srgb, var(--tab-accent, #7afffb) 35%, transparent) !important;
+  box-shadow: 0 4px 15px -4px color-mix(in srgb, var(--tab-accent, #7afffb) 25%, transparent) !important;
 }
 </style>
