@@ -11,7 +11,7 @@ export const looplanfyFinanceFiles = [
             <div class="d-flex align-center">
               <v-icon icon="mdi-receipt-text-outline" class="mr-3" size="large"></v-icon>
               <div>
-                <div class="text-h6 font-weight-bold">تفاصيل الفاتورة #{{ invoice.invoice_number }}</div>
+                <div class="text-h6 font-weight-bold">Invoice Details #{{ invoice.invoice_number }}</div>
                 <div class="text-caption text-white-lighten-2">{{ formatDate(invoice.invoice_date) }}</div>
               </div>
             </div>
@@ -24,19 +24,19 @@ export const looplanfyFinanceFiles = [
               <v-row>
                 <v-col cols="12" md="6">
                   <v-card class="elevation-0 border rounded-lg bg-white h-100 pa-4">
-                    <div class="text-caption text-grey-darken-1 mb-1 font-weight-bold">المورد</div>
+                    <div class="text-caption text-grey-darken-1 mb-1 font-weight-bold">Supplier</div>
                     <div class="d-flex align-center">
                       <v-icon icon="mdi-domain" color="primary" class="mr-2"></v-icon>
-                      <span class="text-body-1 font-weight-medium">{{ invoice.suppliers?.name || 'غير محدد' }}</span>
+                      <span class="text-body-1 font-weight-medium">{{ invoice.suppliers?.name || 'Not Specified' }}</span>
                     </div>
                   </v-card>
                 </v-col>
                 <v-col cols="12" md="6">
                   <v-card class="elevation-0 border rounded-lg bg-white h-100 pa-4">
-                    <div class="text-caption text-grey-darken-1 mb-1 font-weight-bold">المستودع المستلم</div>
+                    <div class="text-caption text-grey-darken-1 mb-1 font-weight-bold">Receiving Warehouse</div>
                     <div class="d-flex align-center">
                       <v-icon icon="mdi-warehouse" color="warning" class="mr-2"></v-icon>
-                      <span class="text-body-1 font-weight-medium">{{ invoice.warehouses?.name || 'غير محدد' }}</span>
+                      <span class="text-body-1 font-weight-medium">{{ invoice.warehouses?.name || 'Not Specified' }}</span>
                     </div>
                   </v-card>
                 </v-col>
@@ -47,24 +47,24 @@ export const looplanfyFinanceFiles = [
             <div class="pa-6">
               <div class="text-h6 font-weight-bold text-primary mb-4 d-flex align-center">
                 <v-icon icon="mdi-format-list-bulleted" class="mr-2"></v-icon>
-                أصناف الفاتورة
+                Invoice Items
               </div>
               
               <v-table class="border rounded-lg bg-white" density="comfortable">
                 <thead>
                   <tr class="bg-grey-lighten-4">
-                    <th class="text-right font-weight-bold">المنتج</th>
-                    <th class="text-center font-weight-bold">الكمية</th>
-                    <th class="text-center font-weight-bold">سعر الشراء (شامل)</th>
-                    <th class="text-center font-weight-bold">الضريبة</th>
-                    <th class="text-center font-weight-bold">الصافي</th>
-                    <th class="text-center font-weight-bold">الإجمالي</th>
+                    <th class="text-right font-weight-bold">Product</th>
+                    <th class="text-center font-weight-bold">Quantity</th>
+                    <th class="text-center font-weight-bold">Purchase Price (Gross)</th>
+                    <th class="text-center font-weight-bold">Tax</th>
+                    <th class="text-center font-weight-bold">Net</th>
+                    <th class="text-center font-weight-bold">Total</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="item in invoice.purchase_invoice_items" :key="item.id" class="border-b">
                     <td class="text-right pa-3">
-                      <div class="font-weight-bold">{{ item.products?.name || 'منتج محذوف' }}</div>
+                      <div class="font-weight-bold">{{ item.products?.name || 'Deleted Product' }}</div>
                       <div class="text-caption text-grey">{{ item.products?.sku || '' }}</div>
                     </td>
                     <td class="text-center">{{ item.quantity }}</td>
@@ -74,7 +74,7 @@ export const looplanfyFinanceFiles = [
                     <td class="text-center font-weight-black">{{ formatMoney(item.quantity * item.unit_price_gross) }} ₺</td>
                   </tr>
                   <tr v-if="!invoice.purchase_invoice_items?.length">
-                    <td colspan="6" class="text-center pa-4 text-grey">لا توجد أصناف مسجلة في هذه الفاتورة.</td>
+                    <td colspan="6" class="text-center pa-4 text-grey">No items registered in this invoice.</td>
                   </tr>
                 </tbody>
               </v-table>
@@ -82,7 +82,7 @@ export const looplanfyFinanceFiles = [
             
             <!-- Notes -->
             <div v-if="invoice.notes" class="px-6 pb-6">
-              <div class="text-subtitle-2 font-weight-bold text-grey-darken-1 mb-2">ملاحظات الفاتورة</div>
+              <div class="text-subtitle-2 font-weight-bold text-grey-darken-1 mb-2">Invoice Notes</div>
               <v-card class="elevation-0 bg-yellow-lighten-5 border-warning border pa-4 rounded-lg text-body-2">
                 {{ invoice.notes }}
               </v-card>
@@ -99,20 +99,20 @@ export const looplanfyFinanceFiles = [
                   class="font-weight-bold text-uppercase"
                   variant="flat"
                 >
-                  {{ invoice.status === 'APPROVED' ? 'معتمدة - مضافة للمخزون' : 'مسودة قيد المراجعة' }}
+                  {{ invoice.status === 'APPROVED' ? 'Approved - Added to Inventory' : 'Draft under review' }}
                 </v-chip>
             </div>
             <div class="d-flex gap-6 text-right w-100 justify-md-end pr-md-6">
                 <div>
-                  <div class="text-caption text-grey-lighten-1 mb-1">الكمية الإجمالية</div>
+                  <div class="text-caption text-grey-lighten-1 mb-1">Total Quantity</div>
                   <div class="text-h6 font-weight-bold">{{ totalItemsQuantity }}</div>
                 </div>
                 <div>
-                  <div class="text-caption text-grey-lighten-1 mb-1">صافي الفاتورة</div>
+                  <div class="text-caption text-grey-lighten-1 mb-1">Invoice Net</div>
                   <div class="text-h6 font-weight-bold text-success">{{ formatMoney(invoice.total_net_amount) }} ₺</div>
                 </div>
                 <div>
-                  <div class="text-caption text-grey-lighten-1 mb-1">إجمالي الفاتورة (شامل)</div>
+                  <div class="text-caption text-grey-lighten-1 mb-1">Invoice Total (Gross)</div>
                   <div class="text-h5 font-weight-black text-white">{{ formatMoney(invoice.total_gross_amount) }} ₺</div>
                 </div>
             </div>
@@ -192,7 +192,7 @@ export const looplanfyFinanceFiles = [
         </div>
 
         <div class="d-flex flex-column flex-sm-row gap-3">
-          <!-- فلتر مخصص (إن وجد) -->
+          <!-- Custom filter (if any) -->
           <v-select
             v-if="showFilter"
             v-model="activeFilter"
@@ -208,7 +208,7 @@ export const looplanfyFinanceFiles = [
             style="min-width: 150px;"
           ></v-select>
 
-          <!-- شريط البحث السريع -->
+          <!-- Quick search bar -->
           <v-text-field
             v-if="showSearch"
             v-model="searchQuery"
@@ -223,7 +223,7 @@ export const looplanfyFinanceFiles = [
             style="min-width: 250px;"
           ></v-text-field>
           
-          <!-- مكان لإضافة أزرار مخصصة علوية (مثل زر الإضافة) -->
+          <!-- Slot for top custom actions (e.g. add button) -->
           <slot name="top-actions"></slot>
         </div>
         
@@ -241,25 +241,25 @@ export const looplanfyFinanceFiles = [
       hover
       class="elevation-0 smart-table"
     >
-      <!-- تمرير كل الـ slots القادمة من الأب إلى الـ v-data-table الداخلي -->
+      <!-- Pass all slots from parent to internal v-data-table -->
       <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
         <slot :name="name" v-bind="slotData || {}" />
       </template>
 
-      <!-- تخصيص رسالة "لا توجد بيانات" افتراضية -->
+      <!-- Custom default "no data" message -->
       <template v-slot:no-data>
         <div class="pa-6 text-center">
           <v-icon icon="mdi-database-search-outline" size="64" color="grey-lighten-1" class="mb-4"></v-icon>
-          <div class="text-h6 text-grey-darken-1">لم يتم العثور على أية سجلات.</div>
+          <div class="text-h6 text-grey-darken-1">No records found.</div>
           <slot name="no-data-action"></slot>
         </div>
       </template>
 
-      <!-- وحدة التحكم السفلية (Pagination) -->
+      <!-- Bottom control panel (Pagination) -->
       <template v-slot:bottom>
         <div class="d-flex align-center justify-space-between pa-4 border-t bg-grey-lighten-5">
           <div class="d-flex align-center gap-4">
-             <span class="text-caption text-grey-darken-1 font-weight-bold d-none d-sm-inline">الصفوف في كل صفحة:</span>
+             <span class="text-caption text-grey-darken-1 font-weight-bold d-none d-sm-inline">Rows per page:</span>
              <v-select
                v-model="itemsPerPage"
                :items="[5, 10, 25, 50, 100]"
@@ -290,30 +290,30 @@ export const looplanfyFinanceFiles = [
 import { ref, watch, onMounted, computed } from 'vue'
 
 const props = defineProps({
-  // محتوى وعنوان الجدول
-  title: { type: String, default: 'قائمة البيانات' },
+  // Table title and content
+  title: { type: String, default: 'Data List' },
   icon: { type: String, default: 'mdi-table' },
   
-  // إعدادات البيانات عبر الـ API
-  endpoint: { type: String, required: true }, // رابط الـ API لجلب البيانات
+  // Data settings via API
+  endpoint: { type: String, required: true }, // API endpoint to fetch data
   headers: { type: Array, required: true, default: () => [] },
   
-  // إعدادات البحث
+  // Search settings
   showSearch: { type: Boolean, default: true },
-  searchPlaceholder: { type: String, default: 'بحث السجلات...' },
+  searchPlaceholder: { type: String, default: 'Search records...' },
   
-  // إعدادات الفلتر
+  // Filter settings
   showFilter: { type: Boolean, default: false },
   filterKey: { type: String, default: 'filter' },
   filterOptions: { type: Array, default: () => [] },
 
-  // معلمات إضافية ديناميكية للبحث
+  // Dynamic extra search parameters
   extraParams: { type: Object, default: () => ({}) },
 
-  // مفتاح لحفظ حالة الفلتر ورقم الصفحة بالذاكرة المؤقتة
+  // Key to save filter state and page number in session storage
   stateKey: { type: String, default: '' },
 
-  // خيارات التحديد المتعدد
+  // Multi-select options
   showSelect: { type: Boolean, default: false },
   selected: { type: Array, default: () => [] }
 })
@@ -325,7 +325,7 @@ const modelSelected = computed({
   set: (val) => emit('update:selected', val)
 })
 
-// المتغيرات المحلية 
+// Local variables 
 const activeFilter = ref(props.filterOptions.length > 0 ? props.filterOptions[0] : null)
 const searchQuery = ref('')
 const itemsPerPage = ref(10)
@@ -336,10 +336,10 @@ const totalItems = ref(0)
 const summary = ref(null)
 const loading = ref(true)
 
-// حساب عدد الصفحات بناءً على البيانات القادمة من السيرفر
+// Calculate page count based on server data
 const pageCount = ref(1)
 
-// دالة جلب البيانات من السيرفر مباشرة
+// Fetch data directly from server
 const fetchData = async () => {
   loading.value = true
   try {
@@ -366,7 +366,7 @@ const fetchData = async () => {
     summary.value = data.summary
     pageCount.value = Math.ceil(data.totalItems / itemsPerPage.value) || 1
   } catch (error) {
-    console.error("خطأ في جلب البيانات:", error)
+    console.error("Error fetching data:", error)
     items.value = []
     totalItems.value = 0
   } finally {
@@ -374,10 +374,10 @@ const fetchData = async () => {
   }
 }
 
-// كشف دالة التحديث للخارج لكي يستطيع الأب (مثل صفحة المستخدمين) إعادة تحميل الجدول بعد الإضافة أو التعديل
+// Expose refresh function to allow parent (like users page) to reload table after add/edit
 defineExpose({ refresh: fetchData, summary })
 
-// دالة حفظ الحالة في الذاكرة المؤقتة
+// Save state in session storage
 const saveState = () => {
   if (props.stateKey && typeof window !== 'undefined') {
     const state = {
@@ -392,7 +392,7 @@ const saveState = () => {
 
 let isRestoring = false
 
-// المراقبة والتحديث عند تغيير أي قيمة، مع إعادة تصفير الصفحة عند البحث أو الفلترة
+// Watch and refresh on value change, resetting page to 1 on search or filter
 watch(searchQuery, () => {
   if (isRestoring) return
   page.value = 1
@@ -424,7 +424,7 @@ watch([itemsPerPage, page], () => {
   fetchData()
 })
 
-// جلب البيانات أول مرة عند تحميل المكون مع استرجاع الحالة
+// Fetch data on mount and restore state
 onMounted(() => {
   if (props.stateKey && typeof window !== 'undefined') {
     const saved = sessionStorage.getItem('smart_table_{props.stateKey}')
@@ -438,7 +438,7 @@ onMounted(() => {
           const found = props.filterOptions.find(opt => opt.value === parsed.activeFilter.value && opt.key === parsed.activeFilter.key)
           if (found) activeFilter.value = found
         }
-        // استرجاع الصفحة في النهاية لكي لا تقوم بمراقبة التحديثات الأخرى بإرجاع الصفحة إلى 1
+        // Restore page last so other watches don't reset it to 1
         if (parsed.page !== undefined) page.value = parsed.page
       } catch (e) {
         console.error('Failed to parse saved smart table state:', e)
@@ -466,7 +466,7 @@ onMounted(() => {
   gap: 16px;
 }
 
-/* تحسين شكل صفوف الجدول لجعلها أوسع قليلاً وتصميم راقي */
+/* Optimize table row style to be wider and premium */
 :deep(.v-data-table .v-data-table__tr:hover) {
   background-color: rgba(24, 103, 192, 0.03) !important;
 }
@@ -493,11 +493,11 @@ onMounted(() => {
   <div>
     <div class="d-flex justify-space-between align-center mb-6">
       <div>
-        <h1 class="text-h4 font-weight-bold text-primary mb-1">إدخال فاتورة مشتريات</h1>
-        <div class="text-body-2 text-grey-darken-1">تسجيل بضاعة جديدة محسوبة التكلفة الصافية والضريبة تلقائياً.</div>
+        <h1 class="text-h4 font-weight-bold text-primary mb-1">Enter Purchase Invoice</h1>
+        <div class="text-body-2 text-grey-darken-1">Register new goods with net cost and tax calculated automatically.</div>
       </div>
       <v-btn color="grey-darken-2" variant="tonal" prepend-icon="mdi-arrow-right" class="rounded-lg font-weight-bold" @click="router.back()">
-        عودة
+        Back
       </v-btn>
     </div>
 
@@ -508,24 +508,24 @@ onMounted(() => {
 
     <!-- Alert for success -->
     <v-alert v-if="success" type="success" variant="tonal" class="mb-4 text-body-2 font-weight-bold" closable @click:close="success = false">
-      تم حفظ الفاتورة بنجاح كمسودة. جاري توجيهك...
+      Invoice successfully saved as draft. Redirecting...
     </v-alert>
 
     <v-form @submit.prevent="submitInvoice" ref="formRef" :disabled="loading">
       
-      <!-- القسم الأول: ترويسة الفاتورة -->
+      <!-- Section One: Invoice Header -->
       <v-card class="rounded-xl mb-6 border elevation-0">
         <v-card-title class="text-h6 font-weight-bold pt-4 px-6 text-primary border-b bg-grey-lighten-4">
           <v-icon icon="mdi-file-document-outline" class="mr-2"></v-icon>
-          بيانات الفاتورة الأساسية
+          Basic Invoice Data
         </v-card-title>
         <v-card-text class="pa-6">
           <v-row>
             <v-col cols="12" md="3">
-              <v-text-field v-model="invoice.invoice_number" label="رقم مرجع الفاتورة *" variant="outlined" color="primary" :rules="[v => !!v || 'مطلوب']" rounded="lg" density="comfortable" bg-color="white"></v-text-field>
+              <v-text-field v-model="invoice.invoice_number" label="Invoice Reference Number *" variant="outlined" color="primary" :rules="[v => !!v || 'Required']" rounded="lg" density="comfortable" bg-color="white"></v-text-field>
             </v-col>
             <v-col cols="12" md="3">
-              <v-text-field v-model="invoice.invoice_date" type="datetime-local" label="تاريخ الفاتورة *" variant="outlined" color="primary" :rules="[v => !!v || 'مطلوب']" rounded="lg" density="comfortable" bg-color="white"></v-text-field>
+              <v-text-field v-model="invoice.invoice_date" type="datetime-local" label="Invoice Date *" variant="outlined" color="primary" :rules="[v => !!v || 'Required']" rounded="lg" density="comfortable" bg-color="white"></v-text-field>
             </v-col>
             <v-col cols="12" md="3">
               <v-autocomplete
@@ -533,10 +533,10 @@ onMounted(() => {
                 :items="suppliers"
                 item-title="name"
                 item-value="id"
-                label="المورد *"
+                label="Supplier *"
                 variant="outlined"
                 color="primary"
-                :rules="[v => !!v || 'مطلوب']"
+                :rules="[v => !!v || 'Required']"
                 rounded="lg"
                 density="comfortable"
                 bg-color="white"
@@ -552,10 +552,10 @@ onMounted(() => {
                 :items="warehouses"
                 item-title="name"
                 item-value="id"
-                label="المستودع المستلم *"
+                label="Receiving Warehouse *"
                 variant="outlined"
                 color="primary"
-                :rules="[v => !!v || 'مطلوب']"
+                :rules="[v => !!v || 'Required']"
                 rounded="lg"
                 density="comfortable"
                 bg-color="white"
@@ -570,26 +570,26 @@ onMounted(() => {
         </v-card-text>
       </v-card>
 
-      <!-- القسم الثاني: الأصناف (Invoice Lines) -->
+      <!-- Section Two: Invoice Lines (Items) -->
       <v-card class="rounded-xl mb-6 border elevation-0">
         <v-card-title class="text-h6 font-weight-bold pt-4 px-6 text-primary border-b bg-grey-lighten-4 d-flex justify-space-between align-center flex-wrap gap-2">
           <div class="d-flex align-center">
             <v-icon icon="mdi-format-list-bulleted" class="mr-2"></v-icon>
-            أصناف الفاتورة
+            Invoice Items
           </div>
           <div class="d-flex align-center gap-4">
             <v-switch
               :model-value="filterBySupplier"
               @update:model-value="onFilterToggleAttempt"
               color="primary"
-              label="عرض منتجات المورد فقط"
+              label="Show supplier products only"
               hide-details
               density="compact"
               class="font-weight-bold"
               :disabled="!invoice.supplier_id"
             ></v-switch>
             <v-btn color="primary" variant="tonal" size="small" prepend-icon="mdi-plus" class="rounded-lg font-weight-bold text-none mr-4" @click="addLineItem">
-              إضافة سطر
+              Add Line
             </v-btn>
           </div>
         </v-card-title>
@@ -600,15 +600,15 @@ onMounted(() => {
               <tr class="bg-grey-lighten-4">
                 <th class="text-start font-weight-bold text-grey-darken-3" style="width: 35%;">
                   <div class="d-flex justify-space-between align-center">
-                    <span>المنتج / المادة</span>
-                    <v-btn size="x-small" color="primary" variant="text" prepend-icon="mdi-package-variant-plus" @click="openQuickAdd">إضافة منتج جديد</v-btn>
+                    <span>Product / Material</span>
+                    <v-btn size="x-small" color="primary" variant="text" prepend-icon="mdi-package-variant-plus" @click="openQuickAdd">Add New Product</v-btn>
                   </div>
                 </th>
-                <th class="text-center font-weight-bold text-grey-darken-3" style="width: 10%;">الكمية</th>
-                <th class="text-center font-weight-bold text-grey-darken-3" style="width: 15%;">سعر الشراء الإفرادي<br><span class="text-caption text-primary">(شامل الضريبة ₺)</span></th>
-                <th class="text-center font-weight-bold text-grey-darken-3" style="width: 10%;">الضريبة KDV</th>
-                <th class="text-center font-weight-bold text-grey-darken-3" style="width: 12%;">التكلفة الصافية<br><span class="text-caption text-success">(محسوب آلياً ₺)</span></th>
-                <th class="text-center font-weight-bold text-grey-darken-3" style="width: 13%;">الإجمالي<br><span class="text-caption">(شامل ₺)</span></th>
+                <th class="text-center font-weight-bold text-grey-darken-3" style="width: 10%;">Quantity</th>
+                <th class="text-center font-weight-bold text-grey-darken-3" style="width: 15%;">Unit Purchase Price<br><span class="text-caption text-primary">(Gross ₺)</span></th>
+                <th class="text-center font-weight-bold text-grey-darken-3" style="width: 10%;">Tax (KDV)</th>
+                <th class="text-center font-weight-bold text-grey-darken-3" style="width: 12%;">Net Cost<br><span class="text-caption text-success">(Auto calculated ₺)</span></th>
+                <th class="text-center font-weight-bold text-grey-darken-3" style="width: 13%;">Total<br><span class="text-caption">(Gross ₺)</span></th>
                 <th class="text-center font-weight-bold text-grey-darken-3" style="width: 5%;"></th>
               </tr>
             </thead>
@@ -620,7 +620,7 @@ onMounted(() => {
                     :items="getAvailableProductsForLine(index)"
                     item-title="name"
                     item-value="id"
-                    placeholder="ابحث عن منتج..."
+                    placeholder="Search for product..."
                     variant="outlined"
                     density="compact"
                     hide-details
@@ -675,52 +675,52 @@ onMounted(() => {
           </v-table>
           
           <div v-if="invoice.items.length === 0" class="text-center pa-8 text-grey text-body-1">
-            لا توجد أصناف في الفاتورة بعد.
+            No items in invoice yet.
           </div>
         </v-card-text>
         
         <v-divider></v-divider>
         <v-card-text class="bg-grey-lighten-5 pa-4">
-           <v-textarea v-model="invoice.notes" label="ملاحظات توضيحية للفاتورة (اختياري)" variant="outlined" color="primary" rows="2" auto-grow rounded="lg" bg-color="white" hide-details></v-textarea>
+           <v-textarea v-model="invoice.notes" label="Explanatory notes for invoice (Optional)" variant="outlined" color="primary" rows="2" auto-grow rounded="lg" bg-color="white" hide-details></v-textarea>
         </v-card-text>
       </v-card>
 
-      <!-- القسم الثالث: الملخص المالي والاعتماد -->
+      <!-- Section Three: Financial Summary & Approval -->
       <v-card class="rounded-xl border elevation-4 bg-primary-darken-1 text-white">
         <v-card-text class="pa-6">
           <v-row align="center">
             <v-col cols="12" md="4" class="text-center text-md-right border-e-md" style="border-color: rgba(255,255,255,0.2) !important;">
-               <div class="text-caption text-white-lighten-2 text-uppercase mb-1">الكمية الإجمالية</div>
-               <div class="text-h5 font-weight-bold">{{ totalQuantity }} <span class="text-body-2">قطعة</span></div>
+               <div class="text-caption text-white-lighten-2 text-uppercase mb-1">Total Quantity</div>
+               <div class="text-h5 font-weight-bold">{{ totalQuantity }} <span class="text-body-2">pcs</span></div>
             </v-col>
             <v-col cols="12" md="4" class="text-center text-md-right border-e-md" style="border-color: rgba(255,255,255,0.2) !important;">
-               <div class="text-caption text-white-lighten-2 text-uppercase mb-1">الضريبة الإجمالية (KDV)</div>
+               <div class="text-caption text-white-lighten-2 text-uppercase mb-1">Total Tax (KDV)</div>
                <div class="text-h5 font-weight-bold text-yellow-lighten-1">{{ formatMoney(totalVat) }} ₺</div>
             </v-col>
             <v-col cols="12" md="4" class="text-center text-md-right">
-               <div class="text-caption text-white-lighten-2 text-uppercase mb-1">إجمالي الفاتورة (شامل)</div>
+               <div class="text-caption text-white-lighten-2 text-uppercase mb-1">Invoice Total (Gross)</div>
                <div class="text-h4 font-weight-black text-white">{{ formatMoney(totalGross) }} ₺</div>
             </v-col>
           </v-row>
         </v-card-text>
         <v-divider style="border-color: rgba(255,255,255,0.2) !important;"></v-divider>
         <v-card-actions class="pa-4 bg-primary d-flex justify-end pr-6">
-           <v-btn color="white" variant="text" class="font-weight-bold text-none rounded-lg mr-2" @click="router.back()">إلغاء الأمر</v-btn>
+           <v-btn color="white" variant="text" class="font-weight-bold text-none rounded-lg mr-2" @click="router.back()">Cancel</v-btn>
            <v-btn color="white" variant="flat" class="font-weight-black text-primary text-none rounded-lg px-8" size="large" type="submit" :loading="loading" prepend-icon="mdi-content-save-check">
-             حفظ الفاتورة (مسودة)
+             Save Invoice (Draft)
            </v-btn>
         </v-card-actions>
       </v-card>
 
     </v-form>
 
-    <!-- Modal إضافة منتج جديد (Quick Add) -->
+    <!-- Modal Add New Product (Quick Add) -->
     <v-dialog v-model="addDialog" max-width="800" persistent scrollable>
       <v-card class="rounded-xl pa-2">
         <v-card-title class="text-h5 font-weight-bold pt-4 px-4 d-flex justify-space-between align-center text-primary">
           <div class="d-flex align-center">
              <v-icon icon="mdi-package-variant-plus" class="mr-2"></v-icon>
-             إضافة منتج جديد وتلافيه للفاتورة
+             Add New Product & Link to Invoice
           </div>
           <v-btn icon="mdi-close" variant="text" size="small" @click="closeQuickAdd"></v-btn>
         </v-card-title>
@@ -729,7 +729,7 @@ onMounted(() => {
 
         <v-card-text class="pt-4 px-4" style="max-height: 70vh;">
           <v-alert v-if="selectedSupplierName" type="info" variant="tonal" class="mb-4 text-body-2 font-weight-bold" icon="mdi-link-variant">
-            سيتم إضافة هذا المنتج وربطه تلقائياً بالمورد ({{ selectedSupplierName }}) المختار في الفاتورة.
+            This product will be added and linked automatically to the selected supplier ({{ selectedSupplierName }}) in the invoice.
           </v-alert>
 
           <v-alert v-if="dialogError" type="error" variant="tonal" class="mb-4 text-body-2 font-weight-bold">
@@ -739,39 +739,39 @@ onMounted(() => {
           <v-form @submit.prevent="createProduct" ref="addForm">
             <v-row>
               <v-col cols="12">
-                <div class="text-subtitle-2 font-weight-bold text-grey-darken-2 mb-1">المعلومات الأساسية للمنتج</div>
+                <div class="text-subtitle-2 font-weight-bold text-grey-darken-2 mb-1">Basic Product Information</div>
               </v-col>
               <v-col cols="12" md="6">
-                <v-text-field v-model="newProduct.name" label="اسم المنتج *" variant="outlined" color="primary" :rules="[v => !!v || 'مطلوب']" required rounded="lg" density="comfortable"></v-text-field>
+                <v-text-field v-model="newProduct.name" label="Product Name *" variant="outlined" color="primary" :rules="[v => !!v || 'Required']" required rounded="lg" density="comfortable"></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
-                 <v-text-field v-model="newProduct.sku" label="رمز المنتج (SKU) *" variant="outlined" color="primary" :rules="[v => !!v || 'مطلوب']" required dir="ltr" rounded="lg" density="comfortable"></v-text-field>
+                 <v-text-field v-model="newProduct.sku" label="Product Code (SKU) *" variant="outlined" color="primary" :rules="[v => !!v || 'Required']" required dir="ltr" rounded="lg" density="comfortable"></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
-                 <v-select v-model="newProduct.type" :items="[{ title: 'مكون خام (Component)', value: 'COMPONENT' }, { title: 'مواد تغليف (Packaging)', value: 'PACKAGING' }]" label="نوع المنتج *" variant="outlined" color="primary" :rules="[v => !!v || 'مطلوب']" required rounded="lg" density="comfortable"></v-select>
+                 <v-select v-model="newProduct.type" :items="[{ title: 'Raw Component (Component)', value: 'COMPONENT' }, { title: 'Packaging Material (Packaging)', value: 'PACKAGING' }]" label="Product Type *" variant="outlined" color="primary" :rules="[v => !!v || 'Required']" required rounded="lg" density="comfortable"></v-select>
               </v-col>
               <v-col cols="12" md="6">
-                 <v-text-field v-model="newProduct.stock_alert_level" label="حد تنبيه المخزون" type="number" variant="outlined" color="primary" rounded="lg" density="comfortable" min="0"></v-text-field>
+                 <v-text-field v-model="newProduct.stock_alert_level" label="Stock Alert Level" type="number" variant="outlined" color="primary" rounded="lg" density="comfortable" min="0"></v-text-field>
               </v-col>
 
               <v-col cols="12">
-                <div class="text-subtitle-2 font-weight-bold text-grey-darken-2 mt-2 mb-1">المعلومات المالية والضريبية</div>
+                <div class="text-subtitle-2 font-weight-bold text-grey-darken-2 mt-2 mb-1">Financial & Tax Information</div>
               </v-col>
               <v-col cols="12" md="6">
-                <v-text-field v-model="newProduct.purchase_price_gross" label="سعر الشراء الإجمالي (شامل الضريبة)" type="number" variant="outlined" color="primary" rounded="lg" density="comfortable" min="0" step="0.01" prefix="₺"></v-text-field>
+                <v-text-field v-model="newProduct.purchase_price_gross" label="Gross Purchase Price (Tax Inclusive)" type="number" variant="outlined" color="primary" rounded="lg" density="comfortable" min="0" step="0.01" prefix="₺"></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
-                <v-select v-model="newProduct.kdv_rate" :items="[0, 1, 10, 20]" label="نسبة الضريبة (KDV) *" variant="outlined" color="primary" :rules="[v => v !== null || 'مطلوب']" required rounded="lg" density="comfortable">
+                <v-select v-model="newProduct.kdv_rate" :items="[0, 1, 10, 20]" label="Tax Rate (KDV) *" variant="outlined" color="primary" :rules="[v => v !== null || 'Required']" required rounded="lg" density="comfortable">
                   <template v-slot:selection="{ item }">%{{ item.title }}</template>
                   <template v-slot:item="{ props, item }"><v-list-item v-bind="props" :title="'%' + item.title"></v-list-item></template>
                 </v-select>
               </v-col>
 
               <v-col cols="12">
-                <div class="text-subtitle-2 font-weight-bold text-grey-darken-2 mt-2 mb-1">الصور والحالة</div>
+                <div class="text-subtitle-2 font-weight-bold text-grey-darken-2 mt-2 mb-1">Images & Status</div>
               </v-col>
               <v-col cols="12">
-                 <ImageUploader v-model="newProduct.image_url" bucket="products" label="صورة المنتج" />
+                 <ImageUploader v-model="newProduct.image_url" bucket="products" label="Product Image" />
               </v-col>
             </v-row>
           </v-form>
@@ -780,8 +780,8 @@ onMounted(() => {
         <v-divider></v-divider>
 
         <v-card-actions class="pa-4 d-flex justify-end gap-2">
-          <v-btn color="grey-darken-1" variant="text" class="font-weight-bold text-none rounded-lg" @click="closeQuickAdd">إلغاء</v-btn>
-          <v-btn color="primary" class="font-weight-bold text-none rounded-lg px-6" :loading="savingProduct" @click="$refs.addForm.requestSubmit()">إضافة ودمج</v-btn>
+          <v-btn color="grey-darken-1" variant="text" class="font-weight-bold text-none rounded-lg" @click="closeQuickAdd">Cancel</v-btn>
+          <v-btn color="primary" class="font-weight-bold text-none rounded-lg px-6" :loading="savingProduct" @click="$refs.addForm.requestSubmit()">Add & Integrate</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -789,10 +789,10 @@ onMounted(() => {
     <!-- Confirm Dialog for toggling supplier filter -->
     <ConfirmDialog 
       v-model="showToggleFilterDialog"
-      title="تنبيه: مسح سطور الفاتورة" 
-      message="تغيير نمط عرض المنتجات سيؤدي إلى مسح جميع السطور الحالية في الفاتورة لتجنب تعارض البيانات. هل أنت متأكد من المتابعة؟"
-      confirmText="نعم، قم بالمسح والمتابعة"
-      cancelText="إلغاء الأمر"
+      title="Warning: Clear Invoice Lines" 
+      message="Changing product display mode will clear all current invoice lines to avoid data conflicts. Are you sure you want to continue?"
+      confirmText="Yes, clear and continue"
+      cancelText="Cancel"
       @confirm="executeFilterToggle"
       @cancel="cancelFilterToggle"
     />
@@ -800,10 +800,10 @@ onMounted(() => {
     <!-- Confirm Dialog for changing supplier -->
     <ConfirmDialog 
       v-model="showChangeSupplierDialog"
-      title="تنبيه: تغيير المورد" 
-      message="تغيير المورد سيؤدي إلى مسح جميع الأصناف التي أدخلتها لتجنب خلط منتجات الموردين. هل أنت متأكد من المتابعة؟"
-      confirmText="نعم، المسح وتغيير المورد"
-      cancelText="إلغاء الأمر"
+      title="Warning: Change Supplier" 
+      message="Changing supplier will clear all items you entered to avoid mixing supplier products. Are you sure you want to continue?"
+      confirmText="Yes, clear and change supplier"
+      cancelText="Cancel"
       @confirm="executeSupplierToggle"
       @cancel="cancelSupplierToggle"
     />
@@ -944,7 +944,7 @@ const invoice = ref({
   warehouse_id: null,
   notes: '',
   items: [
-    { product_id: null, quantity: null, unit_price_gross: null, kdv_rate: 20 } // سطر مبدئي فارغ
+    { product_id: null, quantity: null, unit_price_gross: null, kdv_rate: 20 } // Initial empty line
   ]
 })
 
@@ -1002,10 +1002,10 @@ const fetchWarehouses = async () => {
     const res = await $fetch('/api/warehouses')
     const allWarehouses = res.items || res
     
-    // إخفاء مستودعات FBA وعرض المستودعات المحلية (LOCAL) فقط
+    // Hide FBA warehouses and show LOCAL warehouses only
     warehouses.value = allWarehouses.filter(w => w.type === 'LOCAL')
     
-    // أخذ أول مستودع محلي كقيمة افتراضية
+    // Set first local warehouse as default
     if (warehouses.value.length > 0 && !invoice.value.warehouse_id) {
        invoice.value.warehouse_id = warehouses.value[0].id
     }
@@ -1054,7 +1054,7 @@ const fetchProducts = async (isLoadMore = false) => {
     // Cache fetched items to avoid losing names
     items.forEach(p => selectedProductDetails.value.set(p.id, p))
 
-    // حماية الترقيم اللانهائي رياضياً بالاعتماد على totalItems
+    // Protect against infinite pagination mathematically using totalItems
     if (productPage.value * productLimit.value >= (res.totalItems || 0)) {
       hasMoreProducts.value = false
     } else {
@@ -1147,8 +1147,8 @@ const createProduct = async () => {
     
     closeQuickAdd()
   } catch (error) {
-    console.error("خطأ في إنشاء المنتج:", error)
-    dialogError.value = error.data?.message || 'حدث خطأ أثناء محاولة إنشاء المنتج.'
+    console.error("Error creating product:", error)
+    dialogError.value = error.data?.message || 'An error occurred while trying to create the product.'
   } finally {
     savingProduct.value = false
   }
@@ -1219,14 +1219,14 @@ const totalVat = computed(() => {
 const submitInvoice = async () => {
   const { valid } = await formRef.value.validate()
   if (!valid) {
-    error.value = 'يرجى إكمال جميع الحقول المطلوبة باللون الأحمر.'
+    error.value = 'Please complete all required fields highlighted in red.'
     return
   }
 
-  // تحقق من وجود سطور غير مكتملة
+  // Check for incomplete lines
   const hasEmptyItems = invoice.value.items.some(item => !item.product_id || !item.quantity || item.quantity <= 0)
   if (hasEmptyItems) {
-    error.value = 'الرجاء اختيار منتج وتحديد كمية صحيحة لجميع السطور.'
+    error.value = 'Please select a product and enter a valid quantity for all lines.'
     return
   }
 
@@ -1234,7 +1234,7 @@ const submitInvoice = async () => {
   error.value = ''
   
   try {
-    // تحويل التواريخ لمنطقة زمنية صحيحة
+    // Convert dates to correct timezone
     const payload = {
       ...invoice.value,
       invoice_date: new Date(invoice.value.invoice_date).toISOString()
@@ -1250,7 +1250,7 @@ const submitInvoice = async () => {
 
   } catch (err) {
     console.error(err)
-    error.value = err.data?.message || 'فشل حفظ الفاتورة. تأكد من اتصالك ومدخلاتك.'
+    error.value = err.data?.message || 'Failed to save invoice. Please check your connection and inputs.'
   } finally {
     loading.value = false
   }
@@ -1259,7 +1259,7 @@ const submitInvoice = async () => {
 </script>
 
 <style scoped>
-/* استايل لتوسيط النص داخل مربعات الإدخال في الجدول */
+/* Style to center text inside input boxes in table */
 :deep(.center-input input) {
   text-align: center !important;
 }
@@ -1273,34 +1273,34 @@ const submitInvoice = async () => {
     language: 'vue',
     code: `<template>
   <div>
-    <!-- قسم العنوان والإحصائيات العلوية -->
+    <!-- Title and Top Stats Section -->
     <div class="d-flex justify-space-between align-center mb-6">
       <div>
-        <h1 class="text-h4 font-weight-bold text-primary mb-1">إدارة فواتير المشتريات</h1>
-        <div class="text-body-2 text-grey-darken-1">سجل استلام البضائع والمصروفات، واعتمد الفواتير لإدخالها للمستودع.</div>
+        <h1 class="text-h4 font-weight-bold text-primary mb-1">Purchase Invoice Management</h1>
+        <div class="text-body-2 text-grey-darken-1">Record goods receipt and expenses, and approve invoices to enter them into the warehouse.</div>
       </div>
       <v-btn color="primary" prepend-icon="mdi-receipt-text-plus-outline" class="rounded-lg font-weight-bold text-none px-6" size="large" to="/purchases/create">
-        إدخال فاتورة جديدة
+        Enter New Invoice
       </v-btn>
     </div>
 
-    <!-- جدول عرض الفواتير -->
+    <!-- Invoice List Table -->
     <SmartDataTable
       ref="dataTableRef"
       endpoint="/api/purchases"
-      title="سجل الفواتير"
+      title="Invoice Log"
       icon="mdi-format-list-bulleted-type"
       :headers="headers"
-      searchPlaceholder="ابحث برقم الفاتورة..."
+      searchPlaceholder="Search by invoice number..."
       :showFilter="true"
       filterKey="status"
       :filterOptions="[
-        { title: 'الكل', value: 'all' },
-        { title: 'مسودة (DRAFT)', value: 'DRAFT' },
-        { title: 'معتمدة (APPROVED)', value: 'APPROVED' }
+        { title: 'All', value: 'all' },
+        { title: 'Draft (DRAFT)', value: 'DRAFT' },
+        { title: 'Approved (APPROVED)', value: 'APPROVED' }
       ]"
     >
-      <!-- تخصيص رقم وتاريخ الفاتورة -->
+      <!-- Customize invoice number and date -->
       <template v-slot:item.invoice_info="{ item }">
         <div class="py-2">
           <div class="font-weight-bold text-primary text-body-1">{{ item.invoice_number }}</div>
@@ -1311,7 +1311,7 @@ const submitInvoice = async () => {
         </div>
       </template>
 
-      <!-- تخصيص المورد والمستودع -->
+      <!-- Customize supplier and warehouse -->
       <template v-slot:item.entities="{ item }">
         <div class="d-flex flex-column gap-1">
           <div class="text-body-2 font-weight-medium text-grey-darken-4">
@@ -1325,26 +1325,26 @@ const submitInvoice = async () => {
         </div>
       </template>
 
-      <!-- التكلفة الصافية والضريبة -->
+      <!-- Net Cost and Tax -->
       <template v-slot:item.financials="{ item }">
         <div class="d-flex flex-column text-right w-100">
            <div class="text-caption text-grey-darken-2">
-             الصافي: <span class="font-weight-bold">{{ Number(item.total_net_amount).toLocaleString('tr-TR', { minimumFractionDigits: 2 }) }} ₺</span>
+             Net: <span class="font-weight-bold">{{ Number(item.total_net_amount).toLocaleString('tr-TR', { minimumFractionDigits: 2 }) }} ₺</span>
            </div>
            <div class="text-caption text-grey-darken-2">
-             الضريبة: <span class="font-weight-bold text-warning">{{ Number(item.total_vat_amount).toLocaleString('tr-TR', { minimumFractionDigits: 2 }) }} ₺</span>
+             Tax: <span class="font-weight-bold text-warning">{{ Number(item.total_vat_amount).toLocaleString('tr-TR', { minimumFractionDigits: 2 }) }} ₺</span>
            </div>
         </div>
       </template>
 
-      <!-- الإجمالي (Gross) -->
+      <!-- Total (Gross) -->
       <template v-slot:item.total_amount="{ item }">
         <div class="font-weight-black text-h6" :class="item.status === 'APPROVED' ? 'text-success' : 'text-primary'">
           {{ Number(item.total_gross_amount).toLocaleString('tr-TR', { minimumFractionDigits: 2 }) }} ₺
         </div>
       </template>
 
-      <!-- حالة الفاتورة -->
+      <!-- Invoice status -->
       <template v-slot:item.status="{ item }">
         <v-chip 
           :color="item.status === 'APPROVED' ? 'success' : 'warning'" 
@@ -1354,11 +1354,11 @@ const submitInvoice = async () => {
           class="font-weight-bold border"
           :border="item.status === 'APPROVED' ? 'success' : 'warning'"
         >
-          {{ item.status === 'APPROVED' ? 'مغلقة ومُضافة للمخزون' : 'مسودة' }}
+          {{ item.status === 'APPROVED' ? 'Closed & Added to Inventory' : 'Draft' }}
         </v-chip>
       </template>
 
-      <!-- الإجراءات المتقدمة -->
+      <!-- Advanced Actions -->
       <template v-slot:item.actions="{ item }">
         <div class="d-flex align-center justify-center">
           <v-menu location="start">
@@ -1367,17 +1367,17 @@ const submitInvoice = async () => {
             </template>
             <v-list density="compact" class="rounded-lg elevation-4 pa-0 py-1" min-width="180">
               
-              <!-- عرض التفاصيل -->
+              <!-- View Details -->
               <v-list-item @click="openInvoiceViewer(item.id)" value="view">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-eye-outline" size="small" class="mr-2 text-primary"></v-icon>
                 </template>
-                <v-list-item-title class="text-body-2 font-weight-medium">عرض الفاتورة</v-list-item-title>
+                <v-list-item-title class="text-body-2 font-weight-medium">View Invoice</v-list-item-title>
               </v-list-item>
 
               <v-divider class="my-1"></v-divider>
 
-              <!-- الاعتماد النهائي -->
+              <!-- Final Approval -->
               <v-list-item 
                 v-if="item.status === 'DRAFT'" 
                 @click="confirmApprove(item)" 
@@ -1386,7 +1386,7 @@ const submitInvoice = async () => {
                 <template v-slot:prepend>
                   <v-icon icon="mdi-check-decagram-outline" size="small" class="mr-2 text-success"></v-icon>
                 </template>
-                <v-list-item-title class="text-body-2 font-weight-bold text-success">اعتماد ودخول للمخزون</v-list-item-title>
+                <v-list-item-title class="text-body-2 font-weight-bold text-success">Approve & Add to Inventory</v-list-item-title>
               </v-list-item>
 
             </v-list>
@@ -1395,29 +1395,29 @@ const submitInvoice = async () => {
       </template>
     </SmartDataTable>
 
-    <!-- نافذة تأكيد الاعتماد المتقدمة (Approve Modal) -->
+    <!-- Advanced Approval Confirmation Dialog (Approve Modal) -->
     <v-dialog v-model="showApproveDialog" max-width="500" persistent>
       <v-card class="rounded-xl border elevation-4">
         <v-card-title class="bg-primary text-white d-flex align-center pa-4">
           <v-icon icon="mdi-check-decagram-outline" class="mr-2"></v-icon>
-          اعتماد الفاتورة نهائياً
+          Approve Invoice Finally
         </v-card-title>
         
         <v-card-text class="pa-6">
           <p class="text-body-1 mb-4 font-weight-medium">
-            بمجرد اعتماد الفاتورة، سيقوم النظام تلقائياً بزيادة أرصدة الأصناف داخل المستودع وإضافة قيمة الفاتورة 
+            Once approved, the system will automatically increase item balances in the warehouse and add the invoice value 
             <strong dir="ltr">({{ invoiceToApprove ? Number(invoiceToApprove.total_gross_amount).toLocaleString('tr-TR', { minimumFractionDigits: 2 }) : 0 }} ₺)</strong>
-            إلى ديون المورد. لن تتمكن من تعديل الفاتورة بعد ذلك. هل أنت متأكد من الاستمرار؟
+            to the supplier's debt. You will not be able to edit the invoice after this. Are you sure you want to proceed?
           </p>
           
           <v-divider class="mb-5"></v-divider>
           
-          <div class="text-subtitle-1 font-weight-bold mb-2 text-primary">هل قمت بتسديد دفعة من هذا المبلغ فوراً؟ (اختياري)</div>
+          <div class="text-subtitle-1 font-weight-bold mb-2 text-primary">Did you pay a installment of this amount immediately? (Optional)</div>
           <v-row>
             <v-col cols="12" sm="7">
               <v-text-field
                 v-model.number="paymentAmount"
-                label="المبلغ المسدد"
+                label="Paid Amount"
                 type="number"
                 min="0"
                 variant="outlined"
@@ -1431,14 +1431,14 @@ const submitInvoice = async () => {
               <v-select
                 v-model="paymentMethod"
                 :items="['CASH', 'BANK_TRANSFER', 'CREDIT_CARD']"
-                label="طريقة الدفع"
+                label="Payment Method"
                 variant="outlined"
                 color="primary"
                 density="comfortable"
                 hide-details
               ></v-select>
             </v-col>
-            <!-- الحساب المالي (الخزنة) يظهر فقط إذا كان هناك مبلغ مدفوع -->
+            <!-- Financial Account (Safe) is only shown if there is a paid amount -->
             <v-col cols="12" v-if="paymentAmount > 0">
               <v-select
                 v-model="accountId"
@@ -1446,12 +1446,12 @@ const submitInvoice = async () => {
                 item-title="name"
                 item-value="id"
                 item-disabled="isDisabled"
-                label="من أي صندوق/بنك تم الدفع؟ *"
+                label="From which safe/bank was the payment made? *"
                 variant="outlined"
                 color="primary"
                 density="comfortable"
                 hide-details
-                :rules="[v => !!v || 'يجب اختيار الحساب المالي للدفعة']"
+                :rules="[v => !!v || 'You must select the financial account for the payment']"
               >
                   <template v-slot:item="{ props, item }">
                      <v-list-item v-bind="props" :title="item.raw.name" :subtitle="Number(item.raw.balance || 0).toLocaleString('tr-TR', { minimumFractionDigits: 2 }) + ' ₺'">
@@ -1471,20 +1471,20 @@ const submitInvoice = async () => {
           </v-row>
           <div v-if="paymentAmount > 0" class="text-caption text-success mt-2 font-weight-bold">
             <v-icon icon="mdi-information-outline" size="small"></v-icon>
-            سيقوم النظام آلياً بتسجيل الفاتورة والدفعة المسددة معاً لاختصار وقتك!
+            The system will automatically record the invoice and the paid amount together to save your time!
           </div>
 
         </v-card-text>
         
         <v-divider></v-divider>
         <v-card-actions class="pa-4 bg-grey-lighten-4 d-flex justify-end pr-6">
-          <v-btn color="grey-darken-2" variant="text" class="font-weight-bold rounded-lg mr-2" @click="closeApproveDialog">إلغاء الأمر</v-btn>
-          <v-btn color="success" variant="flat" class="font-weight-black text-none rounded-lg px-6" :loading="approving" @click="executeApproveInvoice">نعم، اعتمد الفاتورة</v-btn>
+          <v-btn color="grey-darken-2" variant="text" class="font-weight-bold rounded-lg mr-2" @click="closeApproveDialog">Cancel</v-btn>
+          <v-btn color="success" variant="flat" class="font-weight-black text-none rounded-lg px-6" :loading="approving" @click="executeApproveInvoice">Yes, Approve Invoice</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
 
-    <!-- Modal عرض الفاتورة -->
+    <!-- Modal View Invoice -->
     <InvoiceViewer ref="invoiceViewerRef" />
 
   </div>
@@ -1498,7 +1498,7 @@ import InvoiceViewer from '@/components/purchases/InvoiceViewer.vue'
 const dataTableRef = ref(null)
 const invoiceViewerRef = ref(null)
 
-// حالة نافذة الاعتماد الذكية
+// Smart approval window state
 const showApproveDialog = ref(false)
 const invoiceToApprove = ref(null)
 const approving = ref(false)
@@ -1557,12 +1557,12 @@ const arrangedAccounts = computed(() => {
 })
 
 const headers = [
-  { title: 'الفاتورة والتاريخ', key: 'invoice_info', align: 'start', sortable: false },
-  { title: 'المورد والمستودع', key: 'entities', align: 'start', sortable: false },
-  { title: 'تفاصيل التكلفة', key: 'financials', align: 'end', sortable: false },
-  { title: 'الإجمالي (شامل)', key: 'total_amount', align: 'end', sortable: false },
-  { title: 'الحالة والمخزون', key: 'status', align: 'center', sortable: false },
-  { title: 'إجراءات', key: 'actions', align: 'center', sortable: false },
+  { title: 'Invoice & Date', key: 'invoice_info', align: 'start', sortable: false },
+  { title: 'Supplier & Warehouse', key: 'entities', align: 'start', sortable: false },
+  { title: 'Cost Details', key: 'financials', align: 'end', sortable: false },
+  { title: 'Total (Gross)', key: 'total_amount', align: 'end', sortable: false },
+  { title: 'Status & Inventory', key: 'status', align: 'center', sortable: false },
+  { title: 'Actions', key: 'actions', align: 'center', sortable: false },
 ]
 
 // --- Actions ---
@@ -1575,7 +1575,7 @@ const openInvoiceViewer = (invoiceId) => {
 
 const confirmApprove = (invoice) => {
   invoiceToApprove.value = invoice
-  paymentAmount.value = 0 // إجبار التصفير في كل مرة
+  paymentAmount.value = 0 // Force reset each time
   paymentMethod.value = 'CASH'
   accountId.value = null
   showApproveDialog.value = true
@@ -1605,8 +1605,8 @@ const executeApproveInvoice = async () => {
     closeApproveDialog()
     if (dataTableRef.value) dataTableRef.value.refresh()
   } catch (error) {
-    console.error("خطأ في الاعتماد:", error)
-    alert(error.data?.message || 'حدث خطأ غير متوقع أثناء الاعتماد. يرجى المحاولة لاحقاً.')
+    console.error("Error in approval:", error)
+    alert(error.data?.message || 'An unexpected error occurred during approval. Please try again later.')
   } finally {
     approving.value = false
   }
@@ -1692,7 +1692,7 @@ export default defineEventHandler(async (event) => {
         })
     }
 
-    // تنسيق البيانات لتسهيل عرضها على الـ DataTable الأمامي
+    // Format data to facilitate rendering on the frontend DataTable
     const formattedData = data.map((invoice: any) => ({
         id: invoice.id,
         invoice_number: invoice.invoice_number,
@@ -1701,8 +1701,8 @@ export default defineEventHandler(async (event) => {
         total_gross_amount: invoice.total_gross_amount,
         total_net_amount: invoice.total_net_amount,
         total_vat_amount: invoice.total_vat_amount,
-        supplier_name: invoice.supplier ? invoice.supplier.name : 'مورد محذوف',
-        warehouse_name: invoice.warehouse ? invoice.warehouse.name : 'مستودع محذوف',
+        supplier_name: invoice.supplier ? invoice.supplier.name : 'Deleted Supplier',
+        warehouse_name: invoice.warehouse ? invoice.warehouse.name : 'Deleted Warehouse',
         created_at: invoice.created_at
     }))
 
@@ -1765,15 +1765,15 @@ export default defineEventHandler(async (event) => {
     const sheet = workbook.Sheets[sheetName]
     if (!sheet) throw new Error('Sheet not found');
     
-    // الحل العبقري: بعض المنصات تضع عناوين الجداول في السطر الثاني أو الثالث (ويكون الأول عنوان التقرير العام).
-    // سنقوم بقراءة الشيت كـ مصفوفة بحثاً عن السطر الحقيقي الذي يحمل رؤوس الجداول المعروفة!
+    // Smart solution: some platforms place table headers in the second or third row (while the first row is the report title).
+    // We will read the sheet as an array searching for the true row that carries the known table headers!
     const rawRows: any[][] = XLSX.utils.sheet_to_json(sheet, { header: 1 })
     
     let headerRowIndex = 0;
     for(let i = 0; i < Math.min(15, rawRows.length); i++) {
         if (!rawRows[i] || !Array.isArray(rawRows[i])) continue;
         const rowValues = rawRows[i].map(v => String(v).trim().toLowerCase());
-        // كلمات مفتاحية تدل على سطر العناوين
+        // Keywords indicating header row
         if (rowValues.includes('barkod') || rowValues.includes('paket no') || 
             rowValues.includes('sipariş no') || rowValues.includes('sipariş numarası') || 
             rowValues.includes('amazon order id') || rowValues.includes('order-id')) {
@@ -1782,15 +1782,15 @@ export default defineEventHandler(async (event) => {
         }
     }
 
-    // الآن نطلب من المكتبة تحويل الإكسل إلى JSON مع بدء القراءة الحقيقية حصراً من السطر الذي اكتشفناه!
+    // Now we instruct the library to convert Excel to JSON starting true reading strictly from the row we discovered!
     rows = XLSX.utils.sheet_to_json(sheet, { range: headerRowIndex, defval: '' })
 
   } catch (err) {
-    throw createError({ statusCode: 400, statusMessage: 'حدث خطأ أثناء قراءة هيكل الملف' })
+    throw createError({ statusCode: 400, statusMessage: 'An error occurred while reading file structure' })
   }
 
   if (!rows || rows.length === 0) {
-     throw createError({ statusCode: 400, statusMessage: 'الملف فارغ أو العناوين غير مدعومة' })
+     throw createError({ statusCode: 400, statusMessage: 'File is empty or headers are not supported' })
   }
 
   // Create Batch Record
@@ -1806,7 +1806,7 @@ export default defineEventHandler(async (event) => {
 
   if (batchError || !batchData) {
     console.error('Batch Creation Error:', batchError)
-    throw createError({ statusCode: 500, statusMessage: 'فشل في تهيئة دفعة الاستيراد في قاعدة البيانات' })
+    throw createError({ statusCode: 500, statusMessage: 'Failed to initialize import batch in database' })
   }
   
   const batchId = batchData.id

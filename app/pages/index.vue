@@ -460,7 +460,7 @@ const skills = computed(() => [
     glowColor: 'rgba(255, 202, 40, 0.3)'
   },
   {
-    name: 'AI-Assisted Dev (10x Productivity)',
+    name: 'AI-Assisted Dev',
     category: 'workflow',
     level: 95,
     icon: 'mdi-robot-outline',
@@ -506,7 +506,7 @@ const projects = computed(() => [
     descKey: 'projects.looplanfyDesc',
     category: 'saas',
     image: '/images/001.png',
-    tech: ['Nuxt 3', 'Vue.js', 'Tailwind CSS', 'Laravel', 'Supabase'],
+    tech: ['Nuxt 3', 'Vue.js', 'Tailwind CSS', 'Node.js', 'Supabase', 'typescript'],
     demoUrl: 'http://looplanfy.com/',
     accentColor: '#3ecf8e',
     glowColor: 'rgba(62, 207, 142, 0.25)',
@@ -517,7 +517,7 @@ const projects = computed(() => [
     descKey: 'projects.financeDesc',
     category: 'saas',
     image: '/images/002.png',
-    tech: ['Amazon API', 'Trendyol API', 'Hepsiburada API', 'Laravel', 'MySQL', 'Vue 3'],
+    tech: ['Amazon API', 'Trendyol API', 'Hepsiburada API', 'Node.js', 'Supabase', 'typescript'],
     demoUrl: '#',
     accentColor: '#fb923c',
     glowColor: 'rgba(251, 146, 60, 0.25)',
@@ -665,22 +665,22 @@ const jobs = computed(() => [
       ar: 'إسطنبول، تركيا',
       tr: 'İstanbul, Türkiye'
     },
-    tech: ['Nuxt 3', 'Vue.js', 'Tailwind CSS', 'Laravel', 'Supabase', 'PHP', 'Node.js', 'REST APIs', 'Logistics APIs'],
+    tech: ['Nuxt 3', 'Vue.js', 'Tailwind CSS', 'Node.js', 'Supabase', 'typescript', 'Node.js', 'REST APIs', 'Logistics APIs'],
     details: {
       en: [
-        "Looplanfy (SaaS Platform): Architected and launched a comprehensive multi-tenant SaaS platform designed for creating and managing e-commerce stores and digital restaurant menus. Engineered the complete infrastructure integrating Nuxt 3, Vue.js, and Tailwind CSS with Laravel and Supabase, utilizing AI to achieve a 10x development speed.",
+        "Looplanfy (SaaS Platform): Architected and launched a comprehensive multi-tenant SaaS platform designed for creating and managing e-commerce stores and digital restaurant menus. Engineered the complete infrastructure integrating Nuxt 3, Vue.js, and Tailwind CSS with Node.js and Supabase, utilizing AI to achieve a 10x development speed.",
         "Looplanfy Finance (Mini-ERP): Developed a custom financial and inventory management system integrated with major marketplace APIs (Amazon Seller Central, Hepsiburada, Trendyol) and automated logistics (HepsiJET, Trendyol Express) to centralize e-commerce operations.",
         "Rad+ & Rad Pro (ISP Management): Directed the frontend team in building a complex, multi-tenant Authentication, Authorization, and Accounting (AAA) system tailored for internet service providers. Delivered advanced modules for detailed reporting, billing, and payment tracking.",
         "Digital Platforms & Libraries: Led the technical delivery of diverse web applications, optimizing user experience and system architecture for platforms like Sileversin (mobile car wash management) and The Golden Shamela (scalable digital library for researchers)."
       ],
       ar: [
-        "منصة Looplanfy (SaaS): قمت بهندسة وإطلاق منصة SaaS متعددة المستأجرين لإنشاء وإدارة المتاجر الإلكترونية وقوائم المطاعم الرقمية. طوّرت البنية التحتية الكاملة برربط Nuxt 3 و Vue.js و Tailwind CSS مع Laravel و Supabase، مستخدماً الذكاء الاصطناعي لتحقيق سرعة تطوير ضاعفت الإنتاجية 10 مرات.",
+        "منصة Looplanfy (SaaS): قمت بهندسة وإطلاق منصة SaaS متعددة المستأجرين لإنشاء وإدارة المتاجر الإلكترونية وقوائم المطاعم الرقمية. طوّرت البنية التحتية الكاملة بربط Nuxt 3 و Vue.js و Tailwind CSS مع Node.js و Supabase، مستخدماً الذكاء الاصطناعي لتحقيق سرعة تطوير ضاعفت الإنتاجية 10 مرات.",
         "نظام Looplanfy المالي (ERP مصغر): قمت بتطوير نظام مخصص لإدارة الشؤون المالية والمخزون، متكامل مع واجهات برمجة الأسواق الكبرى (Amazon, Hepsiburada, Trendyol) والخدمات اللوجستية المؤتمتة (HepsiJET, Trendyol Express) لتركيز وإدارة العمليات.",
         "إدارة شبكات Rad+ & Rad Pro: قدت فريق الواجهات الأمامية في بناء نظام AAA معقد ومتعدد المستأجرين مخصص لمزودي خدمات الإنترنت (ISPs)، مع تقديم وحدات متقدمة لإعداد التقارير المفصلة، الفواتير، وتتبع المدفوعات.",
         "المنصات والمكتبات الرقمية: قدت التسليم التقني لتطبيقات ويب متنوعة، محسّناً تجربة المستخدم وبنية الأنظمة مثل منصة Sileversin (إدارة غسيل السيارات المتنقل) والمكتبة الذهبية (مصدر رقمي متكامل وقابل للتوسع للباحثين)."
       ],
       tr: [
-        "Looplanfy (SaaS Platformu): E-ticaret mağazaları ve dijital restoran menüleri oluşturmak için çok kiracılı (multi-tenant) kapsamlı bir SaaS platformu tasarlayıp başlattım. Nuxt 3, Vue.js ve Tailwind CSS'i Laravel ve Supabase ile entegre ederek altyapıyı kurdum; 10 kat geliştirme hızı elde etmek için yapay zekadan yararlandım.",
+        "Looplanfy (SaaS Platformu): E-ticaret mağazaları ve dijital restoran menüleri oluşturmak için çok kiracılı (multi-tenant) kapsamlı bir SaaS platformu tasarlayıp başlattım. Nuxt 3, Vue.js ve Tailwind CSS'i Node.js ve Supabase ile entegre ederek altyapıyı kurdum; 10 kat geliştirme hızı elde etmek için yapay zekadan yararlandım.",
         "Looplanfy Finans (Mini-ERP): E-ticaret operasyonlarını merkezileştirmek için pazaryeri API'leri (Amazon, Hepsiburada, Trendyol) ve otomatik lojistik (HepsiJET, Trendyol Express) entegrasyonuna sahip özel bir finans ve envanter yönetim sistemi geliştirdim.",
         "Rad+ ve Rad Pro (ISP Yönetimi): İnternet servis sağlayıcıları için uyarlanmış karmaşık, çok kiracılı bir AAA (Kimlik Doğrulama, Yetkilendirme ve Hesap Yönetimi) sistemi oluşturmada önyüz ekibine liderlik ettim; detaylı raporlama, faturalandırma ve ödeme takibi modülleri sundum.",
         "Dijital Platformlar ve Kütüphaneler: Mobil araç yıkama yönetim sistemi (Sileversin) ve araştırmacılar için ölçeklenebilir dijital kütüphane kaynağı (The Golden Shamela) gibi platformların sistem mimarisini ve kullanıcı deneyimini optimize ettim."
@@ -1691,7 +1691,7 @@ const copySnippetText = (text) => {
             </v-tab>
             <v-tab :value="1" class="text-none font-weight-bold">
               <v-icon icon="mdi-code-braces" class="mr-2 ml-2" size="18"></v-icon>
-              {{ locale === 'ar' ? 'ملفات الكود' : locale === 'tr' ? 'Proje Kodları' : 'Project Codes' }}
+              {{ locale === 'ar' ? 'ملفات كود بسيطة' : locale === 'tr' ? 'Örnek Kodlar' : 'Simple Code Files' }}
             </v-tab>
           </v-tabs>
 
@@ -3360,6 +3360,7 @@ a.linkedin-link:hover {
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 4px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin-inline-end: 12px !important;
 }
 
 .dialog-category-badge {
@@ -3711,6 +3712,7 @@ a.linkedin-link:hover {
   padding: 10px 16px !important;
   height: 42px !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  margin: 0 4px !important;
 }
 
 .dialog-tabs :deep(.v-tab:hover) {

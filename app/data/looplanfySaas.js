@@ -238,7 +238,7 @@ export const looplanfySaas = [
             :loading="cartLoading === selectedProduct.id"
             :disabled="!isStockAvailable"
           >
-            {{ isStockAvailable ? $t('common.add_to_cart') : 'نفدت الكمية' }}
+            {{ isStockAvailable ? $t('common.add_to_cart') : 'Out of stock' }}
           </v-btn>
         </v-card-text>
       </v-card>
@@ -2002,7 +2002,7 @@ const handleWhatsAppCheckout = () => {
                                            <div class="d-flex align-center text-primary text-caption font-weight-bold">
                                              <v-icon size="14" class="me-1">mdi-crosshairs-gps</v-icon>
                                             
-                                             {{ $te('checkout.map_location') ? $t('checkout.map_location') : 'موقع محدد على الخريطة' }}
+                                             {{ $te('checkout.map_location') ? $t('checkout.map_location') : 'Selected location on map' }}
                                            </div>
                                          </template>
                                        </div>
@@ -2197,10 +2197,10 @@ const handleWhatsAppCheckout = () => {
                             <v-icon color="white" size="28">mdi-store-marker-outline</v-icon>
                           </v-avatar>
                           <h4 class="text-subtitle-1 font-weight-bold text-grey-darken-4 mb-2">
-                            {{ $t('checkout.pickup_welcome_title') || 'أهلاً وسهلاً بك!' }}
+                            {{ $t('checkout.pickup_welcome_title') || 'Welcome!' }}
                           </h4>
                           <p class="text-body-2 text-grey-darken-3 font-weight-medium px-4" style="max-width: 450px; line-height: 1.6;">
-                            {{ $t('checkout.pickup_welcome_desc') || 'يسعدنا ويشرفنا التعامل معك وننتظرك في فرعنا لاستلام طلبك بكل حب وسرور.' }}
+                            {{ $t('checkout.pickup_welcome_desc') || 'We are pleased and honored to serve you. We look forward to welcoming you at our branch to receive your order with love and pleasure.' }}
                           </p>
                         </v-card>
                       </div>
@@ -2354,7 +2354,7 @@ const handleWhatsAppCheckout = () => {
                               <template v-else>
                                 <div class="d-flex align-center text-primary text-caption font-weight-bold">
                                   <v-icon size="14" class="me-1">mdi-crosshairs-gps</v-icon>
-                                  {{ $te('checkout.map_location') ? $t('checkout.map_location') : 'موقع محدد على الخريطة' }}
+                                  {{ $te('checkout.map_location') ? $t('checkout.map_location') : 'Selected location on map' }}
                                 </div>
                               </template>
                             </div>
@@ -3294,8 +3294,8 @@ onMounted(() => {
 
 .stepper-lines-wrapper {
   position: absolute;
-  top: 18px; /* نصف ارتفاع الدائرة تقريباً */
-  inset-inline-start: 40px; /* نصف عرض الـ stepper-item */
+  top: 18px; /* Approximately half of circle height */
+  inset-inline-start: 40px; /* Half of stepper-item width */
   inset-inline-end: 40px;
   height: 4px;
   z-index: 1;
