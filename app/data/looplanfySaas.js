@@ -4223,5 +4223,209 @@ onMounted(() => {
 
 </style>
 `
+  },
+  {
+    path: 'server/api/tenant/update-design.post.ts',
+    name: 'update-design.post.ts',
+    language: 'typescript',
+    code: `import { serverSupabaseClient, serverSupabaseServiceRole } from '#supabase/server'
+
+export default defineEventHandler(async (event) => {
+    try {
+        const client = await serverSupabaseClient(event)
+        const { data: { user } } = await client.auth.getUser()
+
+        if (!user) {
+            throw createError({
+                statusCode: 401,
+                statusMessage: 'Unauthorized'
+            })
+        }
+        const tenantId = user.id
+
+        const body = await readBody(event)
+        const { projectId, global_blocks } = body
+
+        if (!projectId || !global_blocks) {
+            throw createError({
+                statusCode: 400,
+                statusMessage: 'Project ID and global_blocks are required'
+            })
+        }
+
+        const serviceClient = serverSupabaseServiceRole(event)
+
+        const { data: project, error: fetchError } = await serviceClient
+            .from('projects')
+            .select('settings')
+            .eq('id', projectId)
+            .eq('tenant_id', tenantId)
+            .single()
+
+        if (fetchError || !project) {
+            throw createError({
+                statusCode: 403,
+                statusMessage: 'Forbidden: Project not found or does not belong to user.'
+            })
+        }
+
+        // Only update global_blocks' inside 'settings'
+        const newSettings = {
+  ...project.settings,
+  global_blocks: global_blocks
+}
+
+const { error: updateError } = await serviceClient
+  .from('projects')
+  .update({ settings: newSettings })
+  .eq('id', projectId)
+
+if (updateError) {
+  throw createError({
+    statusCode: 500,
+    statusMessage: 'Error updating project',
+    data: updateError.message
+  })
+}
+
+return {
+  success: true,
+  message: 'Design settings updated successfully'
+}
+
+    } catch (err) {
+  console.error('API Error /tenant/update-design:', err)
+  throw createError({
+    statusCode: err.statusCode || 500,
+    statusMessage: err.statusMessage || err.message || 'Internal Server Error'
+  })
+}
+})`
+
+  },
+  {
+    path: 'server/api/tenant/check-order-limits.post.ts',
+    name: 'check-order-limits.post.ts',
+    language: 'typescript',
+    code: `import { serverSupabaseServiceRole } from '#supabase/server'
+
+export default defineEventHandler(async (event) => {
+    const body = await readBody(event)
+    const { tenant_id } = body
+
+    if (!tenant_id) {
+        throw createError({ statusCode: 400, statusMessage: 'Missing tenant_id' })
+    }
+
+    const serviceClient = serverSupabaseServiceRole(event)
+
+    // 1. Fetch tenant plan from projects
+    const { data: project, error: projErr } = await serviceClient
+        .from('projects')
+        .select('plan')
+        .eq('id', tenant_id)
+        .single()
+
+    if (projErr || !project) {
+        return { exceeded: false, message: 'Project or plan not found' }
+    }
+
+    // 2. Fetch plan limits
+    const { data: limits, error: limErr } = await serviceClient
+        .from('plan_limits')
+        .select('max_orders_month, max_orders_daily')
+        .eq('plan_id', project.plan)
+        .single()
+
+    if (limErr || !limits) {
+        return { exceeded: false, message: 'Limits not found' }
+    }
+
+    let monthlyCount = 0
+    let dailyCount = 0
+
+    // Fetch monthly orders count
+    const startOfMonth = new Date()
+    startOfMonth.setDate(1)
+    startOfMonth.setHours(0, 0, 0, 0)
+    
+    const { count: mCount, error: monthlyError } = await serviceClient
+        .from('orders')
+        .select('*', { count: 'exact', head: true })
+        .eq('tenant_id', tenant_id)
+        .gte('created_at', startOfMonth.toISOString())
+
+    if (monthlyError) throw monthlyError
+    monthlyCount = mCount || 0
+
+    // Fetch daily orders count
+    const startOfDay = new Date()
+    startOfDay.setHours(0, 0, 0, 0)
+
+    const { count: dCount, error: dailyError } = await serviceClient
+        .from('orders')
+        .select('*', { count: 'exact', head: true })
+        .eq('tenant_id', tenant_id)
+        .gte('created_at', startOfDay.toISOString())
+
+    if (dailyError) throw dailyError
+    dailyCount = dCount || 0
+
+    const monthlyExceeded = limits.max_orders_month !== null && monthlyCount >= limits.max_orders_month
+    const dailyExceeded = limits.max_orders_daily !== null && dailyCount >= limits.max_orders_daily
+
+    return {
+        exceeded: monthlyExceeded || dailyExceeded,
+        type: dailyExceeded ? 'daily' : (monthlyExceeded ? 'monthly' : null),
+        daily: {
+            count: dailyCount,
+            limit: limits.max_orders_daily,
+            exceeded: dailyExceeded
+        },
+        monthly: {
+            count: monthlyCount,
+            limit: limits.max_orders_month,
+            exceeded: monthlyExceeded
+        }
+    }
+})`
+
+  },
+  {
+    path: 'package.json',
+    name: 'package.json',
+    language: 'json',
+    code: `{
+  "name": "looplanfy-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --host 0.0.0.0",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxtjs/supabase": "^2.0.5",
+    "nuxt": "^3.12.1"
+  },
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^2.0.2",
+    "@mdi/font": "^7.4.47",
+    "@nuxt/image": "^2.0.0",
+    "@nuxtjs/i18n": "^10.2.1",
+    "@pinia/nuxt": "0.11.0",
+    "@types/nodemailer": "^7.0.10",
+    "nodemailer": "^8.0.1",
+    "pinia": "^3.0.4",
+    "sass": "^1.91.0",
+    "swiper": "^12.0.3",
+    "vue-tel-input": "^9.8.0",
+    "vuedraggable": "^4.1.0",
+    "vuetify": "^3.9.6",
+    "vuetify-nuxt-module": "^0.18.7"
   }
+}`
+  },
 ]
