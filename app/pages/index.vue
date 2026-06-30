@@ -1,7 +1,8 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { looplanfyFinanceFiles } from '../data/projectFiles'
+import { looplanfyFinanceFiles } from '../data/looplanfyFinanceFiles'
+import { looplanfySaas } from '../data/looplanfySaas'
 
 const { locale, t } = useI18n()
 
@@ -508,7 +509,8 @@ const projects = computed(() => [
     tech: ['Nuxt 3', 'Vue.js', 'Tailwind CSS', 'Laravel', 'Supabase'],
     demoUrl: 'http://looplanfy.com/',
     accentColor: '#3ecf8e',
-    glowColor: 'rgba(62, 207, 142, 0.25)'
+    glowColor: 'rgba(62, 207, 142, 0.25)',
+    files: looplanfySaas
   },
   {
     titleKey: 'projects.financeTitle',
@@ -957,24 +959,36 @@ const selectProjectFile = (file) => {
   activeProjectFile.value = file
 }
 
-const groupedProjectFiles = computed(() => {
-  if (!detailsDialog.value.project || !detailsDialog.value.project.files) return []
-  const folders = {}
+const projectFilesTree = computed(() => {
+  if (!detailsDialog.value.project || !detailsDialog.value.project.files) {
+    return { name: 'root', type: 'folder', children: [], files: [] }
+  }
+  
+  const root = { name: 'root', type: 'folder', children: [], files: [] }
+  
   detailsDialog.value.project.files.forEach(file => {
     const parts = file.path.split('/')
-    if (parts.length > 1) {
-      const folderName = parts[0]
-      if (!folders[folderName]) folders[folderName] = []
-      folders[folderName].push(file)
-    } else {
-      if (!folders['root']) folders['root'] = []
-      folders['root'].push(file)
+    let current = root
+    
+    for (let i = 0; i < parts.length - 1; i++) {
+      const folderName = parts[i]
+      let folder = current.children.find(c => c.name === folderName && c.type === 'folder')
+      if (!folder) {
+        folder = {
+          name: folderName,
+          type: 'folder',
+          children: [],
+          files: []
+        }
+        current.children.push(folder)
+      }
+      current = folder
     }
+    
+    current.files.push(file)
   })
-  return Object.keys(folders).map(key => ({
-    name: key,
-    files: folders[key]
-  }))
+  
+  return root
 })
 
 const getFileIcon = (filename) => {
@@ -1719,26 +1733,24 @@ const copySnippetText = (text) => {
                       <span>{{ detailsDialog.project.titleKey ? $t(detailsDialog.project.titleKey) : 'Project' }}</span>
                     </div>
                     <div class="explorer-tree py-2">
-                      <div v-for="folder in groupedProjectFiles" :key="folder.name" class="explorer-folder-group">
-                        <!-- Folder Header -->
-                        <div v-if="folder.name !== 'root'" class="explorer-folder-row d-flex align-center px-3 py-1">
-                          <v-icon icon="mdi-chevron-down" size="12" class="mr-1 ml-1 text-grey"></v-icon>
-                          <v-icon icon="mdi-folder" size="14" class="mr-1 ml-1 text-yellow-darken-2"></v-icon>
-                          <span class="folder-name">{{ folder.name }}</span>
-                        </div>
-                        <!-- Files in Folder -->
-                        <div class="explorer-files-list" :class="{ 'pl-4 pr-4': folder.name !== 'root' }">
-                          <div 
-                            v-for="file in folder.files" 
-                            :key="file.path"
-                            class="explorer-file-row d-flex align-center px-3 py-1"
-                            :class="{ active: activeProjectFile && activeProjectFile.path === file.path }"
-                            @click="selectProjectFile(file)"
-                          >
-                            <v-icon :icon="getFileIcon(file.name)" size="14" class="mr-1 ml-1" :color="getFileIconColor(file.name)"></v-icon>
-                            <span class="file-name">{{ file.name }}</span>
-                          </div>
-                        </div>
+                      <!-- Folders recursively -->
+                      <FileTreeItem
+                        v-for="subfolder in projectFilesTree.children"
+                        :key="subfolder.name"
+                        :node="subfolder"
+                        :active-file="activeProjectFile"
+                        @select-file="selectProjectFile"
+                      />
+                      <!-- Root files -->
+                      <div 
+                        v-for="file in projectFilesTree.files" 
+                        :key="file.path"
+                        class="explorer-file-row d-flex align-center px-3 py-1 cursor-pointer"
+                        :class="{ active: activeProjectFile && activeProjectFile.path === file.path }"
+                        @click="selectProjectFile(file)"
+                      >
+                        <v-icon :icon="getFileIcon(file.name)" size="14" class="mr-1 ml-1" :color="getFileIconColor(file.name)"></v-icon>
+                        <span class="file-name">{{ file.name }}</span>
                       </div>
                     </div>
                   </div>
@@ -2916,16 +2928,18 @@ const copySnippetText = (text) => {
 
 .project-image-wrapper {
   position: relative;
-  width: 100%;
   height: 200px;
   overflow: hidden;
   background: #0f172a;
 }
 
 .project-image {
-  width: 100%;
+  width: 90%;
   height: 100%;
-  object-fit: cover;
+  margin: auto;
+  display: block;
+  align-items: center;
+  object-fit: contain !important;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
