@@ -1,10 +1,11 @@
 <script setup>
-import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { looplanfyFinanceFiles } from '../data/looplanfyFinanceFiles'
 import { looplanfySaas } from '../data/looplanfySaas'
 
 const { locale, t, tm, rt } = useI18n()
+const config = useRuntimeConfig()
 
 // State for AI chatbot terminal
 const customQuery = ref('')
@@ -359,6 +360,29 @@ const selectedJobIndex = ref(0)
 const failedLogos = ref({})
 const whiteBgCompanies = ['E Technologies', 'Smartizi Teknoloji', 'SeRiCo YAPI A.Ş', 'Namaa Solution', 'MGS Software']
 
+const selectJob = (index, event) => {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 960
+  if (isMobile && selectedJobIndex.value === index) {
+    selectedJobIndex.value = -1
+  } else {
+    selectedJobIndex.value = index
+    if (isMobile) {
+      nextTick(() => {
+        const element = event?.currentTarget
+        if (element) {
+          setTimeout(() => {
+            const elementPosition = element.getBoundingClientRect().top + window.scrollY
+            window.scrollTo({
+              top: elementPosition - 70,
+              behavior: 'smooth'
+            })
+          }, 350)
+        }
+      })
+    }
+  }
+}
+
 // Skills section interactive filtering & data
 const activeSkillsFilter = ref('all')
 
@@ -428,7 +452,7 @@ const skills = computed(() => [
     glowColor: 'rgba(165, 180, 252, 0.3)'
   },
   {
-    name: 'Marketplace & Logistics Integrations',
+    name: 'Logistics Integrations',
     category: 'backend',
     level: 88,
     icon: 'mdi-truck-delivery-outline',
@@ -924,14 +948,36 @@ const submitContactForm = async () => {
   submitStatus.value = null
 
   try {
-    // Simulate real API request with a 1.5s delay
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    
+    const formspreeId = config.public.formspreeId
+
+    if (!formspreeId) {
+      // Simulate real API request with a 1.5s delay if Formspree ID is not configured yet
+      await new Promise((resolve) => setTimeout(resolve, 1500))
+      console.warn("Formspree ID is not configured. Simulating successful form submission.")
+    } else {
+      const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: form.value.name,
+          email: form.value.email,
+          message: form.value.message
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error('Formspree submission failed')
+      }
+    }
+
     // Clear form
     form.value.name = ''
     form.value.email = ''
     form.value.message = ''
-    
+
     submitStatus.value = {
       type: 'success',
       message: locale.value === 'ar' 
@@ -944,10 +990,10 @@ const submitContactForm = async () => {
     submitStatus.value = {
       type: 'error',
       message: locale.value === 'ar' 
-        ? 'حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى لاحقاً.' 
+        ? 'حدث خطأ أثناء إرسال الرسالة، يرجى المحاولة مرة أخرى لاحقاً.' 
         : locale.value === 'tr' 
-          ? 'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.' 
-          : 'An error occurred. Please try again later.'
+          ? 'Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.' 
+          : 'An error occurred while sending the message. Please try again later.'
     }
   } finally {
     isSubmitting.value = false
@@ -963,6 +1009,7 @@ const detailsDialog = ref({
   isOpen: false,
   project: null
 })
+const showMobileFileTree = ref(false)
 
 // CV Dialog State
 const cvDialog = ref({
@@ -1024,6 +1071,7 @@ const openProjectDetails = (project) => {
 
 const selectProjectFile = (file) => {
   activeProjectFile.value = file
+  showMobileFileTree.value = false
 }
 
 const projectFilesTree = computed(() => {
@@ -1477,7 +1525,7 @@ const copySnippetText = (text) => {
                   :key="index"
                   class="timeline-node-card"
                   :class="{ 'active': selectedJobIndex === index }"
-                  @click="selectedJobIndex = index"
+                  @click="selectJob(index, $event)"
                 >
                   <!-- Glow effect -->
                   <div class="node-glow-overlay"></div>
@@ -1504,12 +1552,59 @@ const copySnippetText = (text) => {
                       <p class="node-role">{{ job.role[locale] }}</p>
                     </div>
                   </div>
+
+                  <!-- ON MOBILE: Inline details accordion -->
+                  <v-expand-transition>
+                    <div v-if="$vuetify.display.smAndDown && selectedJobIndex === index" class="mobile-job-details mt-4 pt-4 border-t border-white-5">
+                      <!-- Location -->
+                      <div class="mb-3">
+                        <span class="screen-meta-tag"><v-icon icon="mdi-map-marker" size="12" class="me-1 ms-1"></v-icon> {{ job.location[locale] }}</span>
+                      </div>
+
+                      <!-- Achievements -->
+                      <div class="mobile-screen-body mb-4">
+                        <h4 class="details-section-label mb-2" style="font-size: 0.8rem; font-weight: 700; color: #7afffb;">
+                          <v-icon icon="mdi-checkbox-marked-circle-outline" size="14" color="primary" class="me-2 ms-1"></v-icon>
+                          {{ locale === 'ar' ? 'أبرز الإنجازات والمسؤوليات:' : locale === 'tr' ? 'Önemli Başarılar ve Sorumluluklar:' : 'Key Accomplishments & Responsibilities:' }}
+                        </h4>
+                        <ul class="achievements-list">
+                          <li 
+                            v-for="(bullet, idx) in job.details[locale]" 
+                            :key="idx" 
+                            class="achievement-item text-caption text-grey-lighten-2 mb-2"
+                            style="text-align: start;"
+                          >
+                            <span class="bullet-glow-point"></span>
+                            <span class="bullet-text" v-html="bullet"></span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <!-- Technologies Used -->
+                      <div class="mobile-screen-footer">
+                        <h4 class="details-section-label mb-2" style="font-size: 0.8rem; font-weight: 700; color: #7afffb;">
+                          <v-icon icon="mdi-cpu" size="14" color="primary" class="me-2 ms-1"></v-icon>
+                          {{ locale === 'ar' ? 'التقنيات المستخدمة:' : locale === 'tr' ? 'Kullanılan Teknolojiler:' : 'Technologies Leveraged:' }}
+                        </h4>
+                        <div class="tech-pills-list d-flex flex-wrap gap-1">
+                          <span 
+                            v-for="(techName, idx) in job.tech" 
+                            :key="idx" 
+                            class="tech-pill-badge"
+                            style="font-size: 0.72rem; padding: 2px 8px;"
+                          >
+                            {{ techName }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </v-expand-transition>
                 </div>
               </div>
             </v-col>
 
             <!-- Right Side: Interactive Holographic Detail Screen -->
-            <v-col cols="12" md="8" class="pl-md-6 details-hologram-col">
+            <v-col cols="12" md="8" class="pl-md-6 details-hologram-col d-none d-md-block">
               <div class="hologram-screen-container">
                 <div class="screen-frame-glow"></div>
                 <div class="screen-scanlines"></div>
@@ -1722,8 +1817,17 @@ const copySnippetText = (text) => {
     </section>
 
     <!-- Project Details Dialog -->
-    <v-dialog v-model="detailsDialog.isOpen" :max-width="dialogMaxWidth" transition="dialog-bottom-transition">
-      <v-card v-if="detailsDialog.project" class="project-details-dialog-card glass-panel-dialog">
+    <v-dialog 
+      v-model="detailsDialog.isOpen" 
+      :max-width="dialogMaxWidth" 
+      :fullscreen="$vuetify.display.xs"
+      transition="dialog-bottom-transition"
+    >
+      <v-card 
+        v-if="detailsDialog.project" 
+        class="project-details-dialog-card glass-panel-dialog"
+        :class="{ 'fullscreen-card': $vuetify.display.xs }"
+      >
         <!-- Close Button -->
         <button class="dialog-close-btn" @click="detailsDialog.isOpen = false" aria-label="Close">
           <v-icon icon="mdi-close" size="20"></v-icon>
@@ -1804,12 +1908,24 @@ const copySnippetText = (text) => {
               <!-- Abstracted Code Snippet Explorer (If files exist) -->
               <div class="dialog-code-section mb-6">
                 <!-- Code Explorer Container -->
-                <div class="code-explorer-container">
+                <div class="code-explorer-container" :class="{ 'show-sidebar': showMobileFileTree }">
                   <!-- Sidebar File Tree -->
                   <div class="explorer-sidebar">
-                    <div class="explorer-sidebar-title px-3 py-2 border-b">
-                      <v-icon icon="mdi-folder-outline" size="14" class="mr-1 ml-1" color="#a855f7"></v-icon>
-                      <span>{{ detailsDialog.project.titleKey ? $t(detailsDialog.project.titleKey) : 'Project' }}</span>
+                    <div class="explorer-sidebar-title px-3 py-2 border-b d-flex align-center justify-space-between">
+                      <div class="d-flex align-center">
+                        <v-icon icon="mdi-folder-outline" size="14" class="mr-1 ml-1" color="#a855f7"></v-icon>
+                        <span>{{ detailsDialog.project.titleKey ? $t(detailsDialog.project.titleKey) : 'Project' }}</span>
+                      </div>
+                      <!-- Close tree sidebar button on mobile -->
+                      <v-btn
+                        v-if="$vuetify.display.smAndDown"
+                        variant="text"
+                        density="comfortable"
+                        size="small"
+                        icon="mdi-close"
+                        color="grey-lighten-1"
+                        @click="showMobileFileTree = false"
+                      ></v-btn>
                     </div>
                     <div class="explorer-tree py-2">
                       <!-- Folders recursively -->
@@ -1838,7 +1954,19 @@ const copySnippetText = (text) => {
                   <div class="editor-window">
                     <div class="editor-header d-flex align-center justify-space-between px-4 py-2">
                       <div class="editor-dots-tab d-flex align-center">
-                        <div class="editor-dots d-flex align-center mr-3 ml-3">
+                        <!-- Toggle Files Tree button on mobile -->
+                        <v-btn
+                          v-if="$vuetify.display.smAndDown"
+                          variant="text"
+                          density="comfortable"
+                          size="small"
+                          icon="mdi-file-tree"
+                          color="#7afffb"
+                          class="mr-2 ml-2"
+                          @click="showMobileFileTree = !showMobileFileTree"
+                          aria-label="Toggle Files"
+                        ></v-btn>
+                        <div v-else class="editor-dots d-flex align-center mr-3 ml-3">
                           <span class="editor-dot red"></span>
                           <span class="editor-dot yellow"></span>
                           <span class="editor-dot green"></span>
@@ -2091,6 +2219,30 @@ const copySnippetText = (text) => {
         </div>
       </v-card>
     </v-dialog>
+    <!-- Futuristic Minimal Footer -->
+    <footer class="cyber-footer">
+      <v-container class="text-center py-6">
+        <!-- Social Connections -->
+        <div class="d-flex justify-center gap-4 mb-4 footer-social-links">
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/karam-sawan-0879651a5/" target="_blank" rel="noopener noreferrer" class="social-footer-btn linkedin" aria-label="LinkedIn">
+            <v-icon icon="mdi-linkedin" size="20"></v-icon>
+          </a>
+          <!-- WhatsApp -->
+          <a href="https://wa.me/905519658422" target="_blank" rel="noopener noreferrer" class="social-footer-btn whatsapp" aria-label="WhatsApp">
+            <v-icon icon="mdi-whatsapp" size="20"></v-icon>
+          </a>
+          <!-- Email -->
+          <a href="mailto:karam.sawan.sy@gmail.com" class="social-footer-btn email" aria-label="Email">
+            <v-icon icon="mdi-email-outline" size="20"></v-icon>
+          </a>
+        </div>
+        <!-- Copyright text -->
+        <p class="footer-copyright text-caption text-grey-lighten-1 mb-0">
+          &copy; {{ new Date().getFullYear() }} {{ locale === 'ar' ? 'كرم صوان. جميع الحقوق محفوظة.' : locale === 'tr' ? 'Karam Sawan. Tüm hakları saklıdır.' : 'Karam Sawan. All rights reserved.' }}
+        </p>
+      </v-container>
+    </footer>
   </div>
 </template>
 
@@ -3557,6 +3709,44 @@ a.linkedin-link:hover {
   .glass-panel {
     padding: 30px 20px;
   }
+  .contact-info-col {
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .glass-panel {
+    padding: 24px 16px !important;
+  }
+  .form-card-title,
+  .info-card-title {
+    font-size: 1.25rem !important;
+    margin-bottom: 20px !important;
+  }
+  .info-icon-avatar {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+  }
+  .info-value {
+    font-size: 0.88rem !important;
+    word-break: break-all;
+  }
+  .info-label {
+    font-size: 0.72rem !important;
+  }
+  .info-icon-avatar.mr-4.ml-4 {
+    margin-left: 0 !important;
+    margin-right: 12px !important;
+  }
+  [dir="rtl"] .info-icon-avatar.mr-4.ml-4 {
+    margin-right: 0 !important;
+    margin-left: 12px !important;
+  }
+  .cyber-input {
+    padding: 12px 14px !important;
+    font-size: 0.9rem !important;
+  }
 }
 
 :deep(.v-overlay__content) {
@@ -3933,17 +4123,41 @@ a.linkedin-link:hover {
 
 @media (max-width: 768px) {
   .code-explorer-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 150px 1fr;
-    height: 450px;
+    display: flex !important;
+    position: relative;
+    height: 480px;
+    overflow: hidden;
   }
   .explorer-sidebar {
-    border-right: none;
-    border-left: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    background: rgba(11, 15, 25, 0.98) !important;
+    backdrop-filter: blur(10px);
+    border-right: none !important;
+    border-left: none !important;
+    border-bottom: none !important;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateX(-100%);
   }
   [dir="rtl"] .explorer-sidebar {
-    border-left: none;
+    left: auto;
+    right: 0;
+    transform: translateX(100%);
+  }
+  .code-explorer-container.show-sidebar .explorer-sidebar {
+    transform: translateX(0) !important;
+  }
+  .editor-window {
+    width: 100%;
+    height: 100%;
+  }
+  .code-pre {
+    font-size: 0.76rem !important;
+    padding: 12px !important;
   }
 }
 
@@ -3986,9 +4200,11 @@ a.linkedin-link:hover {
   margin: 0 4px !important;
 }
 
-.dialog-tabs :deep(.v-tab:hover) {
-  color: #ffffff !important;
-  background: rgba(255, 255, 255, 0.05) !important;
+@media (hover: hover) {
+  .dialog-tabs :deep(.v-tab:hover) {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+  }
 }
 
 .dialog-tabs :deep(.v-tab--selected) {
@@ -3996,6 +4212,19 @@ a.linkedin-link:hover {
   background: color-mix(in srgb, var(--tab-accent, #7afffb) 12%, transparent) !important;
   border: 1px solid color-mix(in srgb, var(--tab-accent, #7afffb) 35%, transparent) !important;
   box-shadow: 0 4px 15px -4px color-mix(in srgb, var(--tab-accent, #7afffb) 25%, transparent) !important;
+}
+
+/* Hide Vuetify default focus overlay for tabs to prevent sticky focus states */
+.dialog-tabs :deep(.v-tab__overlay) {
+  display: none !important;
+}
+.dialog-tabs :deep(.v-tab:focus),
+.dialog-tabs :deep(.v-tab--focused) {
+  color: #cbd5e1 !important;
+}
+.dialog-tabs :deep(.v-tab--selected:focus),
+.dialog-tabs :deep(.v-tab--selected.v-tab--focused) {
+  color: var(--tab-accent, #7afffb) !important;
 }
 
 /* Call-to-actions buttons spacing */
@@ -4115,5 +4344,133 @@ a.linkedin-link:hover {
   font-size: 0.88rem;
   line-height: 1.5;
   color: #cbd5e1;
+}
+
+/* CV Dialog Mobile Responsiveness */
+@media (max-width: 600px) {
+  .cv-dialog-card .dialog-content-body {
+    padding: 16px !important;
+  }
+  
+  .cv-lang-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    text-align: center;
+    padding: 20px 16px !important;
+    gap: 16px !important;
+  }
+  
+  .cv-lang-row > div:first-child {
+    flex-direction: column !important;
+    gap: 8px;
+    align-items: center !important;
+  }
+  
+  .cv-lang-row .flag-icon {
+    margin: 0 !important;
+    font-size: 2.2rem !important;
+    line-height: 1;
+  }
+  
+  .cv-actions {
+    width: 100%;
+    justify-content: center;
+    gap: 10px !important;
+  }
+  
+  .cv-actions .action-btn-cv {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.8rem !important;
+    padding: 8px 12px !important;
+    height: 36px !important;
+  }
+
+  .cv-dialog-card .dialog-content-body[style*="height: 75vh"] {
+    height: 80vh !important;
+  }
+  
+  .cv-dialog-card .border-b {
+    padding: 12px 16px !important;
+  }
+
+  /* Fullscreen Project Details Dialog styling for Mobile */
+  .glass-panel-dialog.fullscreen-card {
+    margin: 0 !important;
+    border-radius: 0 !important;
+    min-height: 100vh !important;
+    height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-y: auto !important;
+  }
+  .glass-panel-dialog.fullscreen-card .dialog-content-body {
+    padding-top: 60px !important;
+  }
+
+  /* Smaller dialog tabs on mobile */
+  .dialog-tabs {
+    border-radius: 10px !important;
+    padding: 2px !important;
+    margin-bottom: 16px !important;
+  }
+  .dialog-tabs :deep(.v-tab) {
+    font-size: 0.76rem !important;
+    padding: 6px 10px !important;
+    height: 32px !important;
+    border-radius: 8px !important;
+    margin: 0 2px !important;
+  }
+}
+
+/* ==========================================================================
+   Footer Styles
+   ========================================================================== */
+.cyber-footer {
+  position: relative;
+  background: transparent;
+  padding: 30px 0;
+  z-index: 2;
+}
+
+.footer-social-links {
+  gap: 16px;
+}
+
+.social-footer-btn {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-footer-btn:hover {
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+.social-footer-btn.linkedin:hover {
+  background: rgba(0, 119, 181, 0.1);
+  border-color: rgba(0, 119, 181, 0.4);
+  color: #0077b5;
+}
+
+.social-footer-btn.whatsapp:hover {
+  background: rgba(37, 211, 102, 0.1);
+  border-color: rgba(37, 211, 102, 0.4);
+  color: #25d366;
+}
+
+.social-footer-btn.email:hover {
+  background: rgba(122, 255, 251, 0.1);
+  border-color: rgba(122, 255, 251, 0.4);
+  color: #7afffb;
 }
 </style>
