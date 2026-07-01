@@ -1,10 +1,10 @@
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { looplanfyFinanceFiles } from '../data/looplanfyFinanceFiles'
 import { looplanfySaas } from '../data/looplanfySaas'
 
-const { locale, t } = useI18n()
+const { locale, t, tm, rt } = useI18n()
 
 // State for AI chatbot terminal
 const customQuery = ref('')
@@ -504,6 +504,7 @@ const projects = computed(() => [
   {
     titleKey: 'projects.looplanfyTitle',
     descKey: 'projects.looplanfyDesc',
+    featuresKey: 'projects.looplanfyFeatures',
     category: 'saas',
     image: '/images/001.png',
     tech: ['Nuxt 3', 'Vue.js', 'Tailwind CSS', 'Node.js', 'Supabase', 'typescript'],
@@ -515,6 +516,7 @@ const projects = computed(() => [
   {
     titleKey: 'projects.financeTitle',
     descKey: 'projects.financeDesc',
+    featuresKey: 'projects.financeFeatures',
     category: 'saas',
     image: '/images/002.png',
     tech: ['Amazon API', 'Trendyol API', 'Hepsiburada API', 'Node.js', 'Supabase', 'typescript'],
@@ -526,6 +528,7 @@ const projects = computed(() => [
   {
     titleKey: 'projects.kokpitTitle',
     descKey: 'projects.kokpitDesc',
+    featuresKey: 'projects.kokpitFeatures',
     category: 'saas',
     image: '/images/003.png',
     tech: ['Vue 3', 'Pinia', 'Tailwind CSS', 'Node.js', 'Express', 'MongoDB'],
@@ -536,6 +539,7 @@ const projects = computed(() => [
   {
     titleKey: 'projects.onikiTitle',
     descKey: 'projects.onikiDesc',
+    featuresKey: 'projects.onikiFeatures',
     category: 'saas',
     image: '/images/004.png',
     tech: ['AI Matchmaking', 'Node.js', 'Vue.js', 'Tailwind CSS', 'Websockets'],
@@ -547,6 +551,7 @@ const projects = computed(() => [
   {
     titleKey: 'projects.yollandoTitle',
     descKey: 'projects.yollandoDesc',
+    featuresKey: 'projects.yollandoFeatures',
     category: 'ecommerce',
     image: '/images/005.png',
     tech: ['B2B Portal', 'B2C Platform', 'Admin Dashboard', 'Laravel', 'MySQL', 'Vue.js'],
@@ -557,6 +562,7 @@ const projects = computed(() => [
   {
     titleKey: 'projects.bpazarTitle',
     descKey: 'projects.bpazarDesc',
+    featuresKey: 'projects.bpazarFeatures',
     category: 'ecommerce',
     image: '/images/006.png',
     tech: ['Multi-vendor', 'Laravel', 'Vue.js', 'Tailwind CSS', 'MySQL'],
@@ -567,6 +573,7 @@ const projects = computed(() => [
   {
     titleKey: 'projects.sileversinTitle',
     descKey: 'projects.sileversinDesc',
+    featuresKey: 'projects.sileversinFeatures',
     category: 'ecommerce',
     image: '/images/007.png',
     tech: ['Mobile App', 'Geolocation', 'Node.js', 'Express', 'Vue 3', 'Tailwind'],
@@ -578,6 +585,7 @@ const projects = computed(() => [
   {
     titleKey: 'projects.rightgiveTitle',
     descKey: 'projects.rightgiveDesc',
+    featuresKey: 'projects.rightgiveFeatures',
     category: 'enterprise',
     image: '/images/008.png',
     tech: ['Pusher Chat', 'Stripe Payments', 'Laravel', 'Nuxt 3', 'Tailwind CSS'],
@@ -588,6 +596,7 @@ const projects = computed(() => [
   {
     titleKey: 'projects.radTitle',
     descKey: 'projects.radDesc',
+    featuresKey: 'projects.radFeatures',
     category: 'enterprise',
     image: '/images/009.png',
     tech: ['Multi-tenant AAA', 'Billing Gateway', 'Laravel', 'Vue.js', 'PostgreSQL'],
@@ -598,6 +607,7 @@ const projects = computed(() => [
   {
     titleKey: 'projects.perapassageTitle',
     descKey: 'projects.perapassageDesc',
+    featuresKey: 'projects.perapassageFeatures',
     category: 'enterprise',
     image: '/images/010.png',
     tech: ['Visitor Check-In', 'Booking System', 'Vue 3', 'Nuxt 3', 'Firebase'],
@@ -608,6 +618,7 @@ const projects = computed(() => [
   {
     titleKey: 'projects.petnerTitle',
     descKey: 'projects.petnerDesc',
+    featuresKey: 'projects.petnerFeatures',
     category: 'enterprise',
     image: '/images/011.png',
     tech: ['Social Network', 'Realtime Chat', 'Vue 3', 'Nuxt 3', 'Firebase'],
@@ -618,6 +629,7 @@ const projects = computed(() => [
   {
     titleKey: 'projects.shamelaTitle',
     descKey: 'projects.shamelaDesc',
+    featuresKey: 'projects.shamelaFeatures',
     category: 'enterprise',
     image: '/images/012.png',
     tech: ['Full-text Search', 'Indexing Engine', 'Nuxt 3', 'Vue 3', 'PostgreSQL', 'Tailwind'],
@@ -822,16 +834,25 @@ const jobs = computed(() => [
       ar: 'إسطنبول، تركيا',
       tr: 'İstanbul, Türkiye'
     },
-    tech: ['PHP', 'Laravel', 'JavaScript', 'E-commerce', 'PostgreSQL', 'Multi-vendor Systems'],
+    tech: ['PHP', 'Laravel', 'JavaScript', 'E-commerce', 'MySQL', 'Multi-vendor Systems'],
     details: {
       en: [
-        "E-Commerce & Corporate Systems: Engineered multi-vendor e-commerce platforms (Bpazar, Trolley Market) and enterprise corporate sites (Baladna Halal), handling both frontend architectures and backend database logic to ensure robust performance and scalability."
+        "Full-Stack Development: Built and developed multi-vendor e-commerce platforms (Bpazar, Trolley Market) and large-scale corporate sites (Baladna Halal) using Laravel and JavaScript.",
+        "Database Engineering (MySQL): Designed and engineered advanced MySQL database architectures, optimizing query performance and structure to ensure rapid and secure real-time data flow.",
+        "User Interface Engineering: Developed responsive and fully interactive user interfaces (UI) for merchant portals and administration dashboards, ensuring an intuitive user experience.",
+        "API & Payment Integration: Integrated various RESTful APIs, secure online payment gateways, and shipping solutions to automate order cycles and operational workflows."
       ],
       ar: [
-        "منصات التجارة الإلكترونية ومواقع الشركات: قمت بتطوير منصات تجارة إلكترونية متعددة التجار (Bpazar, Trolley Market) ومواقع شركات كبرى (Baladna Halal)، متولياً هندسة الواجهات الأمامية والمنطق البرمجي للخلفيات لضمان الأداء القوي والتوسع."
+        "تطوير ويب متكامل (Full-Stack): قمت ببناء وتطوير منصات تجارة إلكترونية متعددة البائعين مثل (Bpazar, Trolley Market) ومواقع شركات كبرى مثل (Baladna Halal) باستخدام Laravel وتقنيات JavaScript.",
+        "هندسة قواعد البيانات (MySQL): صممت وهندست قواعد بيانات MySQL متقدمة للأنظمة التجارية، مع تحسين وبناء استعلامات مخصصة لضمان سلامة وسرعة تدفق البيانات الفوري.",
+        "بناء واجهات التطبيق (UI/UX): قمت بتصميم وتطوير واجهات مستخدم متجاوبة وتفاعلية بالكامل للوحات التحكم وبوابات التجار، لضمان تجربة مستخدم سلسة وعملية.",
+        "دمج بوابات الدفع والـ APIs: قمت بربط وتكامل واجهات RESTful APIs المختلفة، وبوابات الدفع الإلكتروني، وحلول الشحن لتسهيل دورة الطلبات بشكل مؤتمت."
       ],
       tr: [
-        "E-Ticaret ve Kurumsal Sistemler: Çok satıcılı e-ticaret platformları (Bpazar, Trolley Market) ve kurumsal web siteleri (Baladna Halal) tasarladım; performans ve ölçeklenebilirlik için hem önyüz mimarisini hem de veritabanı mantığını yönettim."
+        "Full-Stack Geliştirme: Laravel ve JavaScript kullanarak çok satıcılı e-ticaret platformları (Bpazar, Trolley Market) ve kurumsal web siteleri (Baladna Halal) tasarladım ve geliştirdim.",
+        "Veritabanı Mimarisi (MySQL): Ticari sistemler için gelişmiş MySQL veritabanı mimarileri tasarladım; hızlı veri akışını sağlamak için sorguları ve veri yapılarını optimize ettim.",
+        "Arayüz Geliştirme (UI/UX): Satıcı portalları ve yönetim panelleri için duyarlı ve tamamen etkileşimli kullanıcı arayüzleri (UI) inşa ettim; kolaylaştırılmış bir deneyim sundum.",
+        "API ve Ödeme Entegrasyonları: Sipariş döngülerini otomatikleştirmek için çeşitli RESTful API'leri, güvenli ödeme ağ geçitlerini ve kargo çözümlerini sisteme entegre ettim."
       ]
     }
   },
@@ -856,13 +877,22 @@ const jobs = computed(() => [
     tech: ['PHP', 'MySQL', 'ERP Systems', 'Stock Management', 'Internal Tools'],
     details: {
       en: [
-        "Internal Tools & ERP: Developed and managed internal operational systems from scratch, including a custom Stock Management application for automated spare parts ordering and an Export Manager system designed to generate official, government-recognized export documentation."
+        "Foundational Milestones: Although this marked my early steps in building complex software systems, I successfully designed and developed comprehensive internal operational tools from scratch, exceeding expectations.",
+        "Promotion & Technical Leadership: Earned major recognition and commendation from the executive management following the systems' success, resulting in being promoted to manage and oversee the company's entire web and ERP systems.",
+        "Smart Inventory Automation: Programmed a customized Stock Management system that automates tracking and inventory audits for spare parts, triggering automated purchase requests upon low stock levels.",
+        "Export Management System: Engineered the 'Export Manager' module to generate official, government-compliant export documents and international invoices, streamlining logistics."
       ],
       ar: [
-        "الأدوات الداخلية ونظام الـ ERP: طوّرت وأدرت أنظمة تشغيل داخلية من الصفر، بما في ذلك تطبيق مخصص لإدارة المخزون والطلب التلقائي لقطع الغيار، ونظام إدارة التصدير (Export Manager) لإنشاء وثائق التصدير الرسمية المعترف بها حكومياً."
+        "انطلاقة التطوير المنهجي: بالرغم من أن هذه التجربة كانت أولى خطواتي في بناء الأنظمة البرمجية، إلا أنني نجحت في تصميم وتطوير أنظمة تشغيل داخلية متكاملة من الصفر وتجاوز توقعات العمل.",
+        "ترقية وقيادة تقنية: نلت ثقة وتقدير الإدارة العليا بشكل كبير بعد نجاح الأنظمة، وتمت ترقيتي لاستلام المسؤولية الكاملة عن إدارة وتطوير جميع أنظمة الويب والـ ERP الخاصة بالشركة حينها.",
+        "نظام إدارة المخزون الذكي: قمت ببرمجة تطبيق مخصص لإدارة المخازن، يقوم بأتمتة عمليات جرد وتتبع قطع الغيار وإصدار طلبات توريد تلقائية عند اقتراب النفاذ.",
+        "نظام إدارة التصدير (Export Manager): طوّرت نظاماً داخلياً لإصدار فواتير ومستندات التصدير الرسمية المعتمدة لدى الجهات الحكومية، مما قلل وقت المعاملات بنسبة كبيرة."
       ],
       tr: [
-        "Dahili Araçlar ve ERP: Otomatik yedek parça siparişi için özel bir Stok Yönetim uygulaması ve resmi dış ticaret belgeleri oluşturan İhracat Yönetim sistemi dahil olmak üzere dahili operasyonel sistemleri sıfırdan geliştirdim ve yönettim."
+        "İlk Sistem Geliştirme Deneyimi: Yazılım sistemleri geliştirmedeki kariyerimin ilk adımları olmasına rağmen, karmaşık dahili operasyonel araçları sıfırdan başarıyla tasarlayıp devreye aldım.",
+        "Terfi ve Teknik Liderlik: Geliştirilen sistemlerin başarısının ardından üst yönetimden büyük bir takdir ve destek görerek, şirketin tüm web ve ERP sistemlerinin yönetimini üstlenmek üzere terfi aldım.",
+        "Akıllı Stok Otomasyonu: Yedek parçaların takibini ve envanter yönetimini otomatikleştiren, kritik stok seviyelerinde otomatik tedarik siparişleri oluşturan özel bir Stok Yönetim sistemi geliştirdim.",
+        "İhracat Yönetim Modülü: Resmi makamlarca onaylanan ihracat belgelerini ve faturaları otomatik hazırlayan 'Export Manager' sistemini kurarak süreç verimliliğini artırdım."
       ]
     }
   }
@@ -932,6 +962,43 @@ const submitContactForm = async () => {
 const detailsDialog = ref({
   isOpen: false,
   project: null
+})
+
+// CV Dialog State
+const cvDialog = ref({
+  isOpen: false
+})
+
+const activePreviewUrl = ref(null)
+const activePreviewLang = ref('ar')
+
+const openCvDialog = () => {
+  cvDialog.value.isOpen = true
+}
+
+const openPdfPreview = (url, lang) => {
+  activePreviewUrl.value = url
+  activePreviewLang.value = lang
+}
+
+const getCvPreviewTitle = () => {
+  if (activePreviewLang.value === 'ar') return t('cv.arTitle')
+  if (activePreviewLang.value === 'tr') return t('cv.trTitle')
+  return t('cv.enTitle')
+}
+
+const getCvDownloadName = () => {
+  return `Karam_Sawan_CV_${activePreviewLang.value.toUpperCase()}.pdf`
+}
+
+const cvDialogWidth = computed(() => {
+  return activePreviewUrl.value ? '950px' : '650px'
+})
+
+watch(() => cvDialog.value.isOpen, (newVal) => {
+  if (!newVal) {
+    activePreviewUrl.value = null
+  }
 })
 
 const activeProjectFile = ref(null)
@@ -1098,11 +1165,11 @@ const copySnippetText = (text) => {
               
               <!-- Download CV (secondary link button) -->
               <v-btn
-                variant="text"
-                color="grey-lighten-1"
+                variant="outlined"
                 size="large"
-                class="cta-btn text-cta px-4 py-3 text-capitalize font-weight-bold"
+                class="cta-btn secondary-cta px-6 px-sm-8 py-3 text-capitalize font-weight-bold"
                 prepend-icon="mdi-download"
+                @click="openCvDialog"
               >
                 {{ $t('hero.cvBtn') }}
               </v-btn>
@@ -1452,7 +1519,7 @@ const copySnippetText = (text) => {
                     <!-- Screen Header -->
                     <div class="screen-header d-flex flex-wrap align-center justify-space-between mb-6 pb-4">
                       <div>
-                        <span class="screen-meta-tag"><v-icon icon="mdi-map-marker" size="12" class="mr-1"></v-icon> {{ jobs[selectedJobIndex].location[locale] }}</span>
+                        <span class="screen-meta-tag"><v-icon icon="mdi-map-marker" size="12" class="me-1 ms-1"></v-icon> {{ jobs[selectedJobIndex].location[locale] }}</span>
                         <h2 class="hologram-job-title text-h5 font-weight-black text-white mt-1">{{ jobs[selectedJobIndex].role[locale] }}</h2>
                         <h3 class="hologram-company-title text-subtitle-1 text-primary font-weight-bold">{{ jobs[selectedJobIndex].company }}</h3>
                       </div>
@@ -1463,7 +1530,7 @@ const copySnippetText = (text) => {
 
                     <!-- Achievements Bullets -->
                     <div class="screen-body mb-6">
-                      <h4 class="details-section-label mb-4"><v-icon icon="mdi-checkbox-marked-circle-outline" size="14" color="primary" class="mr-2"></v-icon>{{ locale === 'ar' ? 'أبرز الإنجازات والمسؤوليات:' : locale === 'tr' ? 'Önemli Başarılar ve Sorumluluklar:' : 'Key Accomplishments & Responsibilities:' }}</h4>
+                      <h4 class="details-section-label mb-4"><v-icon icon="mdi-checkbox-marked-circle-outline" size="14" color="primary" class="me-2 ms-1"></v-icon>{{ locale === 'ar' ? 'أبرز الإنجازات والمسؤوليات:' : locale === 'tr' ? 'Önemli Başarılar ve Sorumluluklar:' : 'Key Accomplishments & Responsibilities:' }}</h4>
                       <ul class="achievements-list">
                         <li 
                           v-for="(bullet, idx) in jobs[selectedJobIndex].details[locale]" 
@@ -1478,7 +1545,7 @@ const copySnippetText = (text) => {
 
                     <!-- Technologies Used -->
                     <div class="screen-footer">
-                      <h4 class="details-section-label mb-3"><v-icon icon="mdi-cpu" size="14" color="primary" class="mr-2"></v-icon>{{ locale === 'ar' ? 'التقنيات المستخدمة:' : locale === 'tr' ? 'Kullanılan Teknolojiler:' : 'Technologies Leveraged:' }}</h4>
+                      <h4 class="details-section-label mb-3"><v-icon icon="mdi-cpu" size="14" color="primary" class="me-2 ms-1"></v-icon>{{ locale === 'ar' ? 'التقنيات المستخدمة:' : locale === 'tr' ? 'Kullanılan Teknolojiler:' : 'Technologies Leveraged:' }}</h4>
                       <div class="tech-pills-list d-flex flex-wrap gap-2">
                         <span 
                           v-for="(techName, idx) in jobs[selectedJobIndex].tech" 
@@ -1709,6 +1776,18 @@ const copySnippetText = (text) => {
                   </span>
                 </div>
               </div>
+              <!-- Key Features Implemented -->
+              <div v-if="detailsDialog.project.featuresKey" class="dialog-features-section mb-6">
+                <h4 class="dialog-section-subtitle mb-3">
+                  {{ locale === 'ar' ? 'الميزات الأساسية التي تم تنفيذها' : locale === 'tr' ? 'Uygulanan Temel Özellikler' : 'Key Features Implemented' }}
+                </h4>
+                <ul class="features-list">
+                  <li v-for="(feature, idx) in tm(detailsDialog.project.featuresKey)" :key="idx" class="feature-item d-flex align-start mb-3">
+                    <v-icon icon="mdi-check-decagram-outline" size="18" :color="detailsDialog.project.accentColor" class="mr-2 ml-2 mt-0.5"></v-icon>
+                    <span class="feature-item-text">{{ rt(feature) }}</span>
+                  </li>
+                </ul>
+              </div>
 
               <!-- Intellectual Property Note -->
               <div class="dialog-nda-note d-flex align-center pa-4 mb-6">
@@ -1816,6 +1895,198 @@ const copySnippetText = (text) => {
               <v-icon icon="mdi-link-off" size="14" class="mr-1 ml-1"></v-icon>
               {{ $t('projects.demo') }}
             </v-btn>
+          </div>
+        </div>
+      </v-card>
+    </v-dialog>
+
+    <!-- CV Download/Preview Dialog -->
+    <v-dialog v-model="cvDialog.isOpen" :max-width="cvDialogWidth" transition="dialog-bottom-transition">
+      <v-card class="cv-dialog-card glass-panel-dialog">
+        <!-- Close Button -->
+        <button v-if="!activePreviewUrl" class="dialog-close-btn" @click="cvDialog.isOpen = false" aria-label="Close">
+          <v-icon icon="mdi-close" size="20"></v-icon>
+        </button>
+
+        <!-- Mode 1: Language List Selection -->
+        <div v-if="!activePreviewUrl" class="dialog-content-body pa-6">
+          <div class="d-flex align-center mb-4 flex-wrap">
+            <v-avatar class="mr-3 ml-3" color="rgba(122, 255, 251, 0.08)" size="48">
+              <v-icon icon="mdi-file-document-outline" color="#7afffb" size="28"></v-icon>
+            </v-avatar>
+            <div>
+              <h3 class="dialog-title text-h5 font-weight-bold text-white mb-1">
+                {{ $t('cv.title') }}
+              </h3>
+              <p class="text-caption text-grey-lighten-1">
+                {{ $t('cv.subtitle') }}
+              </p>
+            </div>
+          </div>
+
+          <v-divider class="border-opacity-15 mb-6" color="white"></v-divider>
+
+          <!-- Languages List -->
+          <div class="cv-languages-list">
+            <!-- Arabic Option -->
+            <div class="cv-lang-row d-flex align-center justify-space-between pa-4 mb-4 glass-item flex-wrap gap-4">
+              <div class="d-flex align-center">
+                <span class="flag-icon text-h5 mr-3 ml-3">🇸🇾</span>
+                <div>
+                  <div class="font-weight-bold text-white text-subtitle-1">{{ $t('cv.arTitle') }}</div>
+                  <div class="text-caption text-grey-lighten-2">{{ $t('cv.arDesc') }}</div>
+                </div>
+              </div>
+              <div class="d-flex gap-2 cv-actions">
+                <v-btn
+                  variant="outlined"
+                  size="small"
+                  class="action-btn-cv outlined px-3 py-1"
+                  color="#7afffb"
+                  @click="openPdfPreview('/cv/karam-sawan-cv-ar.pdf', 'ar')"
+                >
+                  <v-icon icon="mdi-eye-outline" class="mr-1 ml-1" size="16"></v-icon>
+                  {{ $t('cv.preview') }}
+                </v-btn>
+                <v-btn
+                  href="/cv/karam-sawan-cv-ar.pdf"
+                  download="Karam_Sawan_CV_AR.pdf"
+                  variant="flat"
+                  size="small"
+                  class="action-btn-cv flat px-3 py-1"
+                  color="#7afffb"
+                >
+                  <v-icon icon="mdi-download" class="mr-1 ml-1" size="16"></v-icon>
+                  {{ $t('cv.download') }}
+                </v-btn>
+              </div>
+            </div>
+
+            <!-- English Option -->
+            <div class="cv-lang-row d-flex align-center justify-space-between pa-4 mb-4 glass-item flex-wrap gap-4">
+              <div class="d-flex align-center">
+                <span class="flag-icon text-h5 mr-3 ml-3">🇬🇧</span>
+                <div>
+                  <div class="font-weight-bold text-white text-subtitle-1">{{ $t('cv.enTitle') }}</div>
+                  <div class="text-caption text-grey-lighten-2">{{ $t('cv.enDesc') }}</div>
+                </div>
+              </div>
+              <div class="d-flex gap-2 cv-actions">
+                <v-btn
+                  variant="outlined"
+                  size="small"
+                  class="action-btn-cv outlined px-3 py-1"
+                  color="#7afffb"
+                  @click="openPdfPreview('/cv/karam-sawan-cv-en.pdf', 'en')"
+                >
+                  <v-icon icon="mdi-eye-outline" class="mr-1 ml-1" size="16"></v-icon>
+                  {{ $t('cv.preview') }}
+                </v-btn>
+                <v-btn
+                  href="/cv/karam-sawan-cv-en.pdf"
+                  download="Karam_Sawan_CV_EN.pdf"
+                  variant="flat"
+                  size="small"
+                  class="action-btn-cv flat px-3 py-1"
+                  color="#7afffb"
+                >
+                  <v-icon icon="mdi-download" class="mr-1 ml-1" size="16"></v-icon>
+                  {{ $t('cv.download') }}
+                </v-btn>
+              </div>
+            </div>
+
+            <!-- Turkish Option -->
+            <div class="cv-lang-row d-flex align-center justify-space-between pa-4 glass-item flex-wrap gap-4">
+              <div class="d-flex align-center">
+                <span class="flag-icon text-h5 mr-3 ml-3">🇹🇷</span>
+                <div>
+                  <div class="font-weight-bold text-white text-subtitle-1">{{ $t('cv.trTitle') }}</div>
+                  <div class="text-caption text-grey-lighten-2">{{ $t('cv.trDesc') }}</div>
+                </div>
+              </div>
+              <div class="d-flex gap-2 cv-actions">
+                <v-btn
+                  variant="outlined"
+                  size="small"
+                  class="action-btn-cv outlined px-3 py-1"
+                  color="#7afffb"
+                  @click="openPdfPreview('/cv/karam-sawan-cv-tr.pdf', 'tr')"
+                >
+                  <v-icon icon="mdi-eye-outline" class="mr-1 ml-1" size="16"></v-icon>
+                  {{ $t('cv.preview') }}
+                </v-btn>
+                <v-btn
+                  href="/cv/karam-sawan-cv-tr.pdf"
+                  download="Karam_Sawan_CV_TR.pdf"
+                  variant="flat"
+                  size="small"
+                  class="action-btn-cv flat px-3 py-1"
+                  color="#7afffb"
+                >
+                  <v-icon icon="mdi-download" class="mr-1 ml-1" size="16"></v-icon>
+                  {{ $t('cv.download') }}
+                </v-btn>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mode 2: PDF Previewer inside Dialog -->
+        <div v-else class="dialog-content-body pa-0 d-flex flex-column" style="height: 75vh;">
+          <!-- Previewer Header -->
+          <div class="d-flex align-center justify-space-between px-6 py-4 border-b border-white-5" style="background: rgba(255,255,255,0.02); gap: 12px; flex-wrap: wrap;">
+            <div class="d-flex align-center">
+              <v-btn
+                icon="mdi-arrow-left"
+                variant="text"
+                color="white"
+                class="mr-3 ml-3"
+                density="comfortable"
+                @click="activePreviewUrl = null"
+              ></v-btn>
+              <div>
+                <h3 class="dialog-title text-subtitle-1 font-weight-bold text-white mb-0">
+                  {{ $t('cv.previewTitle') }}
+                </h3>
+                <span class="text-caption text-grey">
+                  {{ getCvPreviewTitle() }}
+                </span>
+              </div>
+            </div>
+            <div class="d-flex align-center" style="gap: 16px;">
+              <v-btn
+                :href="activePreviewUrl"
+                :download="getCvDownloadName()"
+                variant="flat"
+                size="small"
+                class="action-btn-cv flat px-4 py-1"
+                color="#7afffb"
+              >
+                <v-icon icon="mdi-download" class="mr-1 ml-1" size="16"></v-icon>
+                {{ $t('cv.download') }}
+              </v-btn>
+              <v-btn
+                icon="mdi-close"
+                variant="text"
+                color="grey-lighten-1"
+                density="comfortable"
+                @click="cvDialog.isOpen = false"
+                aria-label="Close"
+                class="mr-2 ml-2"
+              ></v-btn>
+            </div>
+          </div>
+
+          <!-- Previewer Iframe -->
+          <div class="flex-grow-1 position-relative" style="background: rgba(0, 0, 0, 0.2);">
+            <iframe
+              :src="activePreviewUrl"
+              class="cv-preview-iframe"
+              width="100%"
+              height="100%"
+              style="border: none; display: block;"
+            ></iframe>
           </div>
         </div>
       </v-card>
@@ -3725,5 +3996,124 @@ a.linkedin-link:hover {
   background: color-mix(in srgb, var(--tab-accent, #7afffb) 12%, transparent) !important;
   border: 1px solid color-mix(in srgb, var(--tab-accent, #7afffb) 35%, transparent) !important;
   box-shadow: 0 4px 15px -4px color-mix(in srgb, var(--tab-accent, #7afffb) 25%, transparent) !important;
+}
+
+/* Call-to-actions buttons spacing */
+.btn-actions-group {
+  gap: 16px !important;
+}
+
+/* Technology Brand Colors for Chatbot */
+:deep(.tech-nuxt) {
+  color: #00DC82 !important;
+}
+:deep(.tech-vue) {
+  color: #42B883 !important;
+}
+:deep(.tech-react) {
+  color: #61DAFB !important;
+}
+:deep(.tech-laravel) {
+  color: #FF2D20 !important;
+}
+:deep(.tech-nodejs) {
+  color: #68A063 !important;
+}
+:deep(.tech-supabase) {
+  color: #3ECF8E !important;
+}
+:deep(.tech-mysql) {
+  color: #00758F !important;
+}
+
+/* CV Dialog Card and Styles */
+.cv-dialog-card {
+  position: relative;
+  background: rgba(15, 23, 42, 0.85) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
+  transition: max-width 0.3s ease-in-out !important;
+}
+
+.glass-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.glass-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(122, 255, 251, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cv-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn-cv {
+  font-weight: 700 !important;
+  border-radius: 8px !important;
+  letter-spacing: 0.5px !important;
+  transition: all 0.2s ease !important;
+}
+
+.action-btn-cv.outlined {
+  border: 1.5px solid rgba(122, 255, 251, 0.3) !important;
+  color: #7afffb !important;
+  background: transparent !important;
+}
+
+.action-btn-cv.outlined:hover {
+  background: rgba(122, 255, 251, 0.08) !important;
+  border-color: #7afffb !important;
+}
+
+.action-btn-cv.flat {
+  background: #7afffb !important;
+  color: #0b0f19 !important;
+}
+
+.action-btn-cv.flat:hover {
+  background: #5ae5e1 !important;
+  box-shadow: 0 0 15px rgba(122, 255, 251, 0.4) !important;
+}
+
+.cv-preview-iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+.border-white-5 {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Features List inside Project Details Dialog */
+.dialog-features-section {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-item {
+  gap: 8px;
+}
+
+.feature-item-text {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #cbd5e1;
 }
 </style>

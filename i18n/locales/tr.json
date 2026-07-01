@@ -11,12 +11,12 @@
     "greeting": "Merhaba, ben",
     "name": "Karam Sawan",
     "title": "Full-Stack Web Geliştirici",
-    "desc": "Modern, hızlı ve ölçeklenebilir web uygulamaları tasarlıyorum ve geliştiriyorum. Teknik mühendisliği temiz estetikle birleştirerek harika dijital deneyimler sunuyorum.",
+    "desc": "Modern, hızlı ve ölçeklenebilir web uygulamaları tasarlıyorum ve geliştiriyorum. Yazılım mühendisliği uzmanlığımı en son yapay zeka araçlarıyla birleştirerek yenilikçi, akıllı ve yüksek verimli dijital deneyimler sunuyorum.",
     "cvBtn": "Özgeçmişi İndir",
     "contactBtn": "Bana Ulaşın",
     "projectsBtn": "Projeleri İncele",
     "aiPlaceholder": "Karam Sawan hakkında bilgi ver...",
-    "aiResponse": "Merhaba! Ben Karam'ın yapay zeka asistanıyım. [br][br]Karam Sawan; [span class='text-secondary font-weight-bold']Nuxt[/span], [span class='text-success font-weight-bold'>Vue[/span] ve [span class='text-info font-weight-bold']Node.js[/span] kullanarak yüksek performanslı web uygulamaları geliştiren uzman bir [span class='text-primary font-weight-bold']Full-Stack Yazılımcıdır[/span]. [br][br]Karmaşık fikirleri şık ve duyarlı dijital deneyimlere dönüştürür!"
+    "aiResponse": "Merhaba! Ben Karam'ın yapay zeka asistanıyım. [br][br]Karam Sawan; [span class='tech-nuxt font-weight-bold']Nuxt[/span], [span class='tech-vue font-weight-bold']Vue[/span], [span class='tech-react font-weight-bold']React[/span], [span class='tech-laravel font-weight-bold']Laravel[/span], [span class='tech-nodejs font-weight-bold']Node.js[/span], [span class='tech-supabase font-weight-bold']Supabase[/span] ve [span class='tech-mysql font-weight-bold']MySQL[/span] kullanarak yüksek performanslı web uygulamaları geliştiren uzman bir [span class='text-primary font-weight-bold']Full-Stack Yazılımcıdır[/span]. [br][br]Karmaşık fikirleri şık ve duyarlı dijital deneyimlere dönüştürür!"
   },
   "about": {
     "title": "Hakkımda",
@@ -45,7 +45,7 @@
     "yollandoTitle": "Yollando Uygulama Paketi",
     "yollandoDesc": "Uluslararası kullanıcılar için sanal depo ve paket birleştirme hizmeti sunan küresel kargo yönlendirme platformu.",
     "radTitle": "Rad+ & Rad Pro Sistemleri",
-    "radDesc": "İnternet servis sağlayıcıları (ISP) için yetkilendirme, muhasebe, detaylı faturalandırma ve raporlama sunan AAA yönetim sistemi.",
+    "radDesc": "Küçük ve orta ölçekli internet servis sağlayıcıları için kimlik doğrulama, yetkilendirme ve ücretlendirme (AAA) yönetim sistemi.",
     "kokpitTitle": "Kokpit Saha Yönetimi",
     "kokpitDesc": "Güvenlik ve saha operasyonları yürüten şirketler için vardiya, devriye ve gerçek zamanlı görev yönetim SaaS sistemi.",
     "onikiTitle": "Oniki B2B Eşleştirme",
@@ -59,7 +59,86 @@
     "sileversinTitle": "Sileversin Susuz Oto Yıkama",
     "sileversinDesc": "Mobil susuz araç yıkama hizmetlerinin randevu ve saha yönetimini sağlayan entegre otomasyon uygulaması.",
     "bpazarTitle": "Bpazar & Trolley Market",
-    "bpazarDesc": "Her satıcıya ürün ve sipariş yönetimi için bağımsız bir panel sunan çok satıcılı e-ticaret pazaryerleri."
+    "bpazarDesc": "Her satıcıya ürün ve sipariş yönetimi için bağımsız bir panel sunan çok satıcılı e-ticaret pazaryerleri.",
+    "looplanfyFeatures": [
+      "Özel alt alan adları ile otomatik e-ticaret mağazası oluşturma",
+      "Ürün, stok ve sipariş yönetimi için kapsamlı yönetim paneli",
+      "Ödeme yöntemleri ve ürün kargo seçenekleri üzerinde tam kontrol",
+      "Mağaza görsel kimliği, sayfa tasarımları ve kiracı ihtiyaçlarına göre dinamik blok ekleme üzerinde tam yönetim",
+      "Mobil alışverişe özel optimize edilmiş süper hızlı duyarlı tasarım"
+    ],
+    "financeFeatures": [
+      "Amazon, Trendyol ve Hepsiburada ile anlık stok ve sipariş senkronizasyonu",
+      "Kritik stok seviyesi takibi ve tükenmek üzere olan ürün uyarıları",
+      "Satış merkezlerine giden gönderilerin oluşturulması ve giriş süreçlerinin takibi",
+      "Anlık ve gerçek zamanlı stok sayımı",
+      "Satışları artırmak için akıllı BuyBox izleme ve fiyat optimizasyon sistemi",
+      "Kâr-zarar takibi için gelişmiş finansal analizler ve grafiksel raporlar"
+    ],
+    "rightgiveFeatures": [
+      "Stripe entegrasyonu ile güvenli uluslararası bağış ve düzenli ödeme planları",
+      "Pusher destekli anlık canlı sohbet ve kesintisiz iletişim kanalları",
+      "Bağış dağıtımı ve kampanya güncellemeleri hakkında şeffaf raporlama sistemi",
+      "Dernekler için gelişmiş doğrulama ve güvenilirlik onay süreçleri"
+    ],
+    "yollandoFeatures": [
+      "Küresel kullanıcılar için Türkiye'de sanal kargo teslimat adresleri",
+      "Uluslararası kargo maliyetlerini azaltan paket birleştirme (konsolidasyon) teknolojisi",
+      "Fotoğraf, ağırlık ve ebat detayları içeren anlık depo yönetim sistemi",
+      "Büyük lojistik firmalarıyla (DHL, FedEx, UPS) doğrudan entegre API bağlantısı"
+    ],
+    "radFeatures": [
+      "Küçük ve orta ölçekli internet servis sağlayıcıları için AAA kimlik doğrulama, yetkilendirme ve muhasebe altyapısı.",
+      "Abonelik türü veya pakete göre internet hız limitlerini dinamik olarak tanımlayabilme.",
+      "İndirme (download) ve yükleme (upload) hız oranlarını ölçme ve sınırlama.",
+      "Tüm müşteriler için adil kullanım kotası (AKN/AKK) politikası uygulayabilme.",
+      "Günlük, haftalık ve aylık özel abonelik paketleri ekleyebilme.",
+      "Detaylı analitik ve finansal raporlar sunan entegre muhasebe altyapısı.",
+      "Yöneticiler ve çalışanlar için çok seviyeli gelişmiş yetki yönetim sistemi."
+    ],
+    "kokpitFeatures": [
+      "Saha personeli ve devriye turlarının gerçek zamanlı konum takibi",
+      "Akıllı vardiya planlama ve görev dağıtım motoru",
+      "Fotoğraf ve GPS koordinatlı anlık olay bildirim sistemi",
+      "Operasyonel analizler ve KPI takibi için etkileşimli yönetici paneli"
+    ],
+    "onikiFeatures": [
+      "Katılımcıları akıllıca eşleştiren yapay zeka destekli algoritma",
+      "Birebir iş görüşmeleri (1-on-1) için otomatik randevu planlama sistemi",
+      "Platforma entegre anlık mesajlaşma ve görüntülü toplantı odaları",
+      "Etkinlik sonrası kapsamlı analizler ve ticari bağlantı raporları"
+    ],
+    "perapassageFeatures": [
+      "QR kod taraması ile dijitalleştirilmiş hızlı ziyaretçi giriş süreçleri",
+      "Ön kayıt oluşturma ve e-posta ile otomatik davetiye gönderim sistemi",
+      "Bina içindeki aktif ziyaretçileri anlık izleyen güvenlik paneli",
+      "Etkinlik davetli listesi yönetimi ve yaka kartı baskı şablonu"
+    ],
+    "petnerFeatures": [
+      "Evcil hayvan sahiplerinin fotoğraf ve öneri paylaştığı sosyal ağ",
+      "Veterinerler ve diğer evcil hayvan sahipleriyle bağlayan anlık sohbet",
+      "Yakındaki klinikler, oteller ve kuaförler için interaktif harita rehberi",
+      "Veteriner klinikleri ve bakım randevuları için entegre takvim sistemi"
+    ],
+    "shamelaFeatures": [
+      "Binlerce kitap ve el yazması içinde çalışan ultra hızlı tam metin arama motoru",
+      "Nadir eserler ve bilimsel kaynaklar için gelişmiş kataloglama sistemi",
+      "El yazmalarını incelemeyi ve not almayı sağlayan entegre kitap okuyucu",
+      "Milyonlarca kaydı saniyeler içinde işleyen optimize edilmiş veritabanı altyapısı"
+    ],
+    "sileversinFeatures": [
+      "Mobil çevreci oto yıkama hizmetleri için anlık randevu ve rezervasyon sistemi",
+      "Harita tabanlı interaktif konum belirleme ve teknisyen atama altyapısı",
+      "Mesafe hesaplama algoritması ile en yakın personele otomatik görev dağıtımı ve atama yapan arka plan servisi (Worker)",
+      "Hizmet rotaları ve rezervasyon takvimi için dinamik yönetim paneli",
+      "Hizmet sonrası geri bildirim, değerlendirme ve puanlama sistemi"
+    ],
+    "bpazarFeatures": [
+      "Güvenli ödeme altyapısını destekleyen çok satıcılı e-ticaret mimarisi",
+      "Satıcılar için özel ürün, stok, fiyat ve sipariş yönetim paneli",
+      "Otomatik komisyon hesaplayıcı ve satıcı hak ediş ödeme altyapısı",
+      "Gelişmiş ürün filtreleme, arama ve kullanıcı değerlendirme sistemi"
+    ]
   },
   "experience": {
     "title": "Kariyer Yolculuğum",
@@ -98,5 +177,18 @@
     "projects": "Tamamlanan Proje",
     "satisfaction": "Müşteri Memnuniyeti",
     "technologies": "Kullanılan Teknoloji"
+  },
+  "cv": {
+    "title": "Özgeçmiş (CV)",
+    "subtitle": "Lütfen görüntülemek veya indirmek istediğiniz özgeçmiş dilini seçin.",
+    "preview": "Görüntüle",
+    "download": "İndir",
+    "previewTitle": "Özgeçmiş Önizleme",
+    "arTitle": "Arapça (العربية)",
+    "arDesc": "Arapça Özgeçmiş",
+    "enTitle": "İngilizce (English)",
+    "enDesc": "İngilizce Özgeçmiş",
+    "trTitle": "Türkçe (Türkçe)",
+    "trDesc": "Türkçe Özgeçmiş"
   }
 }

@@ -11,12 +11,12 @@
     "greeting": "Welcome, I am",
     "name": "Karam Sawan",
     "title": "Full-Stack Web Developer",
-    "desc": "I design and build modern, high-performance web applications. Blending technical engineering with clean aesthetics to deliver outstanding and scalable digital experiences.",
+    "desc": "I design and build modern, high-performance web applications. Blending my software engineering expertise with cutting-edge AI tools to deliver innovative, intelligent, and highly efficient digital experiences.",
     "cvBtn": "Download CV",
     "projectsBtn": "Explore Projects",
     "contactBtn": "Contact Me",
     "aiPlaceholder": "Tell me about Karam Sawan...",
-    "aiResponse": "Hello! I am Karam's AI assistant. [br][br]Karam Sawan is a passionate [span class='text-primary font-weight-bold']Full-Stack Engineer[/span] who specializes in building highly performant web applications using [span class='text-secondary font-weight-bold']Nuxt[/span], [span class='text-success font-weight-bold']Vue[/span], [span class='text-info font-weight-bold']Node.js[/span], and modern cloud technologies. [br][br]He transforms complex ideas into beautiful, responsive digital experiences!"
+    "aiResponse": "Hello! I am Karam's AI assistant. [br][br]Karam Sawan is a passionate [span class='text-primary font-weight-bold']Full-Stack Engineer[/span] who specializes in building highly performant web applications using [span class='tech-nuxt font-weight-bold']Nuxt[/span], [span class='tech-vue font-weight-bold']Vue[/span], [span class='tech-react font-weight-bold']React[/span], [span class='tech-laravel font-weight-bold']Laravel[/span], [span class='tech-nodejs font-weight-bold']Node.js[/span], [span class='tech-supabase font-weight-bold']Supabase[/span], and [span class='tech-mysql font-weight-bold']MySQL[/span]. [br][br]He transforms complex ideas into beautiful, responsive digital experiences!"
   },
   "about": {
     "title": "About Me",
@@ -45,7 +45,7 @@
     "yollandoTitle": "Yollando App Suite",
     "yollandoDesc": "A global package forwarding platform offering virtual warehouse management and package consolidation for international shippers.",
     "radTitle": "Rad+ & Rad Pro",
-    "radDesc": "An enterprise AAA management system for ISPs handling multi-tenant permission controls, accounting, billing, and reporting.",
+    "radDesc": "An Authentication, Authorization, and Accounting (AAA) management system for small and medium-sized internet service providers. It is a highly specialized infrastructure task that is complex to implement.",
     "kokpitTitle": "Kokpit Field Management",
     "kokpitDesc": "A SaaS operations tool for security and field service companies to manage shifts, track guard tours, and log tasks in real time.",
     "onikiTitle": "Oniki B2B Matchmaking",
@@ -59,7 +59,86 @@
     "sileversinTitle": "Sileversin Car Wash",
     "sileversinDesc": "A booking and dispatch management app for waterless mobile car washing services, saving time and resources.",
     "bpazarTitle": "Bpazar & Trolley Market",
-    "bpazarDesc": "Multi-vendor digital marketplaces with comprehensive backend interfaces and unique merchant administration portals."
+    "bpazarDesc": "Multi-vendor digital marketplaces with comprehensive backend interfaces and unique merchant administration portals.",
+    "looplanfyFeatures": [
+      "Automated e-commerce store provisioning with custom subdomain mapping",
+      "Complete tenant dashboard for managing products, inventory, and sales",
+      "Complete control over payment methods and product shipping configurations",
+      "Full customization of page designs, store visual identity, and dynamic block building tailored to tenant needs",
+      "Blazing-fast responsive design tailored for mobile shopping"
+    ],
+    "financeFeatures": [
+      "Real-time stock and order synchronization with Amazon, Trendyol, and Hepsiburada",
+      "Low stock tracking and automated reorder alerts",
+      "Creation and check-in tracking of outbound shipments to fulfillment centers",
+      "Real-time inventory auditing and count reconciliation",
+      "Intelligent BuyBox monitoring system to optimize pricing and boost sales",
+      "Advanced financial reports and charts for tracking profit and loss"
+    ],
+    "rightgiveFeatures": [
+      "Secure international donation processing with Stripe and recurring giving schedules",
+      "Real-time communication channels powered by Pusher live chats",
+      "Transparent reporting and visual aids on donation distribution and campaigns",
+      "Comprehensive non-profit verification and KYC onboarding workflow"
+    ],
+    "yollandoFeatures": [
+      "Bespoke virtual shipping addresses in Turkey for global shoppers",
+      "Package consolidation technology to significantly reduce international shipping fees",
+      "Warehouse management system updates with parcel photos, weights, and dimensions",
+      "Direct API integrations with major international logistics providers (DHL, FedEx, UPS)"
+    ],
+    "radFeatures": [
+      "AAA authentication, authorization, and accounting system for managing small and medium-sized internet service providers.",
+      "Ability to define internet speed limits dynamically by subscription tier or package.",
+      "Comprehensive rate limiting and monitoring for upload and download bandwidth.",
+      "Robust fair usage policy (FUP) configuration for all clients.",
+      "Flexible subscription scheduler (daily, weekly, monthly, and custom intervals).",
+      "Complete accounting system backed by detailed analytical and financial reports.",
+      "Multi-level granular permission systems for administrators and support staff."
+    ],
+    "kokpitFeatures": [
+      "Real-time location tracking for field security and patrol tours",
+      "Intelligent shift scheduling and task dispatching engine",
+      "Instant incident reporting with photo attachments and GPS coordinates",
+      "Interactive manager dashboard for operational analytics and KPIs"
+    ],
+    "onikiFeatures": [
+      "AI-driven matching algorithm to connect relevant business delegates",
+      "Automated scheduling and booking for one-on-one business meetings",
+      "Embedded real-time text chat and video conferencing channels",
+      "Comprehensive post-event analytics and lead generation reports"
+    ],
+    "perapassageFeatures": [
+      "Digitized visitor check-in workflows using QR code scanning",
+      "Pre-registration of visits and automated email invitation dispatching",
+      "Real-time security dashboard tracking active building occupants",
+      "Event guestlist manager with print-ready badge generation"
+    ],
+    "petnerFeatures": [
+      "Social network for pet owners to share stories, photos, and advice",
+      "Real-time chat platform for connecting pet parents with veterinarians",
+      "Interactive directory of nearby pet clinics, hotels, and grooming services",
+      "Integrated appointment booking calendar for veterinary visits"
+    ],
+    "shamelaFeatures": [
+      "Ultra-fast full-text search engine querying thousands of books and manuscripts",
+      "Advanced cataloging system for organizing rare Islamic text classifications",
+      "Integrated e-book reader with support for manuscript viewports and notes",
+      "Optimized backend indexer capable of handling millions of records"
+    ],
+    "sileversinFeatures": [
+      "Real-time booking and scheduling system for mobile eco-wash services",
+      "Interactive map-based location dispatching for washing technicians",
+      "Background worker executing automated task balancing and proximity-based routing for dispatching technician assignments",
+      "Dynamic admin dashboard for tracking wash routes and booking calendars",
+      "Post-service feedback loops and ratings collection system"
+    ],
+    "bpazarFeatures": [
+      "Robust multi-vendor architecture supporting secure online checkouts",
+      "Dedicated vendor dashboard for managing inventory, pricing, and orders",
+      "Automatic commission calculator and merchant payouts processing",
+      "Advanced product search engine featuring faceted filters and reviews"
+    ]
   },
   "experience": {
     "title": "My Professional Journey",
@@ -98,5 +177,18 @@
     "projects": "Completed Projects",
     "satisfaction": "Client Satisfaction",
     "technologies": "Technologies Used"
+  },
+  "cv": {
+    "title": "Curriculum Vitae (CV)",
+    "subtitle": "Please select the preferred language to preview or download the CV.",
+    "preview": "Preview",
+    "download": "Download",
+    "previewTitle": "CV Preview",
+    "arTitle": "Arabic (العربية)",
+    "arDesc": "CV in Arabic language",
+    "enTitle": "English",
+    "enDesc": "CV in English language",
+    "trTitle": "Turkish (Türkçe)",
+    "trDesc": "CV in Turkish language"
   }
 }
