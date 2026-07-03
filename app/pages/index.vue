@@ -2786,12 +2786,12 @@ const copySnippetText = (text) => {
   }
 
   .cyber-col {
-    min-height: 480px;
+    min-height: 600px;
   }
 
   .cyber-workspace {
     max-width: 380px;
-    height: 460px;
+    height: 580px;
   }
 
   .cyber-portal {
