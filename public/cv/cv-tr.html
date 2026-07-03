@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr" dir="ltr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +8,30 @@
   <!-- Google Fonts: Inter & Cairo -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@400;700&display=swap"
+    rel="stylesheet">
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <style>
     :root {
-      --primary: #0F172A; /* Slate 900 */
-      --secondary: #0284C7; /* Sky 600 */
-      --accent: #0EA5E9; /* Sky 500 */
-      --text-main: #1E293B; /* Slate 800 */
-      --text-muted: #475569; /* Slate 600 */
-      --bg-light: #F8FAFC; /* Slate 50 */
-      --border: #E2E8F0; /* Slate 200 */
-      --timeline-line: #CBD5E1; /* Slate 300 */
+      --primary: #0F172A;
+      /* Slate 900 */
+      --secondary: #0284C7;
+      /* Sky 600 */
+      --accent: #0EA5E9;
+      /* Sky 500 */
+      --text-main: #1E293B;
+      /* Slate 800 */
+      --text-muted: #475569;
+      /* Slate 600 */
+      --bg-light: #F8FAFC;
+      /* Slate 50 */
+      --border: #E2E8F0;
+      /* Slate 200 */
+      --timeline-line: #CBD5E1;
+      /* Slate 300 */
     }
 
     * {
@@ -51,7 +62,7 @@
       border-radius: 8px;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
-    
+
     .print-btn {
       background: var(--secondary);
       color: white;
@@ -209,7 +220,8 @@
     .timeline-item::after {
       content: '';
       position: absolute;
-      left: -28px; /* Centered on the timeline border-left */
+      left: -28px;
+      /* Centered on the timeline border-left */
       top: 6px;
       width: 10px;
       height: 10px;
@@ -396,31 +408,37 @@
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
+
       @page {
         size: A4;
         margin: 0;
       }
+
       body {
         background: none;
         padding: 0;
         margin: 0;
         color: black;
       }
+
       .no-print-bar {
         display: none;
       }
+
       .page {
         margin: 0;
         border: none;
         box-shadow: none;
         page-break-after: always;
         page-break-inside: avoid;
-        height: 296.8mm; /* Slightly smaller than 297mm to prevent rounding-induced page overflows */
+        height: 296.8mm;
+        /* Slightly smaller than 297mm to prevent rounding-induced page overflows */
         width: 210mm;
       }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Print Button Bar (Hidden in prints) -->
@@ -459,7 +477,7 @@
         </div>
         <div class="contact-card">
           <i class="fa-brands fa-linkedin"></i>
-          <a href="https://linkedin.com/in/karamsawan" target="_blank">linkedin.com/in/karamsawan</a>
+          <a href="https://www.linkedin.com/in/karam-sawan-0879651a5/" target="_blank">linkedin.com/in/karamsawan</a>
         </div>
         <div class="contact-card">
           <i class="fa-solid fa-globe"></i>
@@ -475,15 +493,19 @@
         <!-- Summary Section -->
         <section class="section-block">
           <h3 class="section-title-mod"><i class="fa-solid fa-user-tie"></i> Mesleki Özet</h3>
-          <p style="text-align: justify; font-size: 13px; color: var(--text-muted); line-height: 1.45; margin-bottom: 5px;">
-            SaaS platformları ve karmaşık web uygulamaları geliştirmede 7+ yıllık deneyime sahip Kıdemli Full-Stack Developer. Yazılım mühendisliği uzmanlığımı en son yapay zeka araçlarıyla birleştirerek yenilikçi ve yüksek verimli dijital çözümler üretiyorum. Girişimci zihniyeti ve proaktif yaklaşımla, ticari hedeflere uygun, güvenli, sürdürülebilir ve uçtan uca modern mimariler tasarlıyorum.
+          <p
+            style="text-align: justify; font-size: 13px; color: var(--text-muted); line-height: 1.45; margin-bottom: 5px;">
+            SaaS platformları ve karmaşık web uygulamaları geliştirmede 7+ yıllık deneyime sahip Kıdemli Full-Stack
+            Developer. Yazılım mühendisliği uzmanlığımı en son yapay zeka araçlarıyla birleştirerek yenilikçi ve yüksek
+            verimli dijital çözümler üretiyorum. Girişimci zihniyeti ve proaktif yaklaşımla, ticari hedeflere uygun,
+            güvenli, sürdürülebilir ve uçtan uca modern mimariler tasarlıyorum.
           </p>
         </section>
 
         <!-- Experience Section -->
         <section class="section-block">
           <h3 class="section-title-mod"><i class="fa-solid fa-history"></i> İş Deneyimi</h3>
-          
+
           <ul class="experience-timeline">
             <!-- Job 1 -->
             <li class="timeline-item">
@@ -495,9 +517,14 @@
                 <span class="timeline-date">10/2024 – Günümüz</span>
               </div>
               <ul class="timeline-desc">
-                <li><strong>RightGive Platform Mühendisliği:</strong> Gelişmiş bir uluslararası bağış uygulamasının Frontend Liderliğini üstlenerek, güvenli (Type-safe) ve ölçeklenebilir bir kod tabanı sağlamak amacıyla Vue.js ve TypeScript kullanarak mimari yapıyı kurdum.</li>
-                <li><strong>Gerçek Zamanlı İletişim:</strong> Güvenilir ve anlık iletişim sağlamak amacıyla Pusher (WebSockets) destekli, yüksek performanslı entegre bir canlı sohbet sistemi tasarladım ve uyguladım.</li>
-                <li><strong>Ödeme Geçidi Entegrasyonu:</strong> Stripe aracılığıyla düzenli ödeme planlarını entegre edip güvenliğini sağlayarak, optimize edilmiş ve sorunsuz bağış akışları geliştirdim.</li>
+                <li><strong>RightGive Platform Mühendisliği:</strong> Gelişmiş bir uluslararası bağış uygulamasının
+                  Frontend Liderliğini üstlenerek, güvenli (Type-safe) ve ölçeklenebilir bir kod tabanı sağlamak
+                  amacıyla Vue.js ve TypeScript kullanarak mimari yapıyı kurdum.</li>
+                <li><strong>Gerçek Zamanlı İletişim:</strong> Güvenilir ve anlık iletişim sağlamak amacıyla Pusher
+                  (WebSockets) destekli, yüksek performanslı entegre bir canlı sohbet sistemi tasarladım ve uyguladım.
+                </li>
+                <li><strong>Ödeme Geçidi Entegrasyonu:</strong> Stripe aracılığıyla düzenli ödeme planlarını entegre
+                  edip güvenliğini sağlayarak, optimize edilmiş ve sorunsuz bağış akışları geliştirdim.</li>
               </ul>
             </li>
 
@@ -511,10 +538,18 @@
                 <span class="timeline-date">03/2021 – Günümüz</span>
               </div>
               <ul class="timeline-desc">
-                <li><strong>Looplanfy SaaS Platformu:</strong> Nuxt 3, Vue.js, Tailwind CSS, Laravel ve Supabase kullanarak bağımsız e-ticaret mağazaları ve dijital restoran menüleri oluşturan çok kiracılı (multi-tenant) bir SaaS altyapısı geliştirdim.</li>
-                <li><strong>Looplanfy Finans (Mini-ERP):</strong> Amazon, Trendyol ve Hepsiburada pazaryerleriyle sipariş ve stokları gerçek zamanlı senkronize eden, lojistiği otomatikleştiren bir depo ve muhasebe paneli oluşturdum.</li>
-                <li><strong>Rad+ & Rad Pro Sistemleri:</strong> İnternet servis sağlayıcıları (ISP'ler) için faturalandırma ve abonelik modüllü bir AAA (Kimlik Doğrulama/Yetkilendirme/Ücretlendirme) sistemi geliştiren ekibe liderlik ettim.</li>
-                <li><strong>Çeşitli Dijital Platformlar:</strong> Mobil araç yıkama randevu uygulaması (Sileversin) ve nadir el yazmaları için devasa dijital kütüphane (Altın Şamile) dahil olmak üzere çeşitli projeleri yönettim.</li>
+                <li><strong>Looplanfy SaaS Platformu:</strong> Nuxt 3, Vue.js, Tailwind CSS, Laravel ve Supabase
+                  kullanarak bağımsız e-ticaret mağazaları ve dijital restoran menüleri oluşturan çok kiracılı
+                  (multi-tenant) bir SaaS altyapısı geliştirdim.</li>
+                <li><strong>Looplanfy Finans (Mini-ERP):</strong> Amazon, Trendyol ve Hepsiburada pazaryerleriyle
+                  sipariş ve stokları gerçek zamanlı senkronize eden, lojistiği otomatikleştiren bir depo ve muhasebe
+                  paneli oluşturdum.</li>
+                <li><strong>Rad+ & Rad Pro Sistemleri:</strong> İnternet servis sağlayıcıları (ISP'ler) için
+                  faturalandırma ve abonelik modüllü bir AAA (Kimlik Doğrulama/Yetkilendirme/Ücretlendirme) sistemi
+                  geliştiren ekibe liderlik ettim.</li>
+                <li><strong>Çeşitli Dijital Platformlar:</strong> Mobil araç yıkama randevu uygulaması (Sileversin) ve
+                  nadir el yazmaları için devasa dijital kütüphane (Altın Şamile) dahil olmak üzere çeşitli projeleri
+                  yönettim.</li>
               </ul>
             </li>
           </ul>
@@ -526,7 +561,7 @@
         <!-- Technical Skills Group Cards -->
         <section class="section-block">
           <h3 class="section-title-mod"><i class="fa-solid fa-tools"></i> Teknik Yetenekler</h3>
-          
+
           <!-- Card 1 -->
           <div class="skill-card-group">
             <div class="skill-card-title"><i class="fa-solid fa-code"></i> Arayüz Geliştirme (Frontend)</div>
@@ -595,7 +630,7 @@
       <main class="main-column">
         <section class="section-block">
           <h3 class="section-title-mod"><i class="fa-solid fa-briefcase"></i> İş Deneyimi (Devamı)</h3>
-          
+
           <ul class="experience-timeline">
             <!-- Job 3 -->
             <li class="timeline-item">
@@ -607,8 +642,12 @@
                 <span class="timeline-date">07/2023 – 06/2024</span>
               </div>
               <ul class="timeline-desc">
-                <li><strong>Yollando Lojistik Paket Programı:</strong> Küresel kullanıcılara paketlerini birleştirmeleri, yönetmeleri ve uluslararası olarak göndermeleri için sanal Türkiye teslimat adresleri sağlayan Yollando paket yönlendirme uygulama paketini geliştiren frontend ekibini yönettim.</li>
-                <li><strong>Yönetici Panelleri & UX:</strong> Lojistik operasyonları hassasiyetle izlemek, kolaylaştırmak ve iş akışlarını özelleştirmek için gelişmiş etkileşimli kullanıcı arayüzleri ve yönetim panelleri tasarladım.</li>
+                <li><strong>Yollando Lojistik Paket Programı:</strong> Küresel kullanıcılara paketlerini
+                  birleştirmeleri, yönetmeleri ve uluslararası olarak göndermeleri için sanal Türkiye teslimat adresleri
+                  sağlayan Yollando paket yönlendirme uygulama paketini geliştiren frontend ekibini yönettim.</li>
+                <li><strong>Yönetici Panelleri & UX:</strong> Lojistik operasyonları hassasiyetle izlemek,
+                  kolaylaştırmak ve iş akışlarını özelleştirmek için gelişmiş etkileşimli kullanıcı arayüzleri ve
+                  yönetim panelleri tasarladım.</li>
               </ul>
             </li>
 
@@ -622,9 +661,14 @@
                 <span class="timeline-date">03/2020 – 11/2023</span>
               </div>
               <ul class="timeline-desc">
-                <li><strong>Kurumsal Arayüz Mühendisliği:</strong> Karmaşık kurumsal yazılım uygulamaları için mühendislik ekibi bünyesinde yüksek performanslı frontend çözümleri sundum.</li>
-                <li><strong>SaaS & B2B Platformları:</strong> Saha operasyonları ve devriye görev yönetim aracı olan Kokpit (SaaS) ile yapay zeka destekli akıllı iş eşleştirmesi ve hibrit B2B etkinlik platformu olan Oniki'nin frontend mimarisini geliştirdim.</li>
-                <li><strong>PeraPassage & Petner:</strong> Kurumsal ziyaretçi kayıt sistemi olan PeraPassage'ın arayüzünü tasarladım ve evcil hayvan sahipleri için geliştirilen sosyal ağ uygulaması Petner'ın temel yapısını kodladım.</li>
+                <li><strong>Kurumsal Arayüz Mühendisliği:</strong> Karmaşık kurumsal yazılım uygulamaları için
+                  mühendislik ekibi bünyesinde yüksek performanslı frontend çözümleri sundum.</li>
+                <li><strong>SaaS & B2B Platformları:</strong> Saha operasyonları ve devriye görev yönetim aracı olan
+                  Kokpit (SaaS) ile yapay zeka destekli akıllı iş eşleştirmesi ve hibrit B2B etkinlik platformu olan
+                  Oniki'nin frontend mimarisini geliştirdim.</li>
+                <li><strong>PeraPassage & Petner:</strong> Kurumsal ziyaretçi kayıt sistemi olan PeraPassage'ın
+                  arayüzünü tasarladım ve evcil hayvan sahipleri için geliştirilen sosyal ağ uygulaması Petner'ın temel
+                  yapısını kodladım.</li>
               </ul>
             </li>
 
@@ -638,7 +682,9 @@
                 <span class="timeline-date">08/2019 – 03/2020</span>
               </div>
               <ul class="timeline-desc">
-                <li><strong>E-Ticaret Pazaryerleri:</strong> Satıcılara ürün ve sipariş yönetimi için bağımsız yönetim panelleri sunan çok satıcılı e-ticaret platformlarını (Bpazar ve Trolley Market) tasarladım ve geliştirdim.</li>
+                <li><strong>E-Ticaret Pazaryerleri:</strong> Satıcılara ürün ve sipariş yönetimi için bağımsız yönetim
+                  panelleri sunan çok satıcılı e-ticaret platformlarını (Bpazar ve Trolley Market) tasarladım ve
+                  geliştirdim.</li>
               </ul>
             </li>
 
@@ -652,7 +698,9 @@
                 <span class="timeline-date">01/2017 – 08/2019</span>
               </div>
               <ul class="timeline-desc">
-                <li><strong>Operasyon ve ERP Sistemleri:</strong> Lojistik süreçleri kolaylaştırmak, idari işlemleri otomatikleştirmek ve şirketin teknik altyapısını yönetmek amacıyla özel kurum içi ERP sistemleri geliştirdim ve sürdürdüm.</li>
+                <li><strong>Operasyon ve ERP Sistemleri:</strong> Lojistik süreçleri kolaylaştırmak, idari işlemleri
+                  otomatikleştirmek ve şirketin teknik altyapısını yönetmek amacıyla özel kurum içi ERP sistemleri
+                  geliştirdim ve sürdürdüm.</li>
               </ul>
             </li>
           </ul>
@@ -665,7 +713,8 @@
         <section class="section-block">
           <h3 class="section-title-mod"><i class="fa-solid fa-graduation-cap"></i> Eğitim</h3>
           <div class="edu-card">
-            <div style="font-weight: 700; font-size: 13.5px; color: var(--primary); line-height: 1.3; margin-bottom: 3px;">
+            <div
+              style="font-weight: 700; font-size: 13.5px; color: var(--primary); line-height: 1.3; margin-bottom: 3px;">
               Bilgisayar Programcılığı Diploması
             </div>
             <div style="font-size: 12px; color: var(--text-muted);">Halep Üniversitesi - Suriye</div>
@@ -707,4 +756,5 @@
   </div>
 
 </body>
+
 </html>

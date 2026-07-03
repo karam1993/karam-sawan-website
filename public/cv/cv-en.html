@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +8,30 @@
   <!-- Google Fonts: Inter & Cairo -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@400;700&display=swap"
+    rel="stylesheet">
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <style>
     :root {
-      --primary: #0F172A; /* Slate 900 */
-      --secondary: #0284C7; /* Sky 600 */
-      --accent: #0EA5E9; /* Sky 500 */
-      --text-main: #1E293B; /* Slate 800 */
-      --text-muted: #475569; /* Slate 600 */
-      --bg-light: #F8FAFC; /* Slate 50 */
-      --border: #E2E8F0; /* Slate 200 */
-      --timeline-line: #CBD5E1; /* Slate 300 */
+      --primary: #0F172A;
+      /* Slate 900 */
+      --secondary: #0284C7;
+      /* Sky 600 */
+      --accent: #0EA5E9;
+      /* Sky 500 */
+      --text-main: #1E293B;
+      /* Slate 800 */
+      --text-muted: #475569;
+      /* Slate 600 */
+      --bg-light: #F8FAFC;
+      /* Slate 50 */
+      --border: #E2E8F0;
+      /* Slate 200 */
+      --timeline-line: #CBD5E1;
+      /* Slate 300 */
     }
 
     * {
@@ -51,7 +62,7 @@
       border-radius: 8px;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
-    
+
     .print-btn {
       background: var(--secondary);
       color: white;
@@ -209,7 +220,8 @@
     .timeline-item::after {
       content: '';
       position: absolute;
-      left: -28px; /* Centered on the timeline border-left */
+      left: -28px;
+      /* Centered on the timeline border-left */
       top: 6px;
       width: 10px;
       height: 10px;
@@ -396,31 +408,37 @@
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
+
       @page {
         size: A4;
         margin: 0;
       }
+
       body {
         background: none;
         padding: 0;
         margin: 0;
         color: black;
       }
+
       .no-print-bar {
         display: none;
       }
+
       .page {
         margin: 0;
         border: none;
         box-shadow: none;
         page-break-after: always;
         page-break-inside: avoid;
-        height: 296.8mm; /* Slightly smaller than 297mm to prevent rounding-induced page overflows */
+        height: 296.8mm;
+        /* Slightly smaller than 297mm to prevent rounding-induced page overflows */
         width: 210mm;
       }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Print Button Bar (Hidden in prints) -->
@@ -459,7 +477,7 @@
         </div>
         <div class="contact-card">
           <i class="fa-brands fa-linkedin"></i>
-          <a href="https://linkedin.com/in/karamsawan" target="_blank">linkedin.com/in/karamsawan</a>
+          <a href="https://www.linkedin.com/in/karam-sawan-0879651a5/" target="_blank">linkedin.com/in/karamsawan</a>
         </div>
         <div class="contact-card">
           <i class="fa-solid fa-globe"></i>
@@ -475,15 +493,19 @@
         <!-- Summary Section -->
         <section class="section-block">
           <h3 class="section-title-mod"><i class="fa-solid fa-user-tie"></i> Professional Summary</h3>
-          <p style="text-align: justify; font-size: 13px; color: var(--text-muted); line-height: 1.45; margin-bottom: 5px;">
-            Senior Full-Stack Developer with 7+ years of experience engineering robust SaaS platforms and complex web applications. Merging software engineering expertise with advanced AI tools to build innovative, high-efficiency digital solutions. Driven by a Founder's Mentality and a proactive approach to build secure, sustainable, and end-to-end modern architectures.
+          <p
+            style="text-align: justify; font-size: 13px; color: var(--text-muted); line-height: 1.45; margin-bottom: 5px;">
+            Senior Full-Stack Developer with 7+ years of experience engineering robust SaaS platforms and complex web
+            applications. Merging software engineering expertise with advanced AI tools to build innovative,
+            high-efficiency digital solutions. Driven by a Founder's Mentality and a proactive approach to build secure,
+            sustainable, and end-to-end modern architectures.
           </p>
         </section>
 
         <!-- Experience Section -->
         <section class="section-block">
           <h3 class="section-title-mod"><i class="fa-solid fa-history"></i> Work Experience</h3>
-          
+
           <ul class="experience-timeline">
             <!-- Job 1 -->
             <li class="timeline-item">
@@ -495,9 +517,14 @@
                 <span class="timeline-date">10/2024 – Present</span>
               </div>
               <ul class="timeline-desc">
-                <li><strong>RightGive Platform Engineering:</strong> Assumed full responsibility as Frontend Lead for an advanced international donation application, building the architectural structure using Vue.js and TypeScript to ensure type-safe, scalable codebase.</li>
-                <li><strong>Real-Time Communication Systems:</strong> Engineered and implemented an integrated, high-performance live chat system powered by Pusher (WebSockets) for reliable, instant communication.</li>
-                <li><strong>Payment Gateway Integration:</strong> Integrated and secured recurring payment gateways via Stripe, building optimized and secure donation flows seamlessly.</li>
+                <li><strong>RightGive Platform Engineering:</strong> Assumed full responsibility as Frontend Lead for an
+                  advanced international donation application, building the architectural structure using Vue.js and
+                  TypeScript to ensure type-safe, scalable codebase.</li>
+                <li><strong>Real-Time Communication Systems:</strong> Engineered and implemented an integrated,
+                  high-performance live chat system powered by Pusher (WebSockets) for reliable, instant communication.
+                </li>
+                <li><strong>Payment Gateway Integration:</strong> Integrated and secured recurring payment gateways via
+                  Stripe, building optimized and secure donation flows seamlessly.</li>
               </ul>
             </li>
 
@@ -511,10 +538,14 @@
                 <span class="timeline-date">03/2021 – Present</span>
               </div>
               <ul class="timeline-desc">
-                <li><strong>Looplanfy SaaS Platform:</strong> Built a multi-tenant SaaS platform for online stores and digital menus using Nuxt 3, Vue.js, Tailwind CSS, Laravel, and Supabase.</li>
-                <li><strong>Looplanfy Finance (Mini-ERP):</strong> Engineered an inventory panel syncing orders and stock in real-time from Amazon, Trendyol, and Hepsiburada with automated shipping.</li>
-                <li><strong>Rad+ & Rad Pro Systems:</strong> Led frontend development of an AAA billing and authorization system for internet service providers (ISPs).</li>
-                <li><strong>Diverse Digital Platforms:</strong> Managed development of Sileversin (mobile car wash app) and Golden Shamela (massive archival digital library).</li>
+                <li><strong>Looplanfy SaaS Platform:</strong> Built a multi-tenant SaaS platform for online stores and
+                  digital menus using Nuxt 3, Vue.js, Tailwind CSS, Laravel, and Supabase.</li>
+                <li><strong>Looplanfy Finance (Mini-ERP):</strong> Engineered an inventory panel syncing orders and
+                  stock in real-time from Amazon, Trendyol, and Hepsiburada with automated shipping.</li>
+                <li><strong>Rad+ & Rad Pro Systems:</strong> Led frontend development of an AAA billing and
+                  authorization system for internet service providers (ISPs).</li>
+                <li><strong>Diverse Digital Platforms:</strong> Managed development of Sileversin (mobile car wash app)
+                  and Golden Shamela (massive archival digital library).</li>
               </ul>
             </li>
           </ul>
@@ -526,7 +557,7 @@
         <!-- Technical Skills Group Cards -->
         <section class="section-block">
           <h3 class="section-title-mod"><i class="fa-solid fa-tools"></i> Technical Skills</h3>
-          
+
           <!-- Card 1 -->
           <div class="skill-card-group">
             <div class="skill-card-title"><i class="fa-solid fa-code"></i> Frontend Development</div>
@@ -595,7 +626,7 @@
       <main class="main-column">
         <section class="section-block">
           <h3 class="section-title-mod"><i class="fa-solid fa-briefcase"></i> Work Experience (Continued)</h3>
-          
+
           <ul class="experience-timeline">
             <!-- Job 3 -->
             <li class="timeline-item">
@@ -607,8 +638,12 @@
                 <span class="timeline-date">07/2023 – 06/2024</span>
               </div>
               <ul class="timeline-desc">
-                <li><strong>Yollando Logistics Suite:</strong> Led and guided the frontend team to build the Yollando package forwarding application suite, providing global customers with virtual Turkish shipping addresses to collect, manage, and ship parcels internationally.</li>
-                <li><strong>Admin Dashboards & UX:</strong> Engineered advanced interactive user interfaces and administrative dashboards to track and facilitate logistics operations and customize workflows with precision.</li>
+                <li><strong>Yollando Logistics Suite:</strong> Led and guided the frontend team to build the Yollando
+                  package forwarding application suite, providing global customers with virtual Turkish shipping
+                  addresses to collect, manage, and ship parcels internationally.</li>
+                <li><strong>Admin Dashboards & UX:</strong> Engineered advanced interactive user interfaces and
+                  administrative dashboards to track and facilitate logistics operations and customize workflows with
+                  precision.</li>
               </ul>
             </li>
 
@@ -622,9 +657,14 @@
                 <span class="timeline-date">03/2020 – 11/2023</span>
               </div>
               <ul class="timeline-desc">
-                <li><strong>Enterprise Frontend Engineering:</strong> Delivered high-performance frontend solutions within an engineering team for complex enterprise software applications.</li>
-                <li><strong>SaaS & B2B Platforms:</strong> Developed the frontend architecture for Kokpit (SaaS field operations & guard tour patrol management tool) and Oniki (AI-powered matchmaking and hybrid B2B event platform).</li>
-                <li><strong>PeraPassage & Petner:</strong> Built the interface for the PeraPassage corporate visitor registration system and developed the core structure of Petner, a social network app for pet owners.</li>
+                <li><strong>Enterprise Frontend Engineering:</strong> Delivered high-performance frontend solutions
+                  within an engineering team for complex enterprise software applications.</li>
+                <li><strong>SaaS & B2B Platforms:</strong> Developed the frontend architecture for Kokpit (SaaS field
+                  operations & guard tour patrol management tool) and Oniki (AI-powered matchmaking and hybrid B2B event
+                  platform).</li>
+                <li><strong>PeraPassage & Petner:</strong> Built the interface for the PeraPassage corporate visitor
+                  registration system and developed the core structure of Petner, a social network app for pet owners.
+                </li>
               </ul>
             </li>
 
@@ -638,7 +678,8 @@
                 <span class="timeline-date">08/2019 – 03/2020</span>
               </div>
               <ul class="timeline-desc">
-                <li><strong>E-Commerce Marketplaces:</strong> Engineered and built multi-vendor e-commerce platforms providing merchants with independent management dashboards (Bpazar and Trolley Market).</li>
+                <li><strong>E-Commerce Marketplaces:</strong> Engineered and built multi-vendor e-commerce platforms
+                  providing merchants with independent management dashboards (Bpazar and Trolley Market).</li>
               </ul>
             </li>
 
@@ -652,7 +693,9 @@
                 <span class="timeline-date">01/2017 – 08/2019</span>
               </div>
               <ul class="timeline-desc">
-                <li><strong>Operations & ERP Systems:</strong> Developed and maintained custom in-house ERP systems to streamline logistics and automate administrative operations, while managing company tech infrastructures.</li>
+                <li><strong>Operations & ERP Systems:</strong> Developed and maintained custom in-house ERP systems to
+                  streamline logistics and automate administrative operations, while managing company tech
+                  infrastructures.</li>
               </ul>
             </li>
           </ul>
@@ -666,7 +709,8 @@
         <section class="section-block">
           <h3 class="section-title-mod"><i class="fa-solid fa-graduation-cap"></i> Education</h3>
           <div class="edu-card">
-            <div style="font-weight: 700; font-size: 13.5px; color: var(--primary); line-height: 1.3; margin-bottom: 3px;">
+            <div
+              style="font-weight: 700; font-size: 13.5px; color: var(--primary); line-height: 1.3; margin-bottom: 3px;">
               Diploma in Computer Software
             </div>
             <div style="font-size: 12px; color: var(--text-muted);">University of Aleppo - Syria</div>
@@ -708,4 +752,5 @@
   </div>
 
 </body>
+
 </html>
