@@ -190,5 +190,11 @@
     "enDesc": "İngilizce Özgeçmiş",
     "trTitle": "Türkçe (Türkçe)",
     "trDesc": "Türkçe Özgeçmiş"
+  },
+  "seo": {
+    "title": "Karam Sawan | Full-Stack Web Geliştirici",
+    "description": "Vue, Nuxt, Laravel ve Node.js kullanarak modern, ölçeklenebilir ve yüksek performanslı web uygulamaları geliştirme konusunda uzmanlaşmış Full-Stack Web Geliştiricisi. Karam Sawan'ın portfolyosunu inceleyin.",
+    "ogTitle": "Karam Sawan - Portfolyo | Kıdemli Full-Stack Geliştirici",
+    "ogDescription": "Nuxt 3, Vue.js, Laravel, Node.js ve özel yapay zeka entegrasyonlarında uzmanlaşmış Kıdemli Full-Stack Geliştirici Karam Sawan'ın portfolyosunu inceleyin."
   }
 }

@@ -7,6 +7,24 @@ import { looplanfySaas } from '../data/looplanfySaas'
 const { locale, t, tm, rt } = useI18n()
 const config = useRuntimeConfig()
 
+// Dynamic localized SEO Meta tags
+useSeoMeta({
+  title: () => t('seo.title'),
+  ogTitle: () => t('seo.ogTitle'),
+  description: () => t('seo.description'),
+  ogDescription: () => t('seo.ogDescription'),
+  ogImage: 'https://karam-sawan.online/images/my-image.jpg',
+  ogImageSecureUrl: 'https://karam-sawan.online/images/my-image.jpg',
+  ogImageType: 'image/jpeg',
+  ogImageAlt: () => t('seo.title'),
+  ogType: 'website',
+  ogUrl: 'https://karam-sawan.online',
+  twitterCard: 'summary_large_image',
+  twitterTitle: () => t('seo.ogTitle'),
+  twitterDescription: () => t('seo.ogDescription'),
+  twitterImage: 'https://karam-sawan.online/images/my-image.jpg'
+})
+
 // State for AI chatbot terminal
 const customQuery = ref('')
 const terminalInput = ref('')

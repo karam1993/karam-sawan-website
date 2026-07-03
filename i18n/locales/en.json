@@ -190,5 +190,11 @@
     "enDesc": "CV in English language",
     "trTitle": "Turkish (Türkçe)",
     "trDesc": "CV in Turkish language"
+  },
+  "seo": {
+    "title": "Karam Sawan | Full-Stack Web Developer",
+    "description": "Professional Full-Stack Web Developer specialized in building modern, scalable, and high-performance web applications using Vue, Nuxt, Laravel, and Node.js. Explore Karam Sawan's portfolio.",
+    "ogTitle": "Karam Sawan - Portfolio | Senior Full-Stack Developer",
+    "ogDescription": "Explore the portfolio of Karam Sawan, a Senior Full-Stack Developer specializing in Nuxt 3, Vue.js, Laravel, Node.js, and custom AI integrations."
   }
 }
