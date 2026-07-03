@@ -1030,20 +1030,32 @@ const detailsDialog = ref({
 const showMobileFileTree = ref(false)
 
 // CV Dialog State
-const cvDialog = ref({
-  isOpen: false
-})
+const cvDialog = ref(false)
 
 const activePreviewUrl = ref(null)
 const activePreviewLang = ref('ar')
 
 const openCvDialog = () => {
-  cvDialog.value.isOpen = true
+  cvDialog.value = true
 }
 
 const openPdfPreview = (url, lang) => {
   activePreviewUrl.value = url
   activePreviewLang.value = lang
+}
+
+const printPreviewIframe = () => {
+  const iframe = document.querySelector('.cv-preview-iframe')
+  if (iframe) {
+    try {
+      iframe.contentWindow.focus()
+      iframe.contentWindow.print()
+    } catch (e) {
+      window.open(activePreviewUrl.value, '_blank')
+    }
+  } else {
+    window.open(activePreviewUrl.value, '_blank')
+  }
 }
 
 const getCvPreviewTitle = () => {
@@ -1060,7 +1072,7 @@ const cvDialogWidth = computed(() => {
   return activePreviewUrl.value ? '950px' : '650px'
 })
 
-watch(() => cvDialog.value.isOpen, (newVal) => {
+watch(cvDialog, (newVal) => {
   if (!newVal) {
     activePreviewUrl.value = null
   }
@@ -1840,6 +1852,7 @@ const copySnippetText = (text) => {
       :max-width="dialogMaxWidth" 
       :fullscreen="$vuetify.display.xs"
       transition="dialog-bottom-transition"
+      scroll-strategy="none"
     >
       <v-card 
         v-if="detailsDialog.project" 
@@ -2047,10 +2060,10 @@ const copySnippetText = (text) => {
     </v-dialog>
 
     <!-- CV Download/Preview Dialog -->
-    <v-dialog v-model="cvDialog.isOpen" :max-width="cvDialogWidth" transition="dialog-bottom-transition">
+    <v-dialog v-model="cvDialog" :max-width="cvDialogWidth" transition="dialog-bottom-transition" scroll-strategy="none">
       <v-card class="cv-dialog-card glass-panel-dialog">
         <!-- Close Button -->
-        <button v-if="!activePreviewUrl" class="dialog-close-btn" @click="cvDialog.isOpen = false" aria-label="Close">
+        <button v-if="!activePreviewUrl" class="dialog-close-btn" @click="cvDialog = false" aria-label="Close">
           <v-icon icon="mdi-close" size="20"></v-icon>
         </button>
 
@@ -2074,46 +2087,12 @@ const copySnippetText = (text) => {
 
           <!-- Languages List -->
           <div class="cv-languages-list">
-            <!-- Arabic Option -->
-            <div class="cv-lang-row d-flex align-center justify-space-between pa-4 mb-4 glass-item flex-wrap gap-4">
-              <div class="d-flex align-center">
-                <span class="flag-icon text-h5 mr-3 ml-3">🇸🇾</span>
-                <div>
-                  <div class="font-weight-bold text-white text-subtitle-1">{{ $t('cv.arTitle') }}</div>
-                  <div class="text-caption text-grey-lighten-2">{{ $t('cv.arDesc') }}</div>
-                </div>
-              </div>
-              <div class="d-flex gap-2 cv-actions">
-                <v-btn
-                  variant="outlined"
-                  size="small"
-                  class="action-btn-cv outlined px-3 py-1"
-                  color="#7afffb"
-                  @click="openPdfPreview('/cv/karam-sawan-cv-ar.pdf', 'ar')"
-                >
-                  <v-icon icon="mdi-eye-outline" class="mr-1 ml-1" size="16"></v-icon>
-                  {{ $t('cv.preview') }}
-                </v-btn>
-                <v-btn
-                  href="/cv/karam-sawan-cv-ar.pdf"
-                  download="Karam_Sawan_CV_AR.pdf"
-                  variant="flat"
-                  size="small"
-                  class="action-btn-cv flat px-3 py-1"
-                  color="#7afffb"
-                >
-                  <v-icon icon="mdi-download" class="mr-1 ml-1" size="16"></v-icon>
-                  {{ $t('cv.download') }}
-                </v-btn>
-              </div>
-            </div>
-
             <!-- English Option -->
-            <div class="cv-lang-row d-flex align-center justify-space-between pa-4 mb-4 glass-item flex-wrap gap-4">
+            <div class="cv-lang-row d-flex align-center justify-space-between pa-3 mb-3 glass-item flex-wrap gap-3">
               <div class="d-flex align-center">
-                <span class="flag-icon text-h5 mr-3 ml-3">🇬🇧</span>
+                <img src="https://flagcdn.com/w40/gb.png" width="22" style="border-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);" class="mr-2 ml-2" alt="UK Flag">
                 <div>
-                  <div class="font-weight-bold text-white text-subtitle-1">{{ $t('cv.enTitle') }}</div>
+                  <div class="font-weight-bold text-white text-subtitle-2">{{ $t('cv.enTitle') }}</div>
                   <div class="text-caption text-grey-lighten-2">{{ $t('cv.enDesc') }}</div>
                 </div>
               </div>
@@ -2123,31 +2102,31 @@ const copySnippetText = (text) => {
                   size="small"
                   class="action-btn-cv outlined px-3 py-1"
                   color="#7afffb"
-                  @click="openPdfPreview('/cv/karam-sawan-cv-en.pdf', 'en')"
+                  @click="openPdfPreview('/cv/cv-en.html', 'en')"
                 >
                   <v-icon icon="mdi-eye-outline" class="mr-1 ml-1" size="16"></v-icon>
-                  {{ $t('cv.preview') }}
+                  <span class="d-none d-sm-inline">{{ $t('cv.preview') }}</span>
                 </v-btn>
                 <v-btn
-                  href="/cv/karam-sawan-cv-en.pdf"
-                  download="Karam_Sawan_CV_EN.pdf"
+                  href="/cv/cv-en.html"
+                  target="_blank"
                   variant="flat"
                   size="small"
                   class="action-btn-cv flat px-3 py-1"
                   color="#7afffb"
                 >
-                  <v-icon icon="mdi-download" class="mr-1 ml-1" size="16"></v-icon>
-                  {{ $t('cv.download') }}
+                  <v-icon icon="mdi-printer" class="mr-1 ml-1" size="16"></v-icon>
+                  <span class="d-none d-sm-inline">{{ $t('cv.download') }}</span>
                 </v-btn>
               </div>
             </div>
 
             <!-- Turkish Option -->
-            <div class="cv-lang-row d-flex align-center justify-space-between pa-4 glass-item flex-wrap gap-4">
+            <div class="cv-lang-row d-flex align-center justify-space-between pa-3 mb-3 glass-item flex-wrap gap-3">
               <div class="d-flex align-center">
-                <span class="flag-icon text-h5 mr-3 ml-3">🇹🇷</span>
+                <img src="https://flagcdn.com/w40/tr.png" width="22" style="border-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);" class="mr-2 ml-2" alt="TR Flag">
                 <div>
-                  <div class="font-weight-bold text-white text-subtitle-1">{{ $t('cv.trTitle') }}</div>
+                  <div class="font-weight-bold text-white text-subtitle-2">{{ $t('cv.trTitle') }}</div>
                   <div class="text-caption text-grey-lighten-2">{{ $t('cv.trDesc') }}</div>
                 </div>
               </div>
@@ -2157,21 +2136,55 @@ const copySnippetText = (text) => {
                   size="small"
                   class="action-btn-cv outlined px-3 py-1"
                   color="#7afffb"
-                  @click="openPdfPreview('/cv/karam-sawan-cv-tr.pdf', 'tr')"
+                  @click="openPdfPreview('/cv/cv-tr.html', 'tr')"
                 >
                   <v-icon icon="mdi-eye-outline" class="mr-1 ml-1" size="16"></v-icon>
-                  {{ $t('cv.preview') }}
+                  <span class="d-none d-sm-inline">{{ $t('cv.preview') }}</span>
                 </v-btn>
                 <v-btn
-                  href="/cv/karam-sawan-cv-tr.pdf"
-                  download="Karam_Sawan_CV_TR.pdf"
+                  href="/cv/cv-tr.html"
+                  target="_blank"
                   variant="flat"
                   size="small"
                   class="action-btn-cv flat px-3 py-1"
                   color="#7afffb"
                 >
-                  <v-icon icon="mdi-download" class="mr-1 ml-1" size="16"></v-icon>
-                  {{ $t('cv.download') }}
+                  <v-icon icon="mdi-printer" class="mr-1 ml-1" size="16"></v-icon>
+                  <span class="d-none d-sm-inline">{{ $t('cv.download') }}</span>
+                </v-btn>
+              </div>
+            </div>
+
+            <!-- Arabic Option -->
+            <div class="cv-lang-row d-flex align-center justify-space-between pa-3 glass-item flex-wrap gap-3">
+              <div class="d-flex align-center">
+                <img src="https://flagcdn.com/w40/sa.png" width="22" style="border-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);" class="mr-2 ml-2" alt="SA Flag">
+                <div>
+                  <div class="font-weight-bold text-white text-subtitle-2">{{ $t('cv.arTitle') }}</div>
+                  <div class="text-caption text-grey-lighten-2">{{ $t('cv.arDesc') }}</div>
+                </div>
+              </div>
+              <div class="d-flex gap-2 cv-actions">
+                <v-btn
+                  variant="outlined"
+                  size="small"
+                  class="action-btn-cv outlined px-3 py-1"
+                  color="#7afffb"
+                  @click="openPdfPreview('/cv/cv-ar.html', 'ar')"
+                >
+                  <v-icon icon="mdi-eye-outline" class="mr-1 ml-1" size="16"></v-icon>
+                  <span class="d-none d-sm-inline">{{ $t('cv.preview') }}</span>
+                </v-btn>
+                <v-btn
+                  href="/cv/cv-ar.html"
+                  target="_blank"
+                  variant="flat"
+                  size="small"
+                  class="action-btn-cv flat px-3 py-1"
+                  color="#7afffb"
+                >
+                  <v-icon icon="mdi-printer" class="mr-1 ml-1" size="16"></v-icon>
+                  <span class="d-none d-sm-inline">{{ $t('cv.download') }}</span>
                 </v-btn>
               </div>
             </div>
@@ -2202,22 +2215,11 @@ const copySnippetText = (text) => {
             </div>
             <div class="d-flex align-center" style="gap: 16px;">
               <v-btn
-                :href="activePreviewUrl"
-                :download="getCvDownloadName()"
-                variant="flat"
-                size="small"
-                class="action-btn-cv flat px-4 py-1"
-                color="#7afffb"
-              >
-                <v-icon icon="mdi-download" class="mr-1 ml-1" size="16"></v-icon>
-                {{ $t('cv.download') }}
-              </v-btn>
-              <v-btn
                 icon="mdi-close"
                 variant="text"
                 color="grey-lighten-1"
                 density="comfortable"
-                @click="cvDialog.isOpen = false"
+                @click="cvDialog = false"
                 aria-label="Close"
                 class="mr-2 ml-2"
               ></v-btn>
@@ -2475,6 +2477,7 @@ const copySnippetText = (text) => {
   height: 350px;
   z-index: 10;
   animation: robotFloat 6s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .robot-svg {
@@ -4367,41 +4370,66 @@ a.linkedin-link:hover {
 /* CV Dialog Mobile Responsiveness */
 @media (max-width: 600px) {
   .cv-dialog-card .dialog-content-body {
-    padding: 16px !important;
+    padding: 12px !important;
   }
   
   .cv-lang-row {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    text-align: center;
-    padding: 20px 16px !important;
-    gap: 16px !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 10px 12px !important;
+    gap: 8px !important;
   }
   
   .cv-lang-row > div:first-child {
-    flex-direction: column !important;
-    gap: 8px;
+    flex-direction: row !important;
+    gap: 10px !important;
     align-items: center !important;
+    flex: 1;
+    min-width: 0;
   }
   
-  .cv-lang-row .flag-icon {
+  .cv-lang-row .flag-icon,
+  .cv-lang-row img {
     margin: 0 !important;
-    font-size: 2.2rem !important;
-    line-height: 1;
+    width: 20px !important;
+    height: auto !important;
+  }
+
+  .cv-lang-row .text-subtitle-2 {
+    font-size: 0.85rem !important;
+  }
+
+  .cv-lang-row .text-caption {
+    font-size: 0.72rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
   }
   
   .cv-actions {
-    width: 100%;
-    justify-content: center;
-    gap: 10px !important;
+    width: auto !important;
+    justify-content: flex-end !important;
+    gap: 6px !important;
+    flex-shrink: 0;
   }
   
   .cv-actions .action-btn-cv {
-    flex: 1;
-    min-width: 0;
-    font-size: 0.8rem !important;
-    padding: 8px 12px !important;
-    height: 36px !important;
+    flex: none !important;
+    min-width: 32px !important;
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .cv-actions .action-btn-cv .v-icon {
+    margin: 0 !important;
+    font-size: 14px !important;
   }
 
   .cv-dialog-card .dialog-content-body[style*="height: 75vh"] {

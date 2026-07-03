@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>كرم صوان - السيرة الذاتية (Senior Full-Stack Developer)</title>
+  <!-- Google Fonts: Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #0F172A;
+      /* Slate 900 */
+      --secondary: #0284C7;
+      /* Sky 600 */
+      --accent: #0EA5E9;
+      /* Sky 500 */
+      --text-main: #1E293B;
+      /* Slate 800 */
+      --text-muted: #475569;
+      /* Slate 600 */
+      --bg-light: #F8FAFC;
+      /* Slate 50 */
+      --border: #E2E8F0;
+      /* Slate 200 */
+      --timeline-line: #CBD5E1;
+      /* Slate 300 */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #E2E8F0;
+      color: var(--text-main);
+      line-height: 1.6;
+      font-size: 15px;
+      padding: 20px 0;
+    }
+
+    /* Print utility bar */
+    .no-print-bar {
+      width: 210mm;
+      margin: 0 auto 15px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--primary);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .print-btn {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .print-btn:hover {
+      background: var(--accent);
+    }
+
+    /* Page container simulating A4 sheet */
+    .page {
+      width: 210mm;
+      height: 297mm;
+      background: white;
+      margin: 0 auto 20px auto;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Executive Top Header (Full Width) */
+    .cv-header-executive {
+      background: var(--primary);
+      color: white;
+      padding: 25px 30px;
+      border-bottom: 5px solid var(--secondary);
+    }
+
+    .header-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .executive-name h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .executive-name h2 {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 3px;
+    }
+
+    /* Contact Details Horizontal Grid */
+    .contact-grid-horizontal {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 12px;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      color: #E2E8F0;
+    }
+
+    .contact-card i {
+      color: var(--accent);
+      font-size: 13px;
+    }
+
+    .contact-card a {
+      color: #E2E8F0;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-card a:hover {
+      color: white;
+    }
+
+    /* Layout Body Content */
+    .cv-body-content {
+      padding: 20px 30px;
+      display: grid;
+      grid-template-columns: 68% 32%;
+      gap: 20px;
+      flex-grow: 1;
+    }
+
+    /* Main Column */
+    .main-column {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* Sidebar Column */
+    .sidebar-column {
+      border-right: 1px solid var(--border);
+      padding-right: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* Section Styling */
+    .section-block {
+      margin-bottom: 5px;
+    }
+
+    .section-title-mod {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 4px;
+    }
+
+    .section-title-mod i {
+      color: var(--secondary);
+      font-size: 14px;
+    }
+
+    /* Visual Timeline for Experience */
+    .experience-timeline {
+      position: relative;
+      border-right: 2px solid var(--timeline-line);
+      margin-right: 10px;
+      padding-right: 20px;
+      list-style: none;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      right: -28px;
+      /* Centered on the timeline line */
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--secondary);
+      border: 2px solid white;
+      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.25);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 4px;
+    }
+
+    .timeline-job-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.3;
+    }
+
+    .timeline-company {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    .timeline-date {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: var(--bg-light);
+      padding: 1px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .timeline-desc {
+      list-style-type: none;
+      padding-right: 5px;
+    }
+
+    .timeline-desc li {
+      position: relative;
+      padding-right: 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+      text-align: justify;
+    }
+
+    .timeline-desc li::before {
+      content: "•";
+      color: var(--secondary);
+      font-weight: bold;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    /* Skills Card Layout */
+    .skill-card-group {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .skill-card-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 4px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .skill-tag {
+      font-size: 11.5px;
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* Project Cards */
+    .project-timeline-card {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+    }
+
+    .project-card-header {
+      font-weight: 700;
+      font-size: 12.5px;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .project-card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      text-align: justify;
+    }
+
+    .project-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    /* Education card */
+    .edu-card {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    /* Languages styling */
+    /* Languages styling */
+    .lang-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .lang-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    .lang-icon {
+      color: var(--secondary);
+      font-size: 15px;
+      background: white;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .lang-name {
+      font-weight: 700;
+      font-size: 13.5px;
+      color: var(--primary);
+    }
+
+    .lang-level {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Print settings */
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      body {
+        background: none;
+        padding: 0;
+        margin: 0;
+        color: black;
+      }
+
+      .no-print-bar {
+        display: none;
+      }
+
+      .page {
+        margin: 0;
+        border: none;
+        box-shadow: none;
+        page-break-after: always;
+        page-break-inside: avoid;
+        height: 296.8mm;
+        /* Slightly smaller than 297mm to prevent rounding-induced page overflows */
+        width: 210mm;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Print Button Bar (Hidden in prints) -->
+  <div class="no-print-bar">
+    <div style="font-weight: 700; font-size: 15px;">معاينة السيرة الذاتية (كرم صوان - تصميم التايملاين التنفيذي)</div>
+    <button class="print-btn" onclick="window.print()">
+      <i class="fa-solid fa-print"></i>
+      <span>تحميل بصيغة PDF / طباعة</span>
+    </button>
+  </div>
+
+  <!-- ================= PAGE 1 ================= -->
+  <div class="page">
+    <!-- Executive Header -->
+    <header class="cv-header-executive">
+      <div class="header-top-row">
+        <div class="executive-name">
+          <h1>كرم صوان</h1>
+          <h2>مطور Full-Stack أول (Senior Full-Stack Developer)</h2>
+        </div>
+      </div>
+
+      <!-- Contact Info Grid -->
+      <div class="contact-grid-horizontal">
+        <div class="contact-card">
+          <i class="fa-solid fa-phone"></i>
+          <a href="tel:+905519658422" style="direction: ltr; display: inline-block;">+90 551 965 8422</a>
+        </div>
+        <div class="contact-card">
+          <i class="fa-solid fa-envelope"></i>
+          <a href="mailto:karam.sawan.sy@gmail.com">karam.sawan.sy@gmail.com</a>
+        </div>
+        <div class="contact-card">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>إسطنبول، تركيا</span>
+        </div>
+        <div class="contact-card">
+          <i class="fa-brands fa-linkedin"></i>
+          <a href="https://linkedin.com/in/karamsawan" target="_blank">linkedin.com/in/karamsawan</a>
+        </div>
+
+        <div class="contact-card">
+          <i class="fa-solid fa-globe"></i>
+          <a href="https://karam-sawan.online" target="_blank">karam-sawan.online</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Layout Body -->
+    <div class="cv-body-content">
+      <!-- Main Column (Summary + Top Jobs) -->
+      <main class="main-column">
+        <!-- Summary Section -->
+        <section class="section-block">
+          <h3 class="section-title-mod"><i class="fa-solid fa-user-tie"></i> الملخص المهني</h3>
+          <p
+            style="text-align: justify; font-size: 13.5px; color: var(--text-muted); line-height: 1.5; margin-bottom: 5px;">
+            مطور Full-Stack أول بخبرة تزيد عن 7 سنوات في هندسة وبناء منصات SaaS قوية وتطبيقات ويب معقدة وقابلة للتوسع.
+            أقوم بابتكار وتطوير تطبيقات ويب عصرية سريعة وسلسة، وأدمج بين خبرتي البرمجية العميقة وأحدث أدوات الذكاء
+            الاصطناعي لتقديم حلول مبتكرة، ذكية وعالية الكفاءة (تصل لتسريع الإنتاجية بمقدار 10 أضعاف)، مما يضمن تقليص وقت
+            إطلاق المنتجات للسوق (Time-to-Market) مع الحفاظ على كود برمجي نظيف، آمن، ومستدام<br><br> <b>
+              أعمل بعقلية المؤسس
+              (Founder's Mentality) ونهج استباقي صارم موجه نحو ابتكار الحلول؛ حيث أتجاوز حدود التنفيذ التقليدي للمهام
+              البرمجية، لأعمل على رصد الاختناقات التجارية، وتصميم بنيات تحتية هندسية متكاملة تعالج المشكلات المعقدة على
+              مستوى الأفراد والشركات الكبرى.
+            </b>
+          </p>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="section-block">
+          <h3 class="section-title-mod"><i class="fa-solid fa-history"></i> الخبرة المهنية</h3>
+
+          <ul class="experience-timeline">
+            <!-- Job 1 -->
+            <li class="timeline-item">
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-job-title">مطور واجهات أمامية أول</span><br>
+                  <span class="timeline-company">E Technologies | إسطنبول، تركيا</span>
+                </div>
+                <span class="timeline-date">10/2024 – الحاضر</span>
+              </div>
+              <ul class="timeline-desc">
+                <li><strong>هندسة منصة RightGive:</strong> تولي المسؤولية الكاملة كقائد لتطوير الواجهات الأمامية لتتطبيق
+                  تبرعات دولي متقدم، وبناء الهيكلية البرمجية باستخدام Vue.js و TypeScript لضمان كود آمن (Type-safe)
+                  وقابل للتوسع.</li>
+                <li><strong>أنظمة الاتصال اللحظي (Real-Time):</strong> هندسة وتطوير نظام محادثات مباشرة مدمج وعالي
+                  الأداء باستخدام تقنية Pusher (WebSockets)، مما أتاح تواصلاً فورياً وموثوقاً.</li>
+                <li><strong>ربط بوابات الدفع الإلكتروني:</strong> دمج وتأمين بوابات دفع دورية آمنة عبر Stripe، وبناء
+                  مسارات تبرع (Donation Flows) محسنة ومؤمنة بيسر.</li>
+              </ul>
+            </li>
+
+            <!-- Job 2 -->
+            <li class="timeline-item">
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-job-title">مطور Full-Stack أول وقائد فريق (دوام جزئي)</span><br>
+                  <span class="timeline-company">Smartizi Teknoloji | إسطنبول، تركيا</span>
+                </div>
+                <span class="timeline-date">03/2021 – الحاضر</span>
+              </div>
+              <ul class="timeline-desc">
+                <li><strong>منصة Looplanfy (SaaS):</strong> تصميم وبناء منصة SaaS شاملة ومتعددة المستأجرين
+                  (Multi-tenant) مخصصة لإنشاء وإدارة المتاجر الإلكترونية والقوائم الرقمية للمطاعم بشكل مستقل وتلقائي.
+                  هندسة البنية التحتية بالكامل بدمج Nuxt 3 و Vue.js و Tailwind CSS مع Laravel و Supabase.</li>
+                <li><strong>نظام Looplanfy Finance (Mini-ERP):</strong> تطوير لوحة تحكم للمحاسبة والمستودعات متزامنة
+                  لحظياً (Mini-ERP)، وربطها برمجياً مع كبرى الأسواق (Amazon, Hepsiburada, Trendyol) وأتمتة الشحن
+                  اللوجستي.</li>
+                <li><strong>أنظمة Rad+ و Rad Pro:</strong> قيادة فريق الواجهات الأمامية لبناء نظام AAA (تفتيش وصلاحيات
+                  ومحاسبة) لمزودي خدمات الإنترنت (ISPs) مع وحدات الفوترة والاشتراكات.</li>
+                <li><strong>المنصات الرقمية المتنوعة:</strong> الإشراف على مشاريع متنوعة مثل تطبيق Sileversin وجدولة
+                  غسيل السيارات المتنقلة بدون ماء، والمكتبة الذهبية الشاملة لفهرسة وحفظ الكتب النادرة.</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <!-- Sidebar Column -->
+      <aside class="sidebar-column">
+        <!-- Technical Skills Group Cards -->
+        <section class="section-block">
+          <h3 class="section-title-mod"><i class="fa-solid fa-tools"></i> المهارات التقنية</h3>
+
+          <!-- Card 1 -->
+          <div class="skill-card-group">
+            <div class="skill-card-title"><i class="fa-solid fa-code"></i> الواجهات الأمامية</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Vue.js</span>
+              <span class="skill-tag">Nuxt 3</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">Tailwind CSS</span>
+              <span class="skill-tag">Vuetify</span>
+              <span class="skill-tag">HTML5/CSS3</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="skill-card-group">
+            <div class="skill-card-title"><i class="fa-solid fa-server"></i> الخلفيات وقواعد البيانات</div>
+            <div class="skill-tags">
+              <span class="skill-tag">PHP</span>
+              <span class="skill-tag">Laravel</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">Express</span>
+              <span class="skill-tag">Supabase</span>
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">MySQL</span>
+              <span class="skill-tag">RESTful APIs</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="skill-card-group">
+            <div class="skill-card-title"><i class="fa-solid fa-robot"></i> الذكاء الاصطناعي</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Prompt Eng.</span>
+              <span class="skill-tag">AI-Assisted Dev</span>
+              <span class="skill-tag">Rapid Prototyping</span>
+              <span class="skill-tag">Workflow Automation</span>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 2 ================= -->
+  <div class="page">
+    <!-- Header Minimal (Page 2) -->
+    <header class="cv-header-executive" style="padding: 15px 30px;">
+      <div class="header-top-row" style="margin-bottom: 0;">
+        <div class="executive-name">
+          <h1 style="font-size: 20px;">كرم صوان</h1>
+          <h2 style="font-size: 12px;">مطور Full-Stack أول (Senior Full-Stack Developer)</h2>
+        </div>
+        <div style="font-size: 11px; color: #E2E8F0;">صفحة 2 من 2</div>
+      </div>
+    </header>
+
+    <!-- Layout Body (Page 2) -->
+    <div class="cv-body-content">
+      <!-- Main Column (Continued Jobs + Projects) -->
+      <main class="main-column">
+        <section class="section-block">
+          <h3 class="section-title-mod"><i class="fa-solid fa-briefcase"></i> الخبرة المهنية (تابع)</h3>
+
+          <ul class="experience-timeline">
+            <!-- Job 3 -->
+            <li class="timeline-item">
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-job-title">قائد فريق الواجهات الأمامية (Frontend Team Leader)</span><br>
+                  <span class="timeline-company">Limonist Meta | إسطنبول، تركيا</span>
+                </div>
+                <span class="timeline-date">07/2023 – 06/2024</span>
+              </div>
+              <ul class="timeline-desc">
+                <li><strong>حزمة Yollando اللوجستية:</strong> قيادة وتوجيه فريق تطوير الواجهات لبناء حزمة تطبيقات
+                  Yollando لإعادة توجيه الشحنات، التي تمنح العملاء عناوين تركية افتراضية لتجميع وإدارة الطرود وشحنها
+                  دولياً.</li>
+                <li><strong>لوحات التحكم وتجربة المستخدم:</strong> هندسة واجهات مستخدم تفاعلية متطورة ولوحة تحكم إدارية
+                  لتتبع وتسهيل العمليات اللوجستية وتخصيص مسارات العمل بدقة.</li>
+              </ul>
+            </li>
+
+            <!-- Job 4 -->
+            <li class="timeline-item">
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-job-title">مطور واجهات أمامية أول (Senior Frontend)</span><br>
+                  <span class="timeline-company">MGS Software | إسطنبول، تركيا</span>
+                </div>
+                <span class="timeline-date">03/2020 – 11/2023</span>
+              </div>
+              <ul class="timeline-desc">
+                <li><strong>تطوير واجهات الأنظمة المؤسسية:</strong> تقديم حلول واجهات أمامية عالية الأداء ضمن فريق هندسي
+                  لتطبيقات برمجية معقدة.</li>
+                <li><strong>SaaS & B2B:</strong> تطوير الهيكلية الأمامية لمشروع Kokpit (نظام SaaS لإدارة المهام
+                  الميدانية ومراقبة الموظفين) ومنصة Oniki (منصة تفاعلية مدعومة بالذكاء الاصطناعي لإدارة الفعاليات
+                  والمطابقة التجارية B2B).</li>
+                <li><strong>PeraPassage & Petner:</strong> بناء واجهة نظام تسجيل زوار الشركات PeraPassage، وتطوير البنية
+                  الأساسية لتطبيق التواصل الاجتماعي Petner لأصحاب الحيوانات الأليفة.</li>
+              </ul>
+            </li>
+
+            <!-- Job 5 -->
+            <li class="timeline-item">
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-job-title">مطور ويب متكامل (Full Stack)</span><br>
+                  <span class="timeline-company">Namaa Solution | إسطنبول، تركيا</span>
+                </div>
+                <span class="timeline-date">08/2019 – 03/2020</span>
+              </div>
+              <ul class="timeline-desc">
+                <li><strong>التجارة الإلكترونية:</strong> هندسة وبناء منصات تجارة إلكترونية متعددة البائعين تمنح لكل
+                  تاجر لوحة تحكم مستقلة لإدارة المنتجات والمبيعات (Bpazar و Trolley Market).</li>
+              </ul>
+            </li>
+
+            <!-- Job 6 -->
+            <li class="timeline-item" style="margin-bottom: 0;">
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-job-title">مدير أنظمة الويب والـ ERP</span><br>
+                  <span class="timeline-company">SeRiCo YAPI A.Ş | إسطنبول، تركيا</span>
+                </div>
+                <span class="timeline-date">01/2017 – 08/2019</span>
+              </div>
+              <ul class="timeline-desc">
+                <li><strong>العمليات والـ ERP:</strong> تطوير وإدارة أنظمة تشغيلية داخلية (ERP) للشركة لتسهيل المهام
+                  اللوجستية وأتمتة العمليات الإدارية، وإدارة البنية التحتية للمواقع التقنية للشركة.</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <!-- Sidebar Column (Page 2) -->
+      <aside class="sidebar-column">
+
+        <!-- Education Section -->
+        <section class="section-block">
+          <h3 class="section-title-mod"><i class="fa-solid fa-graduation-cap"></i> التعليم</h3>
+          <div class="edu-card">
+            <div
+              style="font-weight: 700; font-size: 13.5px; color: var(--primary); line-height: 1.3; margin-bottom: 3px;">
+              دبلوم في برمجيات الحاسوب</div>
+            <div style="font-size: 12px; color: var(--text-muted);">جامعة حلب - سوريا</div>
+            <div style="font-size: 12px; color: var(--secondary); font-weight: 700; margin-top: 3px;">تاريخ التخرج: 2013
+            </div>
+          </div>
+        </section>
+
+        <!-- Languages Section -->
+        <section class="section-block">
+          <h3 class="section-title-mod"><i class="fa-solid fa-language"></i> اللغات</h3>
+          <div class="lang-container">
+            <div class="lang-card">
+              <i class="fa-solid fa-comments lang-icon"></i>
+              <div>
+                <div class="lang-name">العربية</div>
+                <div class="lang-level">اللغة الأم</div>
+              </div>
+            </div>
+            <div class="lang-card">
+              <i class="fa-solid fa-language lang-icon"></i>
+              <div>
+                <div class="lang-name">التركية</div>
+                <div class="lang-level">طليق / مستوى متقدم</div>
+              </div>
+            </div>
+            <div class="lang-card">
+              <i class="fa-solid fa-earth-americas lang-icon"></i>
+              <div>
+                <div class="lang-name">الإنجليزية</div>
+                <div class="lang-level">مستوى متوسط</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </div>
+
+</body>
+
+</html>
