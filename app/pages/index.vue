@@ -48,12 +48,27 @@ const suggestions = computed(() => {
       {
         label: 'ما هي مهاراته؟',
         text: 'ما هي مهارات كرم البرمجية؟',
-        response: 'يتخصص كرم في تطوير التطبيقات الحديثة باستخدام:<br><br>• [span class="text-primary font-weight-bold"]الواجهات الأمامية[/span]: Vue.js, Nuxt.js, Vuetify, HTML5, CSS3, JavaScript (ES6+)<br>• [span class="text-secondary font-weight-bold"]الخلفيات وقواعد البيانات[/span]: Node.js, Express, PostgreSQL, MongoDB, REST APIs<br>• [span class="text-accent font-weight-bold"]أدوات التطوير[/span]: Git, Docker, DevOps, CI/CD'
+        response: 'يتخصص كرم في تطوير التطبيقات الحديثة باستخدام:<br><br>• [span class="text-primary font-weight-bold"]الواجهات الأمامية[/span]: Vue 3, Nuxt 3, Vuetify, HTML5, CSS3, JavaScript (ES6+), TypeScript.<br>• [span class="text-secondary font-weight-bold"]الخلفيات وقواعد البيانات[/span]: Node.js, Express, PostgreSQL, MongoDB, RESTful APIs.<br>• [span class="text-accent font-weight-bold"]أدوات التطوير و DevOps[/span]: Git, Docker, Linux, CI/CD, Cloud Hosting.'
       },
       {
-        label: 'تواصل معه؟',
+        label: 'ما هي مشاريع كرم؟',
+        text: 'ما هي مشاريع وأعمال كرم صوان؟',
+        response: 'قام كرم ببناء وتطوير العديد من المشاريع المميزة، ومن أبرزها:<br><br>• [span class="text-primary font-weight-bold"]منصات SaaS متكاملة[/span] مع لوحات تحكم ديناميكية وإحصائيات فورية.<br>• [span class="text-secondary font-weight-bold"]مواقع تجارة إلكترونية وبوابات دفع[/span] سريعة ومحمية.<br>• يمكنك التمرير لأسفل الصفحة لرؤية التفاصيل التفاعلية لكل مشروع بروابط العرض الحي ومستودعات الكود!'
+      },
+      {
+        label: 'ما هي خدماته؟',
+        text: 'ما هي الخدمات التي يقدمها كرم؟',
+        response: 'الخدمات التي يقدمها كرم لعملائه تشمل:<br><br>• [span class="text-primary font-weight-bold"]تطوير مواقع كاملة (SSR/SPA)[/span] سريعة ومتوافقة مع محركات البحث SEO.<br>• [span class="text-secondary font-weight-bold"]تطوير واجهات خلفية سحابية وآمنة[/span] وقواعد بيانات قوية.<br>• [span class="text-accent font-weight-bold"]ربط ودمج واجهات الذكاء الاصطناعي (AI Integration)[/span] في المواقع والتطبيقات.<br>• [span class="text-primary font-weight-bold"]تحسين الأداء وسرعة تحميل الصفحات[/span].'
+      },
+      {
+        label: 'كيف يستخدم الذكاء الاصطناعي في أعماله؟',
+        text: 'كيف يستخدم كرم الذكاء الاصطناعي في أعماله؟',
+        response: 'كرم صوان مطور ويب متطور يدمج الذكاء الاصطناعي في صميم عمله:<br><br>• يستخدم [span class="text-primary font-weight-bold"]مساعدات الذكاء الاصطناعي البرمجية[/span] لتسريع وتيرة كتابة الأكواد ومراجعتها.<br>• يقوم بأتمتة المهام المتكررة وكتابة الاختبارات لضمان خلو الأكواد من الأخطاء البرمجية.<br>• يساعده هذا الأسلوب في إنجاز المشاريع بجودة شركات برمجية كبرى وبسرعة أكبر بـ 10 أضعاف!'
+      },
+      {
+        label: 'كيف تتواصل معه؟',
         text: 'كيف يمكنني التواصل مع كرم صوان؟',
-        response: 'يسعد كرم دائماً بالتواصل للتعاون والمشاريع الجديدة!<br><br>يمكنك التواصل معه مباشرة عبر نموذج الاتصال أسفل الصفحة، أو عن طريق البريد الإلكتروني: [span class="text-primary"]karam.sawan.sy@gmail.com[/span]. وسيقوم بالرد عليك في أقرب وقت!'
+        response: 'يسعد كرم دائماً بالتواصل للتعاون والمشاريع الجديدة!<br><br>يمكنك التواصل معه مباشرة عبر نموذج الاتصال أسفل الصفحة، أو عن طريق البريد الإلكتروني: [span class="text-primary"]karam.sawan.sy@gmail.com[/span]، أو الهاتف: [span class="text-primary" style="direction: ltr; display: inline-block;"]+90 551 965 8422[/span]. وسيقوم بالرد عليك في أقرب وقت!'
       }
     ]
   } else if (locale.value === 'tr') {
@@ -66,12 +81,27 @@ const suggestions = computed(() => {
       {
         label: 'Yetenekleri?',
         text: 'Karam hangi teknolojileri kullanıyor?',
-        response: 'Karam, modern teknolojilerle ölçeklenebilir çözümler üretir:<br><br>• [span class="text-primary font-weight-bold"]Önyüz (Frontend)[/span]: Vue.js, Nuxt.js, Vuetify, HTML5, CSS3, JS/TS<br>• [span class="text-secondary font-weight-bold"]Arkayüz & Veritabanı[/span]: Node.js, Express, PostgreSQL, MongoDB, RESTful APIs<br>• [span class="text-accent font-weight-bold"]Araçlar & DevOps[/span]: Git, Docker, CI/CD süreçleri ve bulut teknolojileri.'
+        response: 'Karam, modern ve ölçeklenebilir çözümler üretmek için gelişmiş web teknolojilerinde uzmanlaşmıştır:<br><br>• [span class="text-primary font-weight-bold"]Önyüz (Frontend)[/span]: Vue 3, Nuxt 3, Vuetify, HTML5, CSS3, JS/TS.<br>• [span class="text-secondary font-weight-bold"]Arkayüz & Veritabanı[/span]: Node.js, Express, PostgreSQL, MongoDB, RESTful APIs.<br>• [span class="text-accent font-weight-bold"]Araçlar & DevOps[/span]: Git, Docker, Linux, CI/CD süreçleri ve bulut sunucuları.'
+      },
+      {
+        label: 'Projeleri?',
+        text: 'Karam hangi projeleri geliştirdi?',
+        response: 'Karam, çeşitli iş kolları için gelişmiş projeler üretmiştir. Bazı örnekler:<br><br>• Dinamik panellere ve gerçek zamanlı istatistiklere sahip [span class="text-primary font-weight-bold"]SaaS Platformları[/span].<br>• Hızlı ve güvenli [span class="text-secondary font-weight-bold"]E-Ticaret ve Ödeme Entegrasyonları[/span].<br>• Projelerin canlı demolarını ve kod depolarını incelemek için sayfayı aşağı kaydırabilirsiniz!'
+      },
+      {
+        label: 'Hizmetleri?',
+        text: 'Karam ne tür hizmetler sunuyor?',
+        response: 'Karam\'ın müşterilerine sunduğu profesyonel hizmetler şunlardır:<br><br>• SEO uyumlu ve hızlı [span class="text-primary font-weight-bold"]Full-Stack Web Uygulamaları (SSR/SPA)[/span] geliştirme.<br>• Güvenli [span class="text-secondary font-weight-bold"]Arkayüz API Mimarileri[/span] ve veritabanı tasarımı.<br>• Web uygulamalarına [span class="text-accent font-weight-bold"]Yapay Zeka (AI) API Entegrasyonu[/span].<br>• [span class="text-primary font-weight-bold"]Web sitesi hız ve performans optimizasyonu[/span].'
+      },
+      {
+        label: 'Yapay Zeka Entegrasyonu?',
+        text: 'Karam iş akışında yapay zekayı nasıl kullanıyor?',
+        response: 'Karam, yapay zekayı işinin merkezine entegre eden modern bir geliştiricidir:<br><br>• Kod yazma ve inceleme süreçlerini hızlandırmak için [span class="text-primary font-weight-bold"]yapay zeka kodlama asistanlarını[/span] aktif olarak kullanır.<br>• Hataları önlemek ve kod kalitesini artırmak için test yazımını yapay zeka ile otomatikleştirir.<br>• Bu yaklaşım, projeleri 10 kat daha hızlı ve kurumsal kalitede tamamlamasını sağlar.'
       },
       {
         label: 'İletişim?',
         text: 'Karam ile nasıl iletişime geçebilirim?',
-        response: 'Karam, yeni projeler ve işbirlikleri için sizinle görüşmekten memnuniyet duyar!<br><br>Sayfa sonundaki iletişim formunu kullanabilir veya doğrudan e-posta gönderebilirsiniz: [span class="text-primary"]karam.sawan.sy@gmail.com[/span].'
+        response: 'Karam, yeni projeler ve işbirlikleri için sizinle görüşmekten memnuniyet duyar!<br><br>Sayfa sonundaki iletişim formunu kullanabilir, doğrudan e-posta gönderebilir ([span class="text-primary"]karam.sawan.sy@gmail.com[/span]) veya telefonla ulaşabilirsiniz: [span class="text-primary" style="direction: ltr; display: inline-block;"]+90 551 965 8422[/span].'
       }
     ]
   } else {
@@ -85,12 +115,27 @@ const suggestions = computed(() => {
       {
         label: 'His Skills?',
         text: 'What are Karam\'s technical skills?',
-        response: 'Karam excels in building end-to-end applications using:<br><br>• [span class="text-primary font-weight-bold"]Frontend[/span]: Vue.js, Nuxt.js, Vuetify, TailwindCSS, TypeScript<br>• [span class="text-secondary font-weight-bold"]Backend & DB[/span]: Node.js, Express, PostgreSQL, MongoDB, RESTful APIs<br>• [span class="text-accent font-weight-bold"]Tools & DevOps[/span]: Git, Docker, Linux, CI/CD, AWS'
+        response: 'Karam excels in building end-to-end applications using modern, industry-standard tech stacks:<br><br>• [span class="text-primary font-weight-bold"]Frontend[/span]: Vue 3, Nuxt 3, Vuetify, HTML5, CSS3, JS/TS.<br>• [span class="text-secondary font-weight-bold"]Backend & DB[/span]: Node.js, Express, PostgreSQL, MongoDB, RESTful APIs.<br>• [span class="text-accent font-weight-bold"]Tools & DevOps[/span]: Git, Docker, Linux, CI/CD, Cloud Deployment.'
+      },
+      {
+        label: 'His Projects?',
+        text: 'What projects has Karam built?',
+        response: 'Karam has designed and built several professional applications, including:<br><br>• [span class="text-primary font-weight-bold"]Full-featured SaaS Platforms[/span] with dynamic dashboards and analytics.<br>• Fast and secure [span class="text-secondary font-weight-bold"]E-commerce websites[/span] with payment gateways.<br>• You can scroll down the page to view each project in detail, along with live preview links and GitHub source codes!'
+      },
+      {
+        label: 'His Services?',
+        text: 'What services does Karam offer?',
+        response: 'Karam offers a range of high-quality services for businesses and individuals:<br><br>• [span class="text-primary font-weight-bold"]Full-Stack Web Development (SSR/SPA)[/span] that are fast, responsive, and SEO-optimized.<br>• [span class="text-secondary font-weight-bold"]Secure Backend Architectures[/span] and robust database schemas.<br>• [span class="text-accent font-weight-bold"]AI API Integrations[/span] (Large Language Models, agents, custom tools).<br>• [span class="text-primary font-weight-bold"]Performance tuning & page load optimization[/span].'
+      },
+      {
+        label: 'AI Workflow?',
+        text: 'How does Karam use AI in development?',
+        response: 'Karam Sawan is a modern developer who fully integrates AI into his daily workflow:<br><br>• Uses [span class="text-primary font-weight-bold"]AI coding assistants[/span] to accelerate code generation, review, and refactoring.<br>• Automates routine tasks and tests creation to maintain clean, bug-free, and robust codebases.<br>• This modern workflow allows him to deliver enterprise-grade software 10x faster!'
       },
       {
         label: 'Contact Info?',
         text: 'How can I contact Karam?',
-        response: 'Karam is always open to collaborations and new opportunities!<br><br>You can reach him via the contact form at the bottom of the page or directly by email: [span class="text-primary"]karam.sawan.sy@gmail.com[/span]. He will get back to you shortly!'
+        response: 'Karam is always open to collaborations and new opportunities!<br><br>You can reach him via the contact form at the bottom of the page, by email: [span class="text-primary"]karam.sawan.sy@gmail.com[/span], or by phone: [span class="text-primary" style="direction: ltr; display: inline-block;"]+90 551 965 8422[/span]. He will get back to you shortly!'
       }
     ]
   }
@@ -300,9 +345,9 @@ const getChatbotResponse = (query, currentLocale) => {
         en: ['contact', 'email', 'reach', 'call', 'message', 'phone', 'linkedin', 'github', 'social']
       },
       response: {
-        ar: 'يمكنك التواصل مع كرم مباشرة لمناقشة مشروع جديد أو فرص عمل:<br><br>• 📧 البريد الإلكتروني: [span class="text-primary"]karam.sawan.sy@gmail.com[/span].<br>• 📝 كما يمكنك ملء نموذج المراسلة الموجود في أسفل هذه الصفحة مباشرة وسيرد عليك في أقرب وقت.<br>• 🔗 تواصل معه مهنياً عبر LinkedIn و GitHub المتواجدة روابطهما في الفوتر.',
-        tr: 'Yeni projeler veya iş fırsatları için Karam ile doğrudan iletişime geçebilirsiniz:<br><br>• 📧 E-posta adresi: [span class="text-primary"]karam.sawan.sy@gmail.com[/span].<br>• 📝 Sayfanın alt kısmındaki iletişim formunu doldurarak mesajınızı iletebilirsiniz.<br>• 🔗 Sayfa altındaki bağlantılardan LinkedIn ve GitHub profillerini inceleyebilirsiniz.',
-        en: 'You can reach out to Karam directly to discuss new projects, hires, or collaborations:<br><br>• 📧 Email address: [span class="text-primary"]karam.sawan.sy@gmail.com[/span].<br>• 📝 You can fill out the contact form at the bottom of this page to send a direct message.<br>• 🔗 Connect with him on LinkedIn and GitHub via the links in the footer.'
+        ar: 'يمكنك التواصل مع كرم مباشرة لمناقشة مشروع جديد أو فرص عمل:<br><br>• 📧 البريد الإلكتروني: [span class="text-primary"]karam.sawan.sy@gmail.com[/span].<br>• 📞 الهاتف: [span class="text-primary" style="direction: ltr; display: inline-block;"]+90 551 965 8422[/span].<br>• 📝 كما يمكنك ملء نموذج المراسلة الموجود في أسفل هذه الصفحة مباشرة وسيرد عليك في أقرب وقت.<br>• 🔗 تواصل معه مهنياً عبر LinkedIn و GitHub المتواجدة روابطهما في الفوتر.',
+        tr: 'Yeni projeler veya iş fırsatları için Karam ile doğrudan iletişime geçebilirsiniz:<br><br>• 📧 E-posta adresi: [span class="text-primary"]karam.sawan.sy@gmail.com[/span].<br>• 📞 Telefon: [span class="text-primary" style="direction: ltr; display: inline-block;"]+90 551 965 8422[/span].<br>• 📝 Sayfanın alt kısmındaki iletişim formunu doldurarak mesajınızı iletebilirsiniz.<br>• 🔗 Sayfa altındaki bağlantılardan LinkedIn ve GitHub profillerini inceleyebilirsiniz.',
+        en: 'You can reach out to Karam directly to discuss new projects, hires, or collaborations:<br><br>• 📧 Email address: [span class="text-primary"]karam.sawan.sy@gmail.com[/span].<br>• 📞 Phone: [span class="text-primary" style="direction: ltr; display: inline-block;"]+90 551 965 8422[/span].<br>• 📝 You can fill out the contact form at the bottom of this page to send a direct message.<br>• 🔗 Connect with him on LinkedIn and GitHub via the links in the footer.'
       }
     },
     {
