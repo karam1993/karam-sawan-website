@@ -202,12 +202,19 @@
     }
 
     /* Visual Timeline for Experience */
+    .experience-section {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
     .experience-timeline {
       position: relative;
       border-right: 2px solid var(--timeline-line);
       margin-right: 10px;
       padding-right: 20px;
       list-style: none;
+      flex-grow: 1;
     }
 
     .timeline-item {
@@ -400,6 +407,19 @@
       color: var(--text-muted);
     }
 
+    /* Footer Styling */
+    .cv-footer {
+      border-top: 1px solid var(--border);
+      padding: 10px 30px;
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-light);
+      margin-top: auto;
+    }
+
     /* Print settings */
     @media print {
       * {
@@ -507,7 +527,7 @@
         </section>
 
         <!-- Experience Section -->
-        <section class="section-block">
+        <section class="section-block experience-section">
           <h3 class="section-title-mod"><i class="fa-solid fa-history"></i> الخبرة المهنية</h3>
 
           <ul class="experience-timeline">
@@ -605,6 +625,11 @@
         </section>
       </aside>
     </div>
+    <!-- Footer for Page 1 -->
+    <footer class="cv-footer">
+      <span>كرم صوان &mdash; مطور Full-Stack أول</span>
+      <span>صفحة 1 من 2</span>
+    </footer>
   </div>
 
   <!-- ================= PAGE 2 ================= -->
@@ -616,7 +641,6 @@
           <h1 style="font-size: 20px;">كرم صوان</h1>
           <h2 style="font-size: 12px;">مطور Full-Stack أول (Senior Full-Stack Developer)</h2>
         </div>
-        <div style="font-size: 11px; color: #E2E8F0;">صفحة 2 من 2</div>
       </div>
     </header>
 
@@ -624,7 +648,7 @@
     <div class="cv-body-content">
       <!-- Main Column (Continued Jobs + Projects) -->
       <main class="main-column">
-        <section class="section-block">
+        <section class="section-block experience-section">
           <h3 class="section-title-mod"><i class="fa-solid fa-briefcase"></i> الخبرة المهنية (تابع)</h3>
 
           <ul class="experience-timeline">
@@ -720,21 +744,21 @@
           <h3 class="section-title-mod"><i class="fa-solid fa-language"></i> اللغات</h3>
           <div class="lang-container">
             <div class="lang-card">
-              <i class="fa-solid fa-comments lang-icon"></i>
+              <i class="fa-solid fa-comment-dots lang-icon"></i>
               <div>
                 <div class="lang-name">العربية</div>
                 <div class="lang-level">اللغة الأم</div>
               </div>
             </div>
             <div class="lang-card">
-              <i class="fa-solid fa-language lang-icon"></i>
+              <i class="fa-solid fa-comment-dots lang-icon"></i>
               <div>
                 <div class="lang-name">التركية</div>
                 <div class="lang-level">طليق / مستوى متقدم</div>
               </div>
             </div>
             <div class="lang-card">
-              <i class="fa-solid fa-earth-americas lang-icon"></i>
+              <i class="fa-solid fa-comment-dots lang-icon"></i>
               <div>
                 <div class="lang-name">الإنجليزية</div>
                 <div class="lang-level">مستوى متوسط</div>
@@ -744,6 +768,11 @@
         </section>
       </aside>
     </div>
+    <!-- Footer for Page 2 -->
+    <footer class="cv-footer">
+      <span>المراجع متاحة عند الطلب</span>
+      <span>صفحة 2 من 2</span>
+    </footer>
   </div>
 
 </body>

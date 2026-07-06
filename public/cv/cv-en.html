@@ -99,7 +99,7 @@
     .cv-header-executive {
       background: var(--primary);
       color: white;
-      padding: 20px 30px;
+      padding: 40px 30px;
       border-bottom: 5px solid var(--secondary);
     }
 
@@ -204,12 +204,19 @@
     }
 
     /* Visual Timeline for Experience (LTR config) */
+    .experience-section {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
     .experience-timeline {
       position: relative;
       border-left: 2px solid var(--timeline-line);
       margin-left: 10px;
       padding-left: 20px;
       list-style: none;
+      flex-grow: 1;
     }
 
     .timeline-item {
@@ -239,7 +246,7 @@
     }
 
     .timeline-job-title {
-      font-size: 14.5px;
+      font-size: 15.5px;
       font-weight: 700;
       color: var(--primary);
       line-height: 1.3;
@@ -270,10 +277,10 @@
     .timeline-desc li {
       position: relative;
       padding-left: 12px;
-      font-size: 12.5px;
+      font-size: 15px;
       line-height: 1.35;
       color: var(--text-muted);
-      margin-bottom: 2px;
+      margin-bottom: 5px;
       text-align: justify;
     }
 
@@ -402,6 +409,19 @@
       color: var(--text-muted);
     }
 
+    /* Footer Styling */
+    .cv-footer {
+      border-top: 1px solid var(--border);
+      padding: 10px 30px;
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-light);
+      margin-top: auto;
+    }
+
     /* Print settings */
     @media print {
       * {
@@ -494,7 +514,7 @@
         <section class="section-block">
           <h3 class="section-title-mod"><i class="fa-solid fa-user-tie"></i> Professional Summary</h3>
           <p
-            style="text-align: justify; font-size: 13px; color: var(--text-muted); line-height: 1.45; margin-bottom: 5px;">
+            style="text-align: justify; font-size: 15px; color: var(--text-muted); line-height: 1.45; margin-bottom: 5px;">
             Senior Full-Stack Developer with 7+ years of experience engineering robust SaaS platforms and complex web
             applications. Merging software engineering expertise with advanced AI tools to build innovative,
             high-efficiency digital solutions. Driven by a Founder's Mentality and a proactive approach to build secure,
@@ -503,7 +523,7 @@
         </section>
 
         <!-- Experience Section -->
-        <section class="section-block">
+        <section class="section-block experience-section">
           <h3 class="section-title-mod"><i class="fa-solid fa-history"></i> Work Experience</h3>
 
           <ul class="experience-timeline">
@@ -608,6 +628,11 @@
         </section>
       </aside>
     </div>
+    <!-- Footer for Page 1 -->
+    <footer class="cv-footer">
+      <span>Karam Sawan &mdash; Senior Full-Stack Developer</span>
+      <span>Page 1 of 2</span>
+    </footer>
   </div>
 
   <!-- ================= PAGE 2 ================= -->
@@ -624,7 +649,7 @@
     <div class="cv-body-content">
       <!-- Main Column -->
       <main class="main-column">
-        <section class="section-block">
+        <section class="section-block experience-section">
           <h3 class="section-title-mod"><i class="fa-solid fa-briefcase"></i> Work Experience (Continued)</h3>
 
           <ul class="experience-timeline">
@@ -725,21 +750,21 @@
           <h3 class="section-title-mod"><i class="fa-solid fa-language"></i> Languages</h3>
           <div class="lang-container">
             <div class="lang-card">
-              <i class="fa-solid fa-comments lang-icon"></i>
+              <i class="fa-solid fa-comment-dots lang-icon"></i>
               <div>
                 <div class="lang-name">Arabic</div>
                 <div class="lang-level">Native Language</div>
               </div>
             </div>
             <div class="lang-card">
-              <i class="fa-solid fa-language lang-icon"></i>
+              <i class="fa-solid fa-comment-dots lang-icon"></i>
               <div>
                 <div class="lang-name">Turkish</div>
                 <div class="lang-level">Fluent / Advanced</div>
               </div>
             </div>
             <div class="lang-card">
-              <i class="fa-solid fa-earth-americas lang-icon"></i>
+              <i class="fa-solid fa-comment-dots lang-icon"></i>
               <div>
                 <div class="lang-name">English</div>
                 <div class="lang-level">Intermediate Level</div>
@@ -749,6 +774,11 @@
         </section>
       </aside>
     </div>
+    <!-- Footer for Page 2 -->
+    <footer class="cv-footer">
+      <span>References available upon request</span>
+      <span>Page 2 of 2</span>
+    </footer>
   </div>
 
 </body>
